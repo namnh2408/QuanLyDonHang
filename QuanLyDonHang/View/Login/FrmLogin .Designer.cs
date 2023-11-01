@@ -39,13 +39,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblpass = new System.Windows.Forms.Label();
             this.pnlTittle = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.rdoAdmin = new System.Windows.Forms.RadioButton();
             this.btnDangNhap = new System.Windows.Forms.Button();
-            this.txtTenDN = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.rdoNhanVien = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlTittle.SuspendLayout();
@@ -162,6 +162,28 @@
             this.pnlTittle.TabIndex = 17;
             this.pnlTittle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTittle_MouseDown);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(135, 330);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(147, 35);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Đơn Hàng";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(54, 272);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(127, 35);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Quản Lý";
+            // 
             // rdoAdmin
             // 
             this.rdoAdmin.AutoSize = true;
@@ -193,16 +215,16 @@
             this.btnDangNhap.UseVisualStyleBackColor = false;
             this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
             // 
-            // txtTenDN
+            // txtUserName
             // 
-            this.txtTenDN.BackColor = System.Drawing.Color.White;
-            this.txtTenDN.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTenDN.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenDN.Location = new System.Drawing.Point(90, 252);
-            this.txtTenDN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtTenDN.Name = "txtTenDN";
-            this.txtTenDN.Size = new System.Drawing.Size(420, 28);
-            this.txtTenDN.TabIndex = 0;
+            this.txtUserName.BackColor = System.Drawing.Color.White;
+            this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUserName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserName.Location = new System.Drawing.Point(90, 252);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(420, 28);
+            this.txtUserName.TabIndex = 0;
             // 
             // panel3
             // 
@@ -218,13 +240,12 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.lblTittle);
             this.panel3.Controls.Add(this.btnDangNhap);
-            this.panel3.Controls.Add(this.txtTenDN);
+            this.panel3.Controls.Add(this.txtUserName);
             this.panel3.Location = new System.Drawing.Point(321, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(755, 588);
             this.panel3.TabIndex = 16;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // rdoNhanVien
             // 
@@ -241,28 +262,6 @@
             this.rdoNhanVien.Text = "Nhân viên";
             this.rdoNhanVien.UseVisualStyleBackColor = true;
             this.rdoNhanVien.CheckedChanged += new System.EventHandler(this.rdoNhanVien_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(54, 272);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 35);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Quản Lý";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(135, 330);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 35);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Đơn Hàng";
             // 
             // label3
             // 
@@ -311,7 +310,7 @@
         private System.Windows.Forms.Panel pnlTittle;
         private System.Windows.Forms.RadioButton rdoAdmin;
         private System.Windows.Forms.Button btnDangNhap;
-        private System.Windows.Forms.TextBox txtTenDN;
+        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton rdoNhanVien;
         private System.Windows.Forms.Label label2;

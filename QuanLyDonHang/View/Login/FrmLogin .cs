@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QuanLyDonHang.Model;
+using QuanLyDonHang.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +17,11 @@ namespace QuanLyDonHang.View.Login
     public partial class FrmLogin : Form
     {
         string QuyenTruyCap = "";
+        int roleId = 0;
         string err;
+        UserServices userServices = new UserServices();
+        
+        
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -32,6 +38,41 @@ namespace QuanLyDonHang.View.Login
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrEmpty(txtUserName.Text))
+            {
+                MessageBox.Show("Vui lòng nhập tên đăng nhập", "Đăng nhập", MessageBoxButtons.OK);
+            }
+
+            if (string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu", "Đăng nhập", MessageBoxButtons.OK);
+            }
+
+            var signin = new Signin
+            {
+                UserName = txtUserName.Text,
+                Password = txtPassword.Text,
+                RoleId = roleId
+            };
+
+            var isLogin = userServices.LoginUser(signin, ref err);
+
+            if (isLogin)
+            {
+                MessageBox.Show("Đăng nhập hệ thống thành công", "Đăng nhập");
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(err))
+                {
+                    MessageBox.Show(err, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Đăng nhập thất bại.Vui lòng thử lại !", "Đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -45,13 +86,7 @@ namespace QuanLyDonHang.View.Login
         private void rdoAdmin_CheckedChanged(object sender, EventArgs e)
         {
             QuyenTruyCap = "Admin";
-        }
-
-
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
+            roleId = 1;
         }
 
         private void pnlTittle_MouseDown(object sender, MouseEventArgs e)
@@ -67,6 +102,7 @@ namespace QuanLyDonHang.View.Login
         private void rdoNhanVien_CheckedChanged(object sender, EventArgs e)
         {
             QuyenTruyCap = "NhanVien";
+            roleId = 2;
         }
     }
 }
