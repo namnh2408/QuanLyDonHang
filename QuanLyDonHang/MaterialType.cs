@@ -14,6 +14,12 @@ namespace QuanLyDonHang
     
     public partial class MaterialType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MaterialType()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
         public int IsDeleted { get; set; }
@@ -21,5 +27,8 @@ namespace QuanLyDonHang
         public System.DateTime CreateDate { get; set; }
         public int UpdateUser { get; set; }
         public System.DateTime UpdateDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

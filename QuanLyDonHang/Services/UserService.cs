@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyDonHang.Services
 {
-    public class UserServices
+    public class UserService
     {
         private QLDonHangEntities entities = new QLDonHangEntities();
         public UserInfo userInfo = new UserInfo();

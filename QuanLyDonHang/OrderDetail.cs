@@ -29,5 +29,10 @@ namespace QuanLyDonHang
         public System.DateTime CreateDate { get; set; }
         public int UpdateUser { get; set; }
         public System.DateTime UpdateDate { get; set; }
+    
+        public virtual ConstructionType ConstructionType { get; set; }
+        public virtual MaterialType MaterialType { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

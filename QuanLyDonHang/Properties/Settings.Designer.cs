@@ -22,5 +22,15 @@ namespace QuanLyDonHang.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=QLDonHang;Integrated Security=True")]
+        public string QLDonHangConnectionString {
+            get {
+                return ((string)(this["QLDonHangConnectionString"]));
+            }
+        }
     }
 }

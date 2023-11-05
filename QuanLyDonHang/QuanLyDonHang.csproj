@@ -78,12 +78,14 @@
       <DependentUpon>QuanLyDonHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Lib\AutoMapperHelper.cs" />
+    <Compile Include="Lib\SystemConstants.cs" />
     <Compile Include="Lib\Encryptor.cs" />
     <Compile Include="Lib\Function.cs" />
     <Compile Include="Lib\UserInfo.cs" />
     <Compile Include="MaterialType.cs">
       <DependentUpon>QuanLyDonHang.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CommonTypeModel.cs" />
     <Compile Include="Model\SelectItem.cs" />
     <Compile Include="Model\Users.cs" />
     <Compile Include="Order.cs">
@@ -118,7 +120,12 @@
     <Compile Include="Role.cs">
       <DependentUpon>QuanLyDonHang.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\UserServices.cs" />
+    <Compile Include="Services\CommonTypeService.cs" />
+    <Compile Include="Services\ContructionTypeService.cs" />
+    <Compile Include="Services\MaterialTypeService.cs" />
+    <Compile Include="Services\PaymentTypeService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="User.cs">
       <DependentUpon>QuanLyDonHang.tt</DependentUpon>
     </Compile>
@@ -127,6 +134,12 @@
     </Compile>
     <Compile Include="View\Login\FrmLogin .Designer.cs">
       <DependentUpon>FrmLogin .cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Main\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Main\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -143,6 +156,9 @@
     </Compile>
     <EmbeddedResource Include="View\Login\FrmLogin .resx">
       <DependentUpon>FrmLogin .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -166,8 +182,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FormControl\" />
-    <Folder Include="Resources\" />
+    <Folder Include="View\FormControl\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="QuanLyDonHang.Context.tt">
@@ -180,6 +195,13 @@
       <DependentUpon>QuanLyDonHang.edmx</DependentUpon>
       <LastGenOutput>QuanLyDonHang.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\icons-shutdown-30.png" />
+    <None Include="Resources\icons8-logout-rounded-left-30.png" />
+    <None Include="Resources\icons8-password-35.png" />
+    <None Include="Resources\hmicon.png" />
+    <None Include="Resources\588a667fd06f6719692a2d19.png" />
+    <None Include="Resources\icons8-back-arrow-35.png" />
+    <None Include="Resources\tsb.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

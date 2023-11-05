@@ -12,18 +12,12 @@ namespace QuanLyDonHang
     using System;
     using System.Collections.Generic;
     
-    public partial class Income
+    public partial class sysdiagram
     {
-        public int ID { get; set; }
-        public int OrderID { get; set; }
-        public decimal TotalMoney { get; set; }
-        public decimal RealRevenue { get; set; }
-        public decimal LeftMoney { get; set; }
-        public int CreateUser { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public int UpdateUser { get; set; }
-        public System.DateTime UpdateDate { get; set; }
-    
-        public virtual Order Order { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

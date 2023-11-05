@@ -14,6 +14,12 @@ namespace QuanLyDonHang
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
+    
         public int ID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
@@ -24,5 +30,8 @@ namespace QuanLyDonHang
         public System.DateTime CreateDate { get; set; }
         public int UpdateUser { get; set; }
         public System.DateTime UpdateDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

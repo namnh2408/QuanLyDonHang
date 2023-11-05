@@ -4,18 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="de079e9120944140a3fb206135eeb5ea" Name="Diagram1">
-        <EntityTypeShape EntityType="QLDonHangModel.ConstructionType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.Customer" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.DeliveryType" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.Income" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.MaterialType" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.OrderDetail" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.Order" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.PaymentType" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.Product" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.Role" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLDonHangModel.User" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="de079e9120944140a3fb206135eeb5ea" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="QLDonHangModel.ConstructionType" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.Customer" Width="1.5" PointX="2.25" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.DeliveryType" Width="1.5" PointX="6.125" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.Income" Width="1.5" PointX="4.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.MaterialType" Width="1.5" PointX="6.375" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.OrderDetail" Width="1.5" PointX="8.375" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.Order" Width="1.5" PointX="4.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.PaymentType" Width="1.5" PointX="2.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.Product" Width="1.5" PointX="8.25" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.Role" Width="1.5" PointX="0.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.User" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDonHangModel.sysdiagram" Width="1.5" PointX="10.5" PointY="0.75" />
+        <AssociationConnector Association="QLDonHangModel.FK__OrderDeta__Const__6EC0713C" />
+        <AssociationConnector Association="QLDonHangModel.FK__Orders__Customer__690797E6" />
+        <AssociationConnector Association="QLDonHangModel.FK__Orders__Delivery__6AEFE058" />
+        <AssociationConnector Association="QLDonHangModel.FK__Incomes__OrderID__6FB49575" />
+        <AssociationConnector Association="QLDonHangModel.FK__OrderDeta__Mater__6DCC4D03" />
+        <AssociationConnector Association="QLDonHangModel.FK__OrderDeta__Order__6BE40491" />
+        <AssociationConnector Association="QLDonHangModel.FK__OrderDeta__Produ__6CD828CA" />
+        <AssociationConnector Association="QLDonHangModel.FK__Orders__PaymentT__69FBBC1F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

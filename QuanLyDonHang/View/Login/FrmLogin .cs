@@ -1,5 +1,6 @@
 ﻿using QuanLyDonHang.Model;
 using QuanLyDonHang.Services;
+using QuanLyDonHang.View.Main;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace QuanLyDonHang.View.Login
         string QuyenTruyCap = "";
         int roleId = 0;
         string err;
-        UserServices userServices = new UserServices();
+        UserService userServices = new UserService();
         
         
 
@@ -60,6 +61,11 @@ namespace QuanLyDonHang.View.Login
             if (isLogin)
             {
                 MessageBox.Show("Đăng nhập hệ thống thành công", "Đăng nhập");
+
+                frmMain frm = new frmMain();
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                this.Hide();
             }
             else
             {

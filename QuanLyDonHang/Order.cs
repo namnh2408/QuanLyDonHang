@@ -14,6 +14,13 @@ namespace QuanLyDonHang
     
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.Incomes = new HashSet<Income>();
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
+    
         public int ID { get; set; }
         public string Code { get; set; }
         public int CustomerID { get; set; }
@@ -34,5 +41,13 @@ namespace QuanLyDonHang
         public System.DateTime CreateDate { get; set; }
         public int UpdateUser { get; set; }
         public System.DateTime UpdateDate { get; set; }
+    
+        public virtual Customer Customer { get; set; }
+        public virtual DeliveryType DeliveryType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Income> Incomes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual PaymentType PaymentType { get; set; }
     }
 }
