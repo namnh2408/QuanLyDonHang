@@ -42,11 +42,13 @@ namespace QuanLyDonHang.View.Login
             if(string.IsNullOrEmpty(txtUserName.Text))
             {
                 MessageBox.Show("Vui lòng nhập tên đăng nhập", "Đăng nhập", MessageBoxButtons.OK);
+                return;
             }
 
             if (string.IsNullOrEmpty(txtPassword.Text))
             {
                 MessageBox.Show("Vui lòng nhập mật khẩu", "Đăng nhập", MessageBoxButtons.OK);
+                return;
             }
 
             var signin = new Signin
@@ -60,10 +62,13 @@ namespace QuanLyDonHang.View.Login
 
             if (isLogin)
             {
-                MessageBox.Show("Đăng nhập hệ thống thành công", "Đăng nhập");
+                //MessageBox.Show("Đăng nhập hệ thống thành công", "Đăng nhập");
 
                 frmMain frm = new frmMain();
                 frm.WindowState = FormWindowState.Maximized;
+
+                frm.userInfo = userServices.userInfo;
+
                 frm.Show();
                 this.Hide();
             }

@@ -82,12 +82,15 @@
     <Compile Include="Lib\Encryptor.cs" />
     <Compile Include="Lib\Function.cs" />
     <Compile Include="Lib\UserInfo.cs" />
+    <Compile Include="Lib\Utils.cs" />
     <Compile Include="MaterialType.cs">
       <DependentUpon>QuanLyDonHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CommonTypeModel.cs" />
+    <Compile Include="Model\CustomerModel.cs" />
+    <Compile Include="Model\ProductModel.cs" />
     <Compile Include="Model\SelectItem.cs" />
-    <Compile Include="Model\Users.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>QuanLyDonHang.tt</DependentUpon>
     </Compile>
@@ -102,6 +105,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLDonHangDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLDonHangDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyDonHang.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -120,14 +128,60 @@
     <Compile Include="Role.cs">
       <DependentUpon>QuanLyDonHang.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\CommonTypeService.cs" />
-    <Compile Include="Services\ContructionTypeService.cs" />
+    <Compile Include="Services\ConstructionTypeService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\DeliveryTypeService.cs" />
     <Compile Include="Services\MaterialTypeService.cs" />
     <Compile Include="Services\PaymentTypeService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QuanLyDonHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>QuanLyDonHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>QuanLyDonHang.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>QuanLyDonHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormControl\uc_ChatLieu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_ChatLieu.Designer.cs">
+      <DependentUpon>uc_ChatLieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormControl\uc_HinhThucGiaoHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_HinhThucGiaoHang.Designer.cs">
+      <DependentUpon>uc_HinhThucGiaoHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormControl\uc_HinhThucThanhToan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_HinhThucThanhToan.Designer.cs">
+      <DependentUpon>uc_HinhThucThanhToan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormControl\uc_KhachHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_KhachHang.Designer.cs">
+      <DependentUpon>uc_KhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormControl\uc_QuanLyTaiKhoan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_QuanLyTaiKhoan.Designer.cs">
+      <DependentUpon>uc_QuanLyTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormControl\uc_ThiCong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_ThiCong.Designer.cs">
+      <DependentUpon>uc_ThiCong.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Login\FrmLogin .cs">
       <SubType>Form</SubType>
@@ -154,6 +208,24 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\FormControl\uc_ChatLieu.resx">
+      <DependentUpon>uc_ChatLieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormControl\uc_HinhThucGiaoHang.resx">
+      <DependentUpon>uc_HinhThucGiaoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormControl\uc_HinhThucThanhToan.resx">
+      <DependentUpon>uc_HinhThucThanhToan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormControl\uc_KhachHang.resx">
+      <DependentUpon>uc_KhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormControl\uc_QuanLyTaiKhoan.resx">
+      <DependentUpon>uc_QuanLyTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormControl\uc_ThiCong.resx">
+      <DependentUpon>uc_ThiCong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Login\FrmLogin .resx">
       <DependentUpon>FrmLogin .cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +246,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>QuanLyDonHang.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="QLDonHangDataSet.xsc">
+      <DependentUpon>QLDonHangDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QLDonHangDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLDonHangDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLDonHangDataSet.xss">
+      <DependentUpon>QLDonHangDataSet.xsd</DependentUpon>
+    </None>
     <None Include="QuanLyDonHang.edmx.diagram">
       <DependentUpon>QuanLyDonHang.edmx</DependentUpon>
     </None>
@@ -181,9 +264,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\FormControl\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="QuanLyDonHang.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -195,6 +276,11 @@
       <DependentUpon>QuanLyDonHang.edmx</DependentUpon>
       <LastGenOutput>QuanLyDonHang.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\Icon\close.png" />
+    <None Include="Resources\Icon\floppy-disk.png" />
+    <None Include="Resources\Icon\prohibition.png" />
+    <None Include="Resources\Icon\loop.png" />
+    <None Include="Resources\Icon\plus %281%29.png" />
     <None Include="Resources\icons-shutdown-30.png" />
     <None Include="Resources\icons8-logout-rounded-left-30.png" />
     <None Include="Resources\icons8-password-35.png" />

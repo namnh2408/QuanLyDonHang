@@ -64,7 +64,7 @@
             this.btnGiaoHang = new System.Windows.Forms.Button();
             this.btnNhanVien = new System.Windows.Forms.Button();
             this.btnThanhToan = new System.Windows.Forms.Button();
-            this.btnReport = new System.Windows.Forms.Button();
+            this.btnCustomer = new System.Windows.Forms.Button();
             this.btnThiCong = new System.Windows.Forms.Button();
             this.btnSanPham = new System.Windows.Forms.Button();
             this.btnChatLieu = new System.Windows.Forms.Button();
@@ -248,6 +248,7 @@
             this.ptbTroVe.TabIndex = 14;
             this.ptbTroVe.TabStop = false;
             this.ptbTroVe.Visible = false;
+            this.ptbTroVe.Click += new System.EventHandler(this.ptbTroVe_Click);
             // 
             // menuStrip
             // 
@@ -262,7 +263,7 @@
             this.menuStrip.Location = new System.Drawing.Point(717, 14);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(351, 35);
+            this.menuStrip.Size = new System.Drawing.Size(501, 35);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -301,7 +302,7 @@
             // 
             this.mnstrExit.Name = "mnstrExit";
             this.mnstrExit.Size = new System.Drawing.Size(228, 32);
-            this.mnstrExit.Text = "E&xit";
+            this.mnstrExit.Text = "&Thoát";
             // 
             // menuDanhMuc
             // 
@@ -323,6 +324,7 @@
             this.menuNhanVien.Name = "menuNhanVien";
             this.menuNhanVien.Size = new System.Drawing.Size(302, 32);
             this.menuNhanVien.Text = "Nhân viên";
+            this.menuNhanVien.Click += new System.EventHandler(this.menuNhanVien_Click);
             // 
             // menuSanPham
             // 
@@ -335,30 +337,35 @@
             this.menuChatLieu.Name = "menuChatLieu";
             this.menuChatLieu.Size = new System.Drawing.Size(302, 32);
             this.menuChatLieu.Text = "Chất liệu";
+            this.menuChatLieu.Click += new System.EventHandler(this.menuChatLieu_Click);
             // 
             // menuThiCong
             // 
             this.menuThiCong.Name = "menuThiCong";
             this.menuThiCong.Size = new System.Drawing.Size(302, 32);
             this.menuThiCong.Text = "Thi công";
+            this.menuThiCong.Click += new System.EventHandler(this.menuThiCong_Click);
             // 
             // menuThanhToan
             // 
             this.menuThanhToan.Name = "menuThanhToan";
             this.menuThanhToan.Size = new System.Drawing.Size(302, 32);
             this.menuThanhToan.Text = "Hình thức thanh toán";
+            this.menuThanhToan.Click += new System.EventHandler(this.menuThanhToan_Click);
             // 
             // menuGiaoHang
             // 
             this.menuGiaoHang.Name = "menuGiaoHang";
             this.menuGiaoHang.Size = new System.Drawing.Size(302, 32);
             this.menuGiaoHang.Text = "Hình thức giao hàng";
+            this.menuGiaoHang.Click += new System.EventHandler(this.menuGiaoHang_Click);
             // 
             // menuPhieuGiaoHang
             // 
             this.menuPhieuGiaoHang.Name = "menuPhieuGiaoHang";
             this.menuPhieuGiaoHang.Size = new System.Drawing.Size(302, 32);
             this.menuPhieuGiaoHang.Text = "Phiếu giao hàng";
+            this.menuPhieuGiaoHang.Click += new System.EventHandler(this.menuPhieuGiaoHang_Click);
             // 
             // TittlePanel
             // 
@@ -390,7 +397,7 @@
             this.pnlDisplay.Controls.Add(this.btnGiaoHang);
             this.pnlDisplay.Controls.Add(this.btnNhanVien);
             this.pnlDisplay.Controls.Add(this.btnThanhToan);
-            this.pnlDisplay.Controls.Add(this.btnReport);
+            this.pnlDisplay.Controls.Add(this.btnCustomer);
             this.pnlDisplay.Controls.Add(this.btnThiCong);
             this.pnlDisplay.Controls.Add(this.btnSanPham);
             this.pnlDisplay.Controls.Add(this.btnChatLieu);
@@ -418,6 +425,7 @@
             this.btnGiaoHang.TabIndex = 14;
             this.btnGiaoHang.Text = "Hình Thức Giao Hàng";
             this.btnGiaoHang.UseVisualStyleBackColor = false;
+            this.btnGiaoHang.Click += new System.EventHandler(this.btnGiaoHang_Click);
             // 
             // btnNhanVien
             // 
@@ -435,6 +443,7 @@
             this.btnNhanVien.TabIndex = 13;
             this.btnNhanVien.Text = "Nhân Viên";
             this.btnNhanVien.UseVisualStyleBackColor = false;
+            this.btnNhanVien.Click += new System.EventHandler(this.btnNhanVien_Click);
             // 
             // btnThanhToan
             // 
@@ -452,21 +461,23 @@
             this.btnThanhToan.TabIndex = 9;
             this.btnThanhToan.Text = "Hình Thức Thanh Toán";
             this.btnThanhToan.UseVisualStyleBackColor = false;
+            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
             // 
-            // btnReport
+            // btnCustomer
             // 
-            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReport.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnReport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnReport.Location = new System.Drawing.Point(1164, 155);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(196, 340);
-            this.btnReport.TabIndex = 8;
-            this.btnReport.Text = "Báo Cáo";
-            this.btnReport.UseVisualStyleBackColor = false;
+            this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.btnCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCustomer.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCustomer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCustomer.Location = new System.Drawing.Point(1164, 155);
+            this.btnCustomer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCustomer.Name = "btnCustomer";
+            this.btnCustomer.Size = new System.Drawing.Size(196, 340);
+            this.btnCustomer.TabIndex = 8;
+            this.btnCustomer.Text = "Khách Hàng";
+            this.btnCustomer.UseVisualStyleBackColor = false;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // btnThiCong
             // 
@@ -484,6 +495,7 @@
             this.btnThiCong.TabIndex = 10;
             this.btnThiCong.Text = "Thi Công";
             this.btnThiCong.UseVisualStyleBackColor = false;
+            this.btnThiCong.Click += new System.EventHandler(this.btnThiCong_Click);
             // 
             // btnSanPham
             // 
@@ -501,6 +513,7 @@
             this.btnSanPham.TabIndex = 7;
             this.btnSanPham.Text = "Sản Phẩm";
             this.btnSanPham.UseVisualStyleBackColor = false;
+            this.btnSanPham.Click += new System.EventHandler(this.btnSanPham_Click);
             // 
             // btnChatLieu
             // 
@@ -518,6 +531,7 @@
             this.btnChatLieu.TabIndex = 11;
             this.btnChatLieu.Text = "Chất Liệu";
             this.btnChatLieu.UseVisualStyleBackColor = false;
+            this.btnChatLieu.Click += new System.EventHandler(this.btnChatLieu_Click);
             // 
             // btnPhieuGiaoHang
             // 
@@ -535,6 +549,7 @@
             this.btnPhieuGiaoHang.TabIndex = 12;
             this.btnPhieuGiaoHang.Text = "Phiếu Giao Hàng";
             this.btnPhieuGiaoHang.UseVisualStyleBackColor = false;
+            this.btnPhieuGiaoHang.Click += new System.EventHandler(this.btnPhieuGiaoHang_Click);
             // 
             // frmMain
             // 
@@ -598,7 +613,7 @@
         private System.Windows.Forms.Panel pnlDisplay;
         public System.Windows.Forms.Button btnNhanVien;
         public System.Windows.Forms.Button btnThanhToan;
-        public System.Windows.Forms.Button btnReport;
+        public System.Windows.Forms.Button btnCustomer;
         public System.Windows.Forms.Button btnThiCong;
         public System.Windows.Forms.Button btnSanPham;
         public System.Windows.Forms.Button btnChatLieu;

@@ -97,7 +97,7 @@
             this.btnexit.Location = new System.Drawing.Point(700, 9);
             this.btnexit.Margin = new System.Windows.Forms.Padding(0);
             this.btnexit.Name = "btnexit";
-            this.btnexit.Size = new System.Drawing.Size(45, 46);
+            this.btnexit.Size = new System.Drawing.Size(46, 46);
             this.btnexit.TabIndex = 0;
             this.btnexit.TabStop = false;
             this.btnexit.Text = "X";
@@ -193,8 +193,7 @@
             this.rdoAdmin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoAdmin.Name = "rdoAdmin";
             this.rdoAdmin.Size = new System.Drawing.Size(159, 31);
-            this.rdoAdmin.TabIndex = 20;
-            this.rdoAdmin.TabStop = true;
+            this.rdoAdmin.TabIndex = 2;
             this.rdoAdmin.Text = "Quản trị viên";
             this.rdoAdmin.UseVisualStyleBackColor = true;
             this.rdoAdmin.CheckedChanged += new System.EventHandler(this.rdoAdmin_CheckedChanged);
@@ -210,7 +209,7 @@
             this.btnDangNhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(179, 50);
-            this.btnDangNhap.TabIndex = 3;
+            this.btnDangNhap.TabIndex = 4;
             this.btnDangNhap.Text = "Đăng nhập";
             this.btnDangNhap.UseVisualStyleBackColor = false;
             this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
@@ -250,15 +249,13 @@
             // rdoNhanVien
             // 
             this.rdoNhanVien.AutoSize = true;
-            this.rdoNhanVien.Checked = true;
             this.rdoNhanVien.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoNhanVien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.rdoNhanVien.Location = new System.Drawing.Point(271, 407);
             this.rdoNhanVien.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoNhanVien.Name = "rdoNhanVien";
             this.rdoNhanVien.Size = new System.Drawing.Size(132, 31);
-            this.rdoNhanVien.TabIndex = 21;
-            this.rdoNhanVien.TabStop = true;
+            this.rdoNhanVien.TabIndex = 3;
             this.rdoNhanVien.Text = "Nhân viên";
             this.rdoNhanVien.UseVisualStyleBackColor = true;
             this.rdoNhanVien.CheckedChanged += new System.EventHandler(this.rdoNhanVien_CheckedChanged);

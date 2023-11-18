@@ -29,5 +29,8 @@ namespace QuanLyDonHang
         public System.DateTime UpdateDate { get; set; }
         public string Password { get; set; }
         public string Code { get; set; }
+        public string Gender { get; set; }
+    
+        public virtual Role Role { get; set; }
     }
 }

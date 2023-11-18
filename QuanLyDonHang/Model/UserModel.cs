@@ -6,9 +6,27 @@ using System.Threading.Tasks;
 
 namespace QuanLyDonHang.Model
 {
-    public class Users
+    public class UserModel
     {
+        public int ID { get; set; }
+        public string Code { get; set; }
+        public string UserName { get; set; }
+        public string Fullname { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string Gender { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
+        public int IsActive { get; set; }
 
+        public int CreateUser { get; set; }
+        public string CreateUserName { get; set; }
+        public string CreateDate { get; set; }
+
+        public int UpdateUser { get; set; }
+        public string UpdateUserName { get; set; }
+        public string UpdateDate { get; set; }
     }
     public class CreateUser
     {
@@ -19,11 +37,12 @@ namespace QuanLyDonHang.Model
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public string Gender { get; set; }
         public int RoleID { get; set; }
         public int IsActive { get; set; }
     }
 
-    public class Update : CreateUser
+    public class UpdateUser : CreateUser
     {
         public int ID { get; set; }
     }

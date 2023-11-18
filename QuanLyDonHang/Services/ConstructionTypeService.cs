@@ -2,6 +2,7 @@
 using QuanLyDonHang.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyDonHang.Services
 {
-    public class ContructionTypeService
+    public class ConstructionTypeService
     {
         private QLDonHangEntities entities = new QLDonHangEntities();
 
@@ -25,25 +26,44 @@ namespace QuanLyDonHang.Services
             return construction;
         }
 
-        public List<CommonTypeModel> GetListConstruction()
+        public DataTable GetListConstruction(ref string err)
         {
-            var users = entities.Users.Where(a => a.IsDeleted == 0).ToList();
+            try
+            {
+                var users = entities.Users.Where(a => a.IsDeleted == 0).ToList();
 
-            var construction = entities.ConstructionTypes.Where(x => x.IsDeleted == 0)
-                                       .Select(x => new CommonTypeModel
-                                       {
-                                           ID = x.ID,
-                                           Name = x.Name,
-                                           CreateUser = x.CreateUser,
-                                           CreateUserName = users.FirstOrDefault(a => a.ID == x.CreateUser).Fullname,
-                                           CreateDate = String.Format(SystemConstants.FormatDate, x.CreateDate),
+                var construction = entities.ConstructionTypes.Where(x => x.IsDeleted == 0).AsEnumerable()
+                                           .Select(x => new CommonTypeModel
+                                           {
+                                               ID = x.ID,
+                                               Name = x.Name,
+                                               CreateUser = x.CreateUser,
+                                               CreateUserName = users.FirstOrDefault(a => a.ID == x.CreateUser).Fullname,
+                                               CreateDate = String.Format(SystemConstants.FormatDate, x.CreateDate),
 
-                                           UpdateUser = x.UpdateUser,
-                                           UpdateUserName = users.FirstOrDefault(a => a.ID == x.UpdateUser).Fullname,
-                                           UpdateDate = String.Format(SystemConstants.FormatDate, x.UpdateDate)
-                                       }).ToList();
+                                               UpdateUser = x.UpdateUser,
+                                               UpdateUserName = users.FirstOrDefault(a => a.ID == x.UpdateUser).Fullname,
+                                               UpdateDate = String.Format(SystemConstants.FormatDate, x.UpdateDate)
+                                           }).OrderBy(x => x.ID).ToList();
 
-            return construction;
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ID");
+                dt.Columns.Add("TypeName");
+                dt.Columns.Add("CreateDate");
+
+                foreach (var item in construction)
+                {
+                    dt.Rows.Add(item.ID, item.Name, item.CreateDate);
+                }
+
+                return dt;
+            }
+            catch(Exception ex)
+            {
+                err = ex.Message;
+                throw;
+            }
+
         }
 
         /// <summary>

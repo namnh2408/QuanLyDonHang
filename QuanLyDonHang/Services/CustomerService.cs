@@ -2,16 +2,16 @@
 using QuanLyDonHang.Model;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace QuanLyDonHang.Services
 {
-    public class PaymentTypeService
+    public class CustomerService
     {
         private QLDonHangEntities entities = new QLDonHangEntities();
 
@@ -19,13 +19,13 @@ namespace QuanLyDonHang.Services
         /// select box hình thức thanh toán
         /// </summary>
         /// <returns></returns>
-        public List<SelectItem> PaymentTypeSelect()
+        public List<SelectItem> CustomerSelect()
         {
-            var payment = entities.PaymentTypes.Where(x => x.IsDeleted == 0)
+            var payment = entities.Customers.Where(x => x.IsDeleted == 0)
                               .Select(x => new SelectItem
                               {
                                   Id = x.ID,
-                                  Name = x.Name,
+                                  Name = x.FullName,
                               }).ToList();
 
             return payment;
@@ -35,17 +35,20 @@ namespace QuanLyDonHang.Services
         /// danh sách hình thức thanh toán
         /// </summary>
         /// <returns></returns>
-        public DataTable GetListPayment(ref string err)
+        public DataTable GetListCustomer(ref string err)
         {
             try
             {
                 var users = entities.Users.Where(a => a.IsDeleted == 0).ToList();
 
-                var payments = entities.PaymentTypes.Where(x => x.IsDeleted == 0).AsEnumerable()
-                                           .Select(x => new CommonTypeModel
+                var customers = entities.Customers.Where(x => x.IsDeleted == 0).AsEnumerable()
+                                           .Select(x => new CustomerModel
                                            {
                                                ID = x.ID,
-                                               Name = x.Name,
+                                               Fullname = x.FullName,
+                                               Email = x.Email,
+                                               Phone = x.Phone,
+                                               Address = x.Address,
                                                CreateUser = x.CreateUser,
                                                CreateUserName = users.FirstOrDefault(a => a.ID == x.CreateUser).Fullname,
                                                CreateDate = String.Format(SystemConstants.FormatDate, x.CreateDate),
@@ -57,12 +60,15 @@ namespace QuanLyDonHang.Services
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add("ID");
-                dt.Columns.Add("TypeName");
+                dt.Columns.Add("Hoten");
+                dt.Columns.Add("Phone");
+                dt.Columns.Add("Email");
+                dt.Columns.Add("Address");
                 dt.Columns.Add("CreateDate");
 
-                foreach (var item in payments)
+                foreach (var item in customers)
                 {
-                    dt.Rows.Add(item.ID, item.Name, item.CreateDate);
+                    dt.Rows.Add(item.ID, item.Fullname, item.Phone, item.Email, item.Address, item.CreateDate);
                 }
 
                 return dt;
@@ -71,23 +77,26 @@ namespace QuanLyDonHang.Services
             {
                 err = ex.Message;
                 throw;
-            }          
+            }
         }
 
         /// <summary>
         /// Thêm mới hình thức thanh toán
         /// </summary>
-        /// <param name="commonTypeCreate"></param>
+        /// <param name="customerCreate"></param>
         /// <param name="userInfo"></param>
         /// <param name="err"></param>
         /// <returns></returns>
-        public bool CreatePaymentType(CommonTypeCreateModel commonTypeCreate, UserInfo userInfo, ref string err)
+        public bool CreateCustomer(CustomerCreateModel customerCreate, UserInfo userInfo, ref string err)
         {
             try
             {
-                var payment = new PaymentType
+                var customer = new Customer
                 {
-                    Name = commonTypeCreate.Name,
+                    FullName = customerCreate.Fullname,
+                    Email = customerCreate.Email,
+                    Address = customerCreate.Address,
+                    Phone = customerCreate.Phone.Replace(" ", ""),
                     CreateDate = Utils.DateTimeNow(),
                     CreateUser = userInfo.UserID,
                     UpdateUser = userInfo.UserID,
@@ -95,7 +104,7 @@ namespace QuanLyDonHang.Services
                     IsDeleted = 0
                 };
 
-                entities.PaymentTypes.Add(payment);
+                entities.Customers.Add(customer);
                 entities.SaveChanges();
 
                 return true;
@@ -110,28 +119,28 @@ namespace QuanLyDonHang.Services
         /// <summary>
         /// Cập nhật thông tin hình thức thanh toán
         /// </summary>
-        /// <param name="commonTypeUpdate"></param>
+        /// <param name="customerUpdate"></param>
         /// <param name="userInfo"></param>
         /// <param name="err"></param>
         /// <returns></returns>
-        public bool UpdatePaymentType(CommonTypeUpdateModel commonTypeUpdate, UserInfo userInfo, ref string err)
+        public bool UpdatePaymentType(CustomerUpdateModel customerUpdate, UserInfo userInfo, ref string err)
         {
             try
             {
-                var payments = entities.PaymentTypes.FirstOrDefault(x => x.ID == commonTypeUpdate.ID
+                var customer = entities.Customers.FirstOrDefault(x => x.ID == customerUpdate.ID
                                                             && x.IsDeleted == 0);
 
-                if (payments is null)
+                if (customer is null)
                 {
                     return false;
                 }
 
-                payments.UpdateDate = Utils.DateTimeNow();
-                payments.UpdateUser = userInfo.UserID;
-                payments.Name = commonTypeUpdate.Name.Trim();
+                customer = AutoMapperHelper.Update(customerUpdate, customer);
 
+                customer.UpdateDate = Utils.DateTimeNow();
+                customer.UpdateUser = userInfo.UserID;
 
-                entities.PaymentTypes.AddOrUpdate(payments);
+                entities.Customers.AddOrUpdate(customer);
                 entities.SaveChanges();
 
                 return true;
@@ -150,21 +159,21 @@ namespace QuanLyDonHang.Services
         /// <param name="userInfo"></param>
         /// <param name="err"></param>
         /// <returns></returns>
-        public bool DeletePaymentType(int ID, UserInfo userInfo, ref string err)
+        public bool DeleteCustomer(int ID, UserInfo userInfo, ref string err)
         {
             try
             {
-                var payments = entities.PaymentTypes.FirstOrDefault(x => x.ID == ID
+                var customer = entities.Customers.FirstOrDefault(x => x.ID == ID
                                                             && x.IsDeleted == 0);
 
-                if (payments is null)
+                if (customer is null)
                 {
                     return false;
                 }
 
-                payments.IsDeleted = 1;
+                customer.IsDeleted = 1;
 
-                entities.PaymentTypes.AddOrUpdate(payments);
+                entities.Customers.AddOrUpdate(customer);
                 entities.SaveChanges();
 
                 return true;
