@@ -74,6 +74,60 @@ namespace QuanLyDonHang.Services
             }
         }
 
+        public UserModel GetUserInfo(ref string err)
+        {
+            try
+            {
+                var user = entities.Users.Where(x => x.IsDeleted == 0 && x.ID == userInfo.UserID)
+                                       .Include(a => a.Role)
+                                       .AsEnumerable()
+                                       .Select(p => new UserModel
+                                       {
+                                           ID = p.ID,
+                                           Code = p.Code,
+                                           UserName = p.UserName,
+                                           Fullname = p.Fullname,
+                                           Phone = p.Phone,
+                                           Email = p.Email,
+                                           Gender = p.Gender,
+                                           Address = p.Address,
+                                           RoleID = p.RoleID,
+                                           RoleName = p.Role.Title,
+                                           IsActive = p.IsActive,
+
+                                           CreateUser = p.CreateUser,
+                                           CreateUserName = "",
+                                           CreateDate = string.Format(SystemConstants.FormatDate, p.CreateDate),
+
+                                           UpdateUser = p.UpdateUser,
+                                           UpdateUserName = "",
+                                           UpdateDate = string.Format(SystemConstants.FormatDate, p.UpdateDate),
+
+                                           Password = p.Password
+                                       }).FirstOrDefault();
+
+                return user;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    err = String.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        err += $"\n- Property: {ve.PropertyName}, Error: {ve.ErrorMessage}";
+                    }
+                }
+
+                return null;
+
+            }
+            catch (Exception ex) { err = ex.Message; return null; }
+
+            
+        }
+
         public bool LoginUser(Signin login, ref string err)
         {
             try
@@ -171,7 +225,6 @@ namespace QuanLyDonHang.Services
                 return false;
                 
             }
-
             catch (Exception ex) { err = ex.Message; return false; }
         }
 
@@ -188,6 +241,10 @@ namespace QuanLyDonHang.Services
                     err = @"Người dùng này không tồn tại !";
                     return false;
                 }
+
+                update.Password = !string.IsNullOrEmpty(update.Password.Trim()) 
+                                        ? Encryptor.EncryptMD5(update.Password.Trim())
+                                        : user.Password;
 
                 user = AutoMapperHelper.Update(update, user);
 

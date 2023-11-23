@@ -79,7 +79,7 @@
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="MaterialTypeID" Type="int" Nullable="false" />
           <Property Name="ConstructionTypeID" Type="int" Nullable="false" />
-          <Property Name="Lenght" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Length" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Width" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -101,6 +101,7 @@
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PaymentTypeID" Type="int" Nullable="false" />
           <Property Name="DeliveryTypeID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="Hours" Type="int" Nullable="false" />
           <Property Name="Minutes" Type="int" Nullable="false" />
           <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
@@ -452,7 +453,6 @@
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="MaterialTypeID" Type="Int32" Nullable="false" />
           <Property Name="ConstructionTypeID" Type="Int32" Nullable="false" />
-          <Property Name="Lenght" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Width" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
@@ -466,6 +466,7 @@
           <NavigationProperty Name="MaterialType" Relationship="QLDonHangModel.FK__OrderDeta__Mater__6DCC4D03" FromRole="OrderDetail" ToRole="MaterialType" />
           <NavigationProperty Name="Order" Relationship="QLDonHangModel.FK__OrderDeta__Order__6BE40491" FromRole="OrderDetail" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="QLDonHangModel.FK__OrderDeta__Produ__6CD828CA" FromRole="OrderDetail" ToRole="Product" />
+          <Property Name="Length" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -496,6 +497,7 @@
           <NavigationProperty Name="Incomes" Relationship="QLDonHangModel.FK__Incomes__OrderID__6FB49575" FromRole="Order" ToRole="Income" />
           <NavigationProperty Name="OrderDetails" Relationship="QLDonHangModel.FK__OrderDeta__Order__6BE40491" FromRole="Order" ToRole="OrderDetail" />
           <NavigationProperty Name="PaymentType" Relationship="QLDonHangModel.FK__Orders__PaymentT__69FBBC1F" FromRole="Order" ToRole="PaymentType" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="PaymentType">
           <Key>
@@ -844,12 +846,12 @@
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="QLDonHangModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="MaterialTypeID" ColumnName="MaterialTypeID" />
                 <ScalarProperty Name="ConstructionTypeID" ColumnName="ConstructionTypeID" />
-                <ScalarProperty Name="Lenght" ColumnName="Lenght" />
                 <ScalarProperty Name="Width" ColumnName="Width" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -865,6 +867,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="QLDonHangModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />

@@ -19,7 +19,6 @@ namespace QuanLyDonHang
         public int ProductID { get; set; }
         public int MaterialTypeID { get; set; }
         public int ConstructionTypeID { get; set; }
-        public decimal Lenght { get; set; }
         public decimal Width { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
@@ -29,6 +28,7 @@ namespace QuanLyDonHang
         public System.DateTime CreateDate { get; set; }
         public int UpdateUser { get; set; }
         public System.DateTime UpdateDate { get; set; }
+        public decimal Length { get; set; }
     
         public virtual ConstructionType ConstructionType { get; set; }
         public virtual MaterialType MaterialType { get; set; }

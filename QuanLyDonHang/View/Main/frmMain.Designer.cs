@@ -45,10 +45,10 @@
             this.ptbTroVe = new System.Windows.Forms.PictureBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuHeThong = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnstrDoiMK = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnstrDX = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDoiMatKhau = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDangXuat = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnstrExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDanhMuc = new System.Windows.Forms.ToolStripMenuItem();
             this.menuNhanVien = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSanPham = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +57,7 @@
             this.menuThanhToan = new System.Windows.Forms.ToolStripMenuItem();
             this.menuGiaoHang = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPhieuGiaoHang = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuKhachHang = new System.Windows.Forms.ToolStripMenuItem();
             this.TittlePanel = new System.Windows.Forms.Panel();
             this.btndashboard = new System.Windows.Forms.PictureBox();
             this.tmrMenu = new System.Windows.Forms.Timer(this.components);
@@ -194,6 +195,7 @@
             this.btnCaNhan.TabIndex = 3;
             this.btnCaNhan.Text = "       Cá Nhân";
             this.btnCaNhan.UseVisualStyleBackColor = true;
+            this.btnCaNhan.Click += new System.EventHandler(this.btnCaNhan_Click);
             // 
             // btnHome
             // 
@@ -212,6 +214,7 @@
             this.btnHome.TabIndex = 0;
             this.btnHome.Text = "      Nhà";
             this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // panel3
             // 
@@ -263,46 +266,48 @@
             this.menuStrip.Location = new System.Drawing.Point(717, 14);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(501, 35);
+            this.menuStrip.Size = new System.Drawing.Size(351, 35);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
             // menuHeThong
             // 
             this.menuHeThong.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnstrDoiMK,
-            this.mnstrDX,
+            this.menuDoiMatKhau,
+            this.menuDangXuat,
             this.toolStripSeparator5,
-            this.mnstrExit});
+            this.menuThoat});
             this.menuHeThong.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuHeThong.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.menuHeThong.Name = "menuHeThong";
             this.menuHeThong.Size = new System.Drawing.Size(114, 31);
             this.menuHeThong.Text = "&Hệ thống";
             // 
-            // mnstrDoiMK
+            // menuDoiMatKhau
             // 
-            this.mnstrDoiMK.Name = "mnstrDoiMK";
-            this.mnstrDoiMK.Size = new System.Drawing.Size(228, 32);
-            this.mnstrDoiMK.Text = "Đổi mật khẩu";
+            this.menuDoiMatKhau.Name = "menuDoiMatKhau";
+            this.menuDoiMatKhau.Size = new System.Drawing.Size(228, 32);
+            this.menuDoiMatKhau.Text = "Đổi mật khẩu";
             // 
-            // mnstrDX
+            // menuDangXuat
             // 
-            this.mnstrDX.ImageTransparentColor = System.Drawing.Color.Black;
-            this.mnstrDX.Name = "mnstrDX";
-            this.mnstrDX.Size = new System.Drawing.Size(228, 32);
-            this.mnstrDX.Text = "Đăng xuất";
+            this.menuDangXuat.ImageTransparentColor = System.Drawing.Color.Black;
+            this.menuDangXuat.Name = "menuDangXuat";
+            this.menuDangXuat.Size = new System.Drawing.Size(228, 32);
+            this.menuDangXuat.Text = "Đăng xuất";
+            this.menuDangXuat.Click += new System.EventHandler(this.menuDangXuat_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(225, 6);
             // 
-            // mnstrExit
+            // menuThoat
             // 
-            this.mnstrExit.Name = "mnstrExit";
-            this.mnstrExit.Size = new System.Drawing.Size(228, 32);
-            this.mnstrExit.Text = "&Thoát";
+            this.menuThoat.Name = "menuThoat";
+            this.menuThoat.Size = new System.Drawing.Size(228, 32);
+            this.menuThoat.Text = "&Thoát";
+            this.menuThoat.Click += new System.EventHandler(this.menuThoat_Click);
             // 
             // menuDanhMuc
             // 
@@ -313,7 +318,8 @@
             this.menuThiCong,
             this.menuThanhToan,
             this.menuGiaoHang,
-            this.menuPhieuGiaoHang});
+            this.menuPhieuGiaoHang,
+            this.menuKhachHang});
             this.menuDanhMuc.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuDanhMuc.Name = "menuDanhMuc";
             this.menuDanhMuc.Size = new System.Drawing.Size(125, 31);
@@ -331,6 +337,7 @@
             this.menuSanPham.Name = "menuSanPham";
             this.menuSanPham.Size = new System.Drawing.Size(302, 32);
             this.menuSanPham.Text = "Sản phẩm";
+            this.menuSanPham.Click += new System.EventHandler(this.menuSanPham_Click);
             // 
             // menuChatLieu
             // 
@@ -366,6 +373,13 @@
             this.menuPhieuGiaoHang.Size = new System.Drawing.Size(302, 32);
             this.menuPhieuGiaoHang.Text = "Phiếu giao hàng";
             this.menuPhieuGiaoHang.Click += new System.EventHandler(this.menuPhieuGiaoHang_Click);
+            // 
+            // menuKhachHang
+            // 
+            this.menuKhachHang.Name = "menuKhachHang";
+            this.menuKhachHang.Size = new System.Drawing.Size(302, 32);
+            this.menuKhachHang.Text = "Khách hàng";
+            this.menuKhachHang.Click += new System.EventHandler(this.menuKhachHang_Click);
             // 
             // TittlePanel
             // 
@@ -563,9 +577,11 @@
             this.Controls.Add(this.pnlDisplay);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.HelpButton = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.pnlSlidebar.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -597,10 +613,10 @@
         private System.Windows.Forms.PictureBox ptbTroVe;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem menuHeThong;
-        public System.Windows.Forms.ToolStripMenuItem mnstrDoiMK;
-        public System.Windows.Forms.ToolStripMenuItem mnstrDX;
+        public System.Windows.Forms.ToolStripMenuItem menuDoiMatKhau;
+        public System.Windows.Forms.ToolStripMenuItem menuDangXuat;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripMenuItem mnstrExit;
+        private System.Windows.Forms.ToolStripMenuItem menuThoat;
         public System.Windows.Forms.ToolStripMenuItem menuDanhMuc;
         private System.Windows.Forms.ToolStripMenuItem menuNhanVien;
         private System.Windows.Forms.ToolStripMenuItem menuChatLieu;
@@ -623,5 +639,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuPhieuGiaoHang;
         private System.Windows.Forms.ToolStripMenuItem menuBanHang;
         private System.Windows.Forms.ToolStripMenuItem menuCongNo;
+        private System.Windows.Forms.ToolStripMenuItem menuKhachHang;
     }
 }

@@ -15,7 +15,7 @@ namespace QuanLyDonHang.Services
         private QLDonHangEntities entities = new QLDonHangEntities();
 
         /// <summary>
-        /// select box hình thức thanh toán
+        /// select box sản phẩm
         /// </summary>
         /// <returns></returns>
         public List<SelectItem> ProductSelect()
@@ -31,7 +31,7 @@ namespace QuanLyDonHang.Services
         }
 
         /// <summary>
-        /// danh sách hình thức thanh toán
+        /// danh sách sản phẩm
         /// </summary>
         /// <returns></returns>
         public DataTable GetListProduct(ref string err)
@@ -40,7 +40,7 @@ namespace QuanLyDonHang.Services
             {
                 var users = entities.Users.Where(a => a.IsDeleted == 0).ToList();
 
-                var payments = entities.Products.Where(x => x.IsDeleted == 0).AsEnumerable()
+                var products = entities.Products.Where(x => x.IsDeleted == 0).AsEnumerable()
                                            .Select(x => new ProductModel
                                            {
                                                ID = x.ID,
@@ -58,14 +58,14 @@ namespace QuanLyDonHang.Services
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add("ID");
-                dt.Columns.Add("Hoten");
-                dt.Columns.Add("Phone");
-                dt.Columns.Add("Email");
+                dt.Columns.Add("Code");
+                dt.Columns.Add("ProductName");
+                dt.Columns.Add("Note");
                 dt.Columns.Add("CreateDate");
 
-                foreach (var item in payments)
+                foreach (var item in products)
                 {
-                    dt.Rows.Add(item.ID, item.Name, item.CreateDate);
+                    dt.Rows.Add(item.ID, item.Code, item.Name, item.Note, item.CreateDate);
                 }
 
                 return dt;
@@ -78,27 +78,45 @@ namespace QuanLyDonHang.Services
         }
 
         /// <summary>
-        /// Thêm mới hình thức thanh toán
+        /// Thêm mới sản phẩm
         /// </summary>
-        /// <param name="commonTypeCreate"></param>
+        /// <param name="productCreate"></param>
         /// <param name="userInfo"></param>
         /// <param name="err"></param>
         /// <returns></returns>
-        public bool CreatePaymentType(CommonTypeCreateModel commonTypeCreate, UserInfo userInfo, ref string err)
+        public bool CreateProduct(ProductCreateModel productCreate, UserInfo userInfo, ref string err)
         {
             try
             {
-                var payment = new PaymentType
+                var product = new Product
                 {
-                    Name = commonTypeCreate.Name,
+                    Code = productCreate.Code,
+                    Name = productCreate.Name,
+                    Note = productCreate.Note,
                     CreateDate = Utils.DateTimeNow(),
                     CreateUser = userInfo.UserID,
                     UpdateUser = userInfo.UserID,
                     UpdateDate = Utils.DateTimeNow(),
+                    IsActive = productCreate.IsActive,
                     IsDeleted = 0
                 };
 
-                entities.PaymentTypes.Add(payment);
+                entities.Products.Add(product);
+                entities.SaveChanges();
+
+                var defaultCode = "SP000";
+                if (string.IsNullOrEmpty(productCreate.Code.Trim()))
+                {
+                    var length = defaultCode.Length - product.ID.ToString().Length;
+
+                    productCreate.Code = defaultCode.Substring(0, length) + product.ID.ToString();
+                }
+                else
+                {
+                    product.Code = productCreate.Code.Trim();
+                }
+
+                entities.Products.AddOrUpdate(product);
                 entities.SaveChanges();
 
                 return true;
@@ -111,30 +129,31 @@ namespace QuanLyDonHang.Services
         }
 
         /// <summary>
-        /// Cập nhật thông tin hình thức thanh toán
+        /// Cập nhật thông tin sản phẩm
         /// </summary>
-        /// <param name="commonTypeUpdate"></param>
+        /// <param name="productUpdate"></param>
         /// <param name="userInfo"></param>
         /// <param name="err"></param>
         /// <returns></returns>
-        public bool UpdatePaymentType(CommonTypeUpdateModel commonTypeUpdate, UserInfo userInfo, ref string err)
+        public bool UpdateProduct(ProductUpdateModel productUpdate, UserInfo userInfo, ref string err)
         {
             try
             {
-                var payments = entities.PaymentTypes.FirstOrDefault(x => x.ID == commonTypeUpdate.ID
+                var product = entities.Products.FirstOrDefault(x => x.ID == productUpdate.ID
                                                             && x.IsDeleted == 0);
 
-                if (payments is null)
+                if (product is null)
                 {
                     return false;
                 }
 
-                payments.UpdateDate = Utils.DateTimeNow();
-                payments.UpdateUser = userInfo.UserID;
-                payments.Name = commonTypeUpdate.Name.Trim();
+                product = AutoMapperHelper.Update(productUpdate, product);
+
+                product.UpdateDate = Utils.DateTimeNow();
+                product.UpdateUser = userInfo.UserID;
 
 
-                entities.PaymentTypes.AddOrUpdate(payments);
+                entities.Products.AddOrUpdate(product);
                 entities.SaveChanges();
 
                 return true;
@@ -147,27 +166,29 @@ namespace QuanLyDonHang.Services
         }
 
         /// <summary>
-        /// Xoá hình thức thanh toán
+        /// Xoá sản phẩm
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="userInfo"></param>
         /// <param name="err"></param>
         /// <returns></returns>
-        public bool DeletePaymentType(int ID, UserInfo userInfo, ref string err)
+        public bool DeleteProduct(int ID, UserInfo userInfo, ref string err)
         {
             try
             {
-                var payments = entities.PaymentTypes.FirstOrDefault(x => x.ID == ID
+                var product = entities.Products.FirstOrDefault(x => x.ID == ID
                                                             && x.IsDeleted == 0);
 
-                if (payments is null)
+                if (product is null)
                 {
                     return false;
                 }
 
-                payments.IsDeleted = 1;
+                product.IsDeleted = 1;
+                product.UpdateUser = userInfo.UserID;
+                product.UpdateDate= Utils.DateTimeNow();
 
-                entities.PaymentTypes.AddOrUpdate(payments);
+                entities.Products.AddOrUpdate(product);
                 entities.SaveChanges();
 
                 return true;

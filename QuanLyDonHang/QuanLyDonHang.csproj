@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Model\CommonTypeModel.cs" />
     <Compile Include="Model\CustomerModel.cs" />
+    <Compile Include="Model\OrderModel.cs" />
     <Compile Include="Model\ProductModel.cs" />
     <Compile Include="Model\SelectItem.cs" />
     <Compile Include="Model\UserModel.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\DeliveryTypeService.cs" />
     <Compile Include="Services\MaterialTypeService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PaymentTypeService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -153,6 +155,12 @@
     <Compile Include="View\FormControl\uc_ChatLieu.Designer.cs">
       <DependentUpon>uc_ChatLieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormControl\uc_ChiTietPhieuThu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_ChiTietPhieuThu.Designer.cs">
+      <DependentUpon>uc_ChiTietPhieuThu.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormControl\uc_HinhThucGiaoHang.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,17 +179,35 @@
     <Compile Include="View\FormControl\uc_KhachHang.Designer.cs">
       <DependentUpon>uc_KhachHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormControl\uc_PhieuThu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_PhieuThu.Designer.cs">
+      <DependentUpon>uc_PhieuThu.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormControl\uc_QuanLyTaiKhoan.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\FormControl\uc_QuanLyTaiKhoan.Designer.cs">
       <DependentUpon>uc_QuanLyTaiKhoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormControl\uc_SanPham.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_SanPham.Designer.cs">
+      <DependentUpon>uc_SanPham.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormControl\uc_ThiCong.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\FormControl\uc_ThiCong.Designer.cs">
       <DependentUpon>uc_ThiCong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormControl\uc_ThongTinCaNhan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FormControl\uc_ThongTinCaNhan.Designer.cs">
+      <DependentUpon>uc_ThongTinCaNhan.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Login\FrmLogin .cs">
       <SubType>Form</SubType>
@@ -211,6 +237,9 @@
     <EmbeddedResource Include="View\FormControl\uc_ChatLieu.resx">
       <DependentUpon>uc_ChatLieu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FormControl\uc_ChiTietPhieuThu.resx">
+      <DependentUpon>uc_ChiTietPhieuThu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormControl\uc_HinhThucGiaoHang.resx">
       <DependentUpon>uc_HinhThucGiaoHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,11 +249,20 @@
     <EmbeddedResource Include="View\FormControl\uc_KhachHang.resx">
       <DependentUpon>uc_KhachHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FormControl\uc_PhieuThu.resx">
+      <DependentUpon>uc_PhieuThu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormControl\uc_QuanLyTaiKhoan.resx">
       <DependentUpon>uc_QuanLyTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FormControl\uc_SanPham.resx">
+      <DependentUpon>uc_SanPham.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormControl\uc_ThiCong.resx">
       <DependentUpon>uc_ThiCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormControl\uc_ThongTinCaNhan.resx">
+      <DependentUpon>uc_ThongTinCaNhan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Login\FrmLogin .resx">
       <DependentUpon>FrmLogin .cs</DependentUpon>

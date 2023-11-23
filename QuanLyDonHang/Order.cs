@@ -41,6 +41,7 @@ namespace QuanLyDonHang
         public System.DateTime CreateDate { get; set; }
         public int UpdateUser { get; set; }
         public System.DateTime UpdateDate { get; set; }
+        public System.DateTime OrderDate { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual DeliveryType DeliveryType { get; set; }

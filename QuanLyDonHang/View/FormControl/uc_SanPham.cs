@@ -13,29 +13,35 @@ using System.Windows.Forms;
 
 namespace QuanLyDonHang.View.FormControl
 {
-    public partial class uc_ThiCong : UserControl
+    public partial class uc_SanPham : UserControl
     {
         public UserInfo userInfo = new UserInfo();
 
-        private ConstructionTypeService constructionTypeService = new ConstructionTypeService();
+        private ProductService productService = new ProductService();
 
         private string err = "";
 
-        private bool inserted = false;
-        private bool updated = false;
+        bool inserted = false;
+        bool updated = false;
 
-        private int constructionID = 0;
-
-        public uc_ThiCong()
+        private int customerID = 0;
+        public uc_SanPham()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// cho phép theo tác với các control
+        /// </summary>
+        /// <param name="isChange"></param>
+        /// <param name="funcNo"> 0: Huỷ   1 : Thêm  2: Sửa</param>
         private void EnabledControl(bool isChange = false, int funcNo = 0)
         {
             if (!isChange)
             {
-                txtTen.Enabled = false;
+                txtCode.Enabled = false;
+                txtTenSP.Enabled = false;
+                txtGhiChu.Enabled = false;
 
                 btnLuu.Enabled = false;
                 btnHuy.Enabled = false;
@@ -46,15 +52,17 @@ namespace QuanLyDonHang.View.FormControl
             }
             else
             {
-                txtTen.Enabled = true;
-
+                txtCode.Enabled = true;
+                txtTenSP.Enabled = true;  
+                txtGhiChu.Enabled = true;
             }
 
             switch (funcNo)
             {
                 case 0:
-                    txtTen.ResetText();
-
+                    txtCode.ResetText();
+                    txtTenSP.ResetText();
+                    txtGhiChu.ResetText();
 
                     btnLuu.Enabled = false;
                     btnHuy.Enabled = false;
@@ -78,7 +86,6 @@ namespace QuanLyDonHang.View.FormControl
                     btnXoa.ForeColor = Color.White;
 
                     break;
-
                 case 1:
                     btnLuu.Enabled = true;
                     btnHuy.Enabled = true;
@@ -87,7 +94,7 @@ namespace QuanLyDonHang.View.FormControl
                     btnXoa.Enabled = false;
                     btnThem.Enabled = false;
 
-                    btnLuu.BackColor = Color.DeepSkyBlue;
+                    btnLuu.BackColor = Color.CornflowerBlue;
                     btnHuy.BackColor = Color.IndianRed;
 
                     btnLuu.ForeColor = Color.White;
@@ -101,7 +108,6 @@ namespace QuanLyDonHang.View.FormControl
                     btnSua.ForeColor = Color.WhiteSmoke;
                     btnXoa.ForeColor = Color.WhiteSmoke;
                     break;
-
                 case 2:
                     btnLuu.Enabled = true;
                     btnHuy.Enabled = true;
@@ -125,15 +131,15 @@ namespace QuanLyDonHang.View.FormControl
                     btnXoa.ForeColor = Color.WhiteSmoke;
 
                     break;
-
                 default:
                     break;
             }
         }
 
-        private void uc_ThiCong_Load(object sender, EventArgs e)
+        private void uc_KhachHang_Load(object sender, EventArgs e)
         {
-            EnabledControl();
+            EnabledControl(false);
+
             LoadData();
         }
 
@@ -143,6 +149,7 @@ namespace QuanLyDonHang.View.FormControl
             updated = false;
 
             EnabledControl(inserted, 1);
+
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -160,6 +167,7 @@ namespace QuanLyDonHang.View.FormControl
 
             EnabledControl(inserted, 0);
             LoadData();
+
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -168,60 +176,66 @@ namespace QuanLyDonHang.View.FormControl
             {
                 if (inserted)
                 {
-                    if (this.txtTen.Text == "")
+                    if (this.txtTenSP.Text == "")
                     {
-                        epvThiCong.SetError(this.txtTen, "!");
-                        MessageBox.Show("Bạn chưa nhập loại thi công!", "Thông báo",
+                        epvKhachHang.SetError(this.txtTenSP, "!");
+                        MessageBox.Show("Bạn chưa nhập tên sản phẩm!", "Thông báo",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        epvThiCong.Clear();
-                        this.txtTen.Focus();
+                        epvKhachHang.Clear();
+                        this.txtCode.Focus();
 
                         return;
                     }
 
-                    var commonCreate = new CommonTypeCreateModel
+                    var productCreate = new ProductCreateModel
                     {
-                        Name = txtTen.Text,
+                        Code = txtCode.Text,
+                        Name = txtGhiChu.Text,
+                        Note = txtGhiChu.Text,
+                        IsActive = 1,
                     };
 
-                    var isInsert = constructionTypeService.CreateConstructionType(commonCreate, userInfo, ref err);
+                    var isInsert = productService.CreateProduct(productCreate, userInfo, ref err);
 
                     if (isInsert)
                     {
-                        MessageBox.Show("Thêm thành công", "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Thêm thành công", "Quản lý sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         inserted = false;
                     }
                     else
                     {
-                        MessageBox.Show("Thêm thất bại:\n" + err, "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Thêm thất bại:\n" + err, "Quản lý sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else if (updated)
                 {
-                    if (constructionID <= 0)
+                    if (customerID <= 0)
                     {
-                        MessageBox.Show("Bạn chưa chọn loại thi công muốn xoá", "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Bạn chưa chọn sản phẩm muốn xoá", "Quản lý sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    var commonUpdate = new CommonTypeUpdateModel
+                    var productUpdate = new ProductUpdateModel
                     {
-                        ID = constructionID,
-                        Name = txtTen.Text,
+                        ID = customerID,
+                        Code = txtCode.Text,
+                        Note = txtGhiChu.Text,
+                        Name = txtTenSP.Text,
+                        IsActive = 1,
                     };
 
-                    var isUpdated = constructionTypeService.UpdateConstructionType(commonUpdate, userInfo, ref err);
+                    var isUpdated = productService.UpdateProduct(productUpdate, userInfo, ref err);
 
                     if (isUpdated)
                     {
-                        MessageBox.Show("Cập nhật thông tin thành công", "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Cập nhật thông tin thành công", "Quản lý sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         updated = false;
                     }
                     else
                     {
-                        MessageBox.Show("Cập nhật thất bại:\n" + err.ToString(), "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Cập nhật thất bại:\n" + err.ToString(), "Quản lý sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -238,60 +252,63 @@ namespace QuanLyDonHang.View.FormControl
         {
             try
             {
-                if (constructionID <= 0)
+                if (customerID <= 0)
                 {
-                    MessageBox.Show("Bạn chưa chọn loại thi công muốn xoá", "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Bạn chưa chọn sản phẩm muốn xoá", "Quản lý sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 DialogResult dialogResult = new DialogResult();
 
-                dialogResult = MessageBox.Show("Bạn muốn xoá thi công này ?", "Xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                dialogResult = MessageBox.Show("Bạn muốn xoá sản phẩm này ?", "Xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    var isDeleted = constructionTypeService.DeleteConstructionType(constructionID, userInfo, ref err);
+                    var isDeleted = productService.DeleteProduct(customerID, userInfo, ref err);
 
                     if (isDeleted)
                     {
-                        MessageBox.Show("Xoá thành công", "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Xoá thành công", "Quản lý sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         LoadData();
                     }
                     else
                     {
-                        MessageBox.Show("Xoá thất bại\n" + err, "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Xoá thất bại\n" + err, "Quản lý sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Xoá", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void dgvThiCong_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int r = dgvThiCong.CurrentCell.RowIndex;
+            int r = dgvKhachHang.CurrentCell.RowIndex;
 
-            var id = dgvThiCong.Rows[r].Cells[0].Value.ToString();
-            constructionID = Convert.ToInt32(string.IsNullOrEmpty(id) ? "0" : id);
+            var id = dgvKhachHang.Rows[r].Cells[0].Value.ToString();
+            customerID = Convert.ToInt32(string.IsNullOrEmpty(id) ? "0" : id);
 
-            this.txtTen.Text = dgvThiCong.Rows[r].Cells[1].Value.ToString();
 
+            this.txtCode.Text = dgvKhachHang.Rows[r].Cells[1].Value.ToString();
+            this.txtTenSP.Text = dgvKhachHang.Rows[r].Cells[2].Value.ToString();
+            this.txtGhiChu.Text = dgvKhachHang.Rows[r].Cells[3].Value.ToString();
         }
 
         private void LoadData()
         {
             try
             {
-                dgvThiCong.ReadOnly = true;
-                dgvThiCong.DataSource = constructionTypeService.GetListConstruction(ref err);
+                dgvKhachHang.ReadOnly = true;
+                dgvKhachHang.DataSource = productService.GetListProduct(ref err);
 
-                dgvThiCong.AutoResizeColumns();
+                dgvKhachHang.AutoResizeColumns();
 
-                txtTen.ResetText();
-
+                txtCode.ResetText();
+                txtTenSP.ResetText();
+                txtGhiChu.ResetText();
             }
             catch
             {

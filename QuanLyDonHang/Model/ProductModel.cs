@@ -22,7 +22,6 @@ namespace QuanLyDonHang.Model
         public string UpdateUserName { get; set; }
         public string UpdateDate { get; set; }
     }
-}
 
     public class ProductCreateModel
     {

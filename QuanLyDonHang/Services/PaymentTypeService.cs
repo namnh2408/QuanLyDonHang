@@ -163,6 +163,8 @@ namespace QuanLyDonHang.Services
                 }
 
                 payments.IsDeleted = 1;
+                payments.UpdateDate= Utils.DateTimeNow();
+                payments.UpdateUser = userInfo.UserID;
 
                 entities.PaymentTypes.AddOrUpdate(payments);
                 entities.SaveChanges();

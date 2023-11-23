@@ -16,7 +16,7 @@ namespace QuanLyDonHang.Services
         private QLDonHangEntities entities = new QLDonHangEntities();
 
         /// <summary>
-        /// select box hình thức thanh toán
+        /// select box khách hàng
         /// </summary>
         /// <returns></returns>
         public List<SelectItem> CustomerSelect()
@@ -32,7 +32,7 @@ namespace QuanLyDonHang.Services
         }
 
         /// <summary>
-        /// danh sách hình thức thanh toán
+        /// danh sách khách hàng
         /// </summary>
         /// <returns></returns>
         public DataTable GetListCustomer(ref string err)
@@ -81,7 +81,7 @@ namespace QuanLyDonHang.Services
         }
 
         /// <summary>
-        /// Thêm mới hình thức thanh toán
+        /// Thêm mới khách hàng
         /// </summary>
         /// <param name="customerCreate"></param>
         /// <param name="userInfo"></param>
@@ -117,13 +117,13 @@ namespace QuanLyDonHang.Services
         }
 
         /// <summary>
-        /// Cập nhật thông tin hình thức thanh toán
+        /// Cập nhật thông tin khách hàng
         /// </summary>
         /// <param name="customerUpdate"></param>
         /// <param name="userInfo"></param>
         /// <param name="err"></param>
         /// <returns></returns>
-        public bool UpdatePaymentType(CustomerUpdateModel customerUpdate, UserInfo userInfo, ref string err)
+        public bool UpdateCustomer(CustomerUpdateModel customerUpdate, UserInfo userInfo, ref string err)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace QuanLyDonHang.Services
         }
 
         /// <summary>
-        /// Xoá hình thức thanh toán
+        /// Xoá khách hàng
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="userInfo"></param>
@@ -172,6 +172,8 @@ namespace QuanLyDonHang.Services
                 }
 
                 customer.IsDeleted = 1;
+                customer.UpdateUser = userInfo.UserID;
+                customer.UpdateDate = Utils.DateTimeNow();
 
                 entities.Customers.AddOrUpdate(customer);
                 entities.SaveChanges();

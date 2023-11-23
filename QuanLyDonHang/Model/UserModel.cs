@@ -27,6 +27,8 @@ namespace QuanLyDonHang.Model
         public int UpdateUser { get; set; }
         public string UpdateUserName { get; set; }
         public string UpdateDate { get; set; }
+
+        public string Password { get; set; }
     }
     public class CreateUser
     {

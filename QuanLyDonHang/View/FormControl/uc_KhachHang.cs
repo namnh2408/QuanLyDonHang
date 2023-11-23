@@ -1,4 +1,5 @@
-﻿using QuanLyDonHang.Model;
+﻿using QuanLyDonHang.Lib;
+using QuanLyDonHang.Model;
 using QuanLyDonHang.Services;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,16 @@ namespace QuanLyDonHang.View.FormControl
 {
     public partial class uc_KhachHang : UserControl
     {
-        public UserService userService = new UserService();
+        public UserInfo userInfo = new UserInfo();
+
+        private CustomerService customerService = new CustomerService();
 
         private string err = "";
 
         bool inserted = false;
         bool updated = false;
 
-        private int userID = 0;
+        private int customerID = 0;
         public uc_KhachHang()
         {
             InitializeComponent();
@@ -95,7 +98,7 @@ namespace QuanLyDonHang.View.FormControl
                     btnXoa.Enabled = false;
                     btnThem.Enabled = false;
 
-                    btnLuu.BackColor = Color.BlueViolet;
+                    btnLuu.BackColor = Color.CornflowerBlue;
                     btnHuy.BackColor = Color.IndianRed;
 
                     btnLuu.ForeColor = Color.White;
@@ -117,7 +120,7 @@ namespace QuanLyDonHang.View.FormControl
                     btnXoa.Enabled = false;
                     btnThem.Enabled = false;
 
-                    btnLuu.BackColor = Color.BlueViolet;
+                    btnLuu.BackColor = Color.CornflowerBlue;
                     btnHuy.BackColor = Color.IndianRed;
 
                     btnLuu.ForeColor = Color.White;
@@ -180,7 +183,7 @@ namespace QuanLyDonHang.View.FormControl
                     if (this.txtHoTen.Text == "")
                     {
                         epvKhachHang.SetError(this.txtHoTen, "!");
-                        MessageBox.Show("Bạn chưa nhập số điện thoại khách hàng!", "Thông báo",
+                        MessageBox.Show("Bạn chưa nhập tên khách hàng!", "Thông báo",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         epvKhachHang.Clear();
                         this.txtHoTen.Focus();
@@ -199,7 +202,7 @@ namespace QuanLyDonHang.View.FormControl
                         return;
                     }
 
-                    var userCreate = new CreateUser
+                    var customerCreate = new CustomerCreateModel
                     {
                         Fullname = txtHoTen.Text,
                         Address = txtAddress.Text,
@@ -208,30 +211,30 @@ namespace QuanLyDonHang.View.FormControl
                         IsActive = 1,
                     };
 
-                    var isInsert = userService.CreateUser(userCreate, userService.userInfo, ref err);
+                    var isInsert = customerService.CreateCustomer(customerCreate, userInfo, ref err);
 
                     if (isInsert)
                     {
-                        MessageBox.Show("Thêm thành công", "Quản lý nhân viên", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Thêm thành công", "Quản lý khách hàng", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         inserted = false;
                     }
                     else
                     {
-                        MessageBox.Show("Thêm thất bại:\n" + err, "Quản lý nhân viên", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Thêm thất bại:\n" + err, "Quản lý khách hàng", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else if (updated)
                 {
-                    if (userID <= 0)
+                    if (customerID <= 0)
                     {
-                        MessageBox.Show("Bạn chưa chọn nhân viên muốn xoá", "Quản lý nhân viên", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Bạn chưa chọn khách hàng muốn xoá", "Quản lý khách hàng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    var userUpdate = new UpdateUser
+                    var customerUpdate = new CustomerUpdateModel
                     {
-                        ID = userID,
+                        ID = customerID,
                         Fullname = txtHoTen.Text,
                         Address = txtAddress.Text,
                         Phone = mskPhone.Text.Replace(" ", ""),
@@ -239,17 +242,17 @@ namespace QuanLyDonHang.View.FormControl
                         IsActive = 1,
                     };
 
-                    var isUpdated = userService.Update(userUpdate, userService.userInfo, ref err);
+                    var isUpdated = customerService.UpdateCustomer(customerUpdate, userInfo, ref err);
 
                     if (isUpdated)
                     {
-                        MessageBox.Show("Cập nhật thông tin thành công", "Quản lý nhân viên", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Cập nhật thông tin thành công", "Quản lý khách hàng", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         updated = false;
                     }
                     else
                     {
-                        MessageBox.Show("Cập nhật thất bại:\n" + err.ToString(), "Quản lý nhân viên", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Cập nhật thất bại:\n" + err.ToString(), "Quản lý khách hàng", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -266,29 +269,29 @@ namespace QuanLyDonHang.View.FormControl
         {
             try
             {
-                if (userID <= 0)
+                if (customerID <= 0)
                 {
-                    MessageBox.Show("Bạn chưa chọn nhân viên muốn xoá", "Quản lý nhân viên", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Bạn chưa chọn khách hàng muốn xoá", "Quản lý khách hàng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 DialogResult dialogResult = new DialogResult();
 
-                dialogResult = MessageBox.Show("Bạn muốn xoá nhân viên này ?", "Xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                dialogResult = MessageBox.Show("Bạn muốn xoá khách hàng này ?", "Xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    var isDeleted = userService.Delete(userID, userService.userInfo, ref err);
+                    var isDeleted = customerService.DeleteCustomer(customerID, userInfo, ref err);
 
                     if (isDeleted)
                     {
-                        MessageBox.Show("Xoá thành công", "Quản lý nhân viên", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Xoá thành công", "Quản lý khách hàng", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         LoadData();
                     }
                     else
                     {
-                        MessageBox.Show("Xoá thất bại\n" + err, "Quản lý nhân viên", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Xoá thất bại\n" + err, "Quản lý khách hàng", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -303,7 +306,7 @@ namespace QuanLyDonHang.View.FormControl
             int r = dgvKhachHang.CurrentCell.RowIndex;
 
             var id = dgvKhachHang.Rows[r].Cells[0].Value.ToString();
-            userID = Convert.ToInt32(string.IsNullOrEmpty(id) ? "0" : id);
+            customerID = Convert.ToInt32(string.IsNullOrEmpty(id) ? "0" : id);
 
 
             this.txtHoTen.Text = dgvKhachHang.Rows[r].Cells[1].Value.ToString();
@@ -317,7 +320,7 @@ namespace QuanLyDonHang.View.FormControl
             try
             {
                 dgvKhachHang.ReadOnly = true;
-                dgvKhachHang.DataSource = userService.GetListUser(ref err);
+                dgvKhachHang.DataSource = customerService.GetListCustomer(ref err);
 
                 dgvKhachHang.AutoResizeColumns();
 

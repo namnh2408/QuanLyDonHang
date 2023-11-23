@@ -110,7 +110,7 @@ namespace QuanLyDonHang.View.FormControl
                     btnXoa.Enabled = false;
                     btnThem.Enabled = false;
 
-                    btnLuu.BackColor = Color.BlueViolet;
+                    btnLuu.BackColor = Color.CornflowerBlue;
                     btnHuy.BackColor = Color.IndianRed;
 
                     btnLuu.ForeColor = Color.White;
