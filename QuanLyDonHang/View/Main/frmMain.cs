@@ -42,10 +42,12 @@ namespace QuanLyDonHang.View.Main
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc chắn muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            //if (MessageBox.Show("Bạn có chắc chắn muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //{
+            //    Application.Exit();
+            //}
+
+            Application.Exit();
         }
 
         private void btnlogout_Click(object sender, EventArgs e)
@@ -90,13 +92,13 @@ namespace QuanLyDonHang.View.Main
             pnlDisplay.Controls.Add(uc_ThongTinCaNhan);
             uc_ThongTinCaNhan.Visible = false;
 
-            uc_PhieuThu = new uc_PhieuThu();
-            pnlDisplay.Controls.Add(uc_PhieuThu);
-            uc_PhieuThu.Visible = false;
+            //uc_PhieuThu = new uc_PhieuThu();
+            //pnlDisplay.Controls.Add(uc_PhieuThu);
+            //uc_PhieuThu.Visible = false;
 
-            uc_ChiTietPhieuThu = new uc_ChiTietPhieuThu();
-            pnlDisplay.Controls.Add(uc_ChiTietPhieuThu);
-            uc_ChiTietPhieuThu.Visible = false;
+            //uc_ChiTietPhieuThu = new uc_ChiTietPhieuThu();
+            //pnlDisplay.Controls.Add(uc_ChiTietPhieuThu);
+            //uc_ChiTietPhieuThu.Visible = false;
         }
 
         private void btnNhanVien_Click(object sender, EventArgs e)
@@ -213,6 +215,14 @@ namespace QuanLyDonHang.View.Main
                 crtl.Visible = false;
             }
 
+            uc_PhieuThu = new uc_PhieuThu();
+            pnlDisplay.Controls.Add(uc_PhieuThu);
+            //uc_PhieuThu.Visible = false;
+
+            uc_ChiTietPhieuThu = new uc_ChiTietPhieuThu();
+            pnlDisplay.Controls.Add(uc_ChiTietPhieuThu);
+            uc_ChiTietPhieuThu.Visible = false;
+
             this.ptbTroVe.Visible = true;
             uc_PhieuThu.Visible = true;
 
@@ -314,6 +324,7 @@ namespace QuanLyDonHang.View.Main
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Application.Exit();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -323,7 +334,7 @@ namespace QuanLyDonHang.View.Main
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
 
             // Confirm user wants to close
-            switch (MessageBox.Show(this, "Bạn có chắc chắn muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo))
+            switch (MessageBox.Show(this, "Bạn có chắc chắn muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 case DialogResult.No:
                     e.Cancel = true;

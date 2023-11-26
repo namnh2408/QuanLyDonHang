@@ -41,14 +41,14 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtTenSP = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.lblHoTen = new System.Windows.Forms.Label();
             this.epvKhachHang = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblUsers = new System.Windows.Forms.Label();
             this.grbDanhSach = new System.Windows.Forms.GroupBox();
             this.dgvKhachHang = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTenSP = new System.Windows.Forms.TextBox();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -191,6 +191,28 @@
             this.label1.TabIndex = 51;
             this.label1.Text = "Ghi chú :";
             // 
+            // txtTenSP
+            // 
+            this.txtTenSP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTenSP.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTenSP.ForeColor = System.Drawing.Color.Black;
+            this.txtTenSP.Location = new System.Drawing.Point(231, 88);
+            this.txtTenSP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTenSP.Name = "txtTenSP";
+            this.txtTenSP.Size = new System.Drawing.Size(338, 35);
+            this.txtTenSP.TabIndex = 49;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(67, 90);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(158, 27);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Tên sản phẩm :";
+            // 
             // txtCode
             // 
             this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -225,9 +247,9 @@
             this.lblUsers.ForeColor = System.Drawing.Color.Red;
             this.lblUsers.Location = new System.Drawing.Point(691, 3);
             this.lblUsers.Name = "lblUsers";
-            this.lblUsers.Size = new System.Drawing.Size(460, 42);
+            this.lblUsers.Size = new System.Drawing.Size(397, 42);
             this.lblUsers.TabIndex = 65;
-            this.lblUsers.Text = "QUẢN LÝ KHÁCH HÀNG";
+            this.lblUsers.Text = "QUẢN LÝ SẢN PHẨM";
             // 
             // grbDanhSach
             // 
@@ -284,28 +306,6 @@
             this.dgvKhachHang.Size = new System.Drawing.Size(1251, 410);
             this.dgvKhachHang.TabIndex = 0;
             this.dgvKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKhachHang_CellClick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(67, 90);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 27);
-            this.label2.TabIndex = 48;
-            this.label2.Text = "Tên sản phẩm :";
-            // 
-            // txtTenSP
-            // 
-            this.txtTenSP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTenSP.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenSP.ForeColor = System.Drawing.Color.Black;
-            this.txtTenSP.Location = new System.Drawing.Point(231, 88);
-            this.txtTenSP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtTenSP.Name = "txtTenSP";
-            this.txtTenSP.Size = new System.Drawing.Size(338, 35);
-            this.txtTenSP.TabIndex = 49;
             // 
             // ID
             // 

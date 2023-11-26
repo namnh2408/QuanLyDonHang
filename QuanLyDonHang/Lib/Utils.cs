@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QuanLyDonHang.Lib
 {
@@ -164,6 +165,29 @@ namespace QuanLyDonHang.Lib
                 dataTable.Rows.Add(values);
             }
             return dataTable;
+        }
+
+        public static void SetFillSizeForAllColumns( this DataGridView dataGridView, float fillWeight = 150)
+        {
+            // Calculate the fill weight for each column
+            int totalWidth = 0;
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                totalWidth += column.Width;
+            }
+
+            int columnWidth = totalWidth / dataGridView.ColumnCount;
+
+            // Set the fill weight for each column
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                // column.FillWeight = (float)column.Width / totalWidth * 100;
+
+                column.FillWeight = fillWeight;
+                column.Width = columnWidth;
+                //column.MinimumWidth = 15;
+            }
         }
     }
 }

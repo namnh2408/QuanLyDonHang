@@ -190,7 +190,7 @@ namespace QuanLyDonHang.View.FormControl
                     var productCreate = new ProductCreateModel
                     {
                         Code = txtCode.Text,
-                        Name = txtGhiChu.Text,
+                        Name = txtTenSP.Text,
                         Note = txtGhiChu.Text,
                         IsActive = 1,
                     };

@@ -17,13 +17,12 @@ namespace QuanLyDonHang.View.Login
 {
     public partial class FrmLogin : Form
     {
-        string QuyenTruyCap = "";
-        int roleId = 0;
-        string err;
+        
+        private int roleId = 0;
+        private string err;
+
         UserService userServices = new UserService();
         
-        
-
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
         [DllImport("user32.dll")]
@@ -95,8 +94,7 @@ namespace QuanLyDonHang.View.Login
         }
 
         private void rdoAdmin_CheckedChanged(object sender, EventArgs e)
-        {
-            QuyenTruyCap = "Admin";
+        {            
             roleId = 1;
         }
 
@@ -112,7 +110,7 @@ namespace QuanLyDonHang.View.Login
 
         private void rdoNhanVien_CheckedChanged(object sender, EventArgs e)
         {
-            QuyenTruyCap = "NhanVien";
+            
             roleId = 2;
         }
     }

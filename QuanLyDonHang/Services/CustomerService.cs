@@ -31,6 +31,22 @@ namespace QuanLyDonHang.Services
             return payment;
         }
 
+        public CustomerModel GetCustomer(int CustomerID)
+        {
+            var customers = entities.Customers.Where(x => x.IsDeleted == 0 && x.ID == CustomerID).AsEnumerable()
+                                           .Select(x => new CustomerModel
+                                           {
+                                               ID = x.ID,
+                                               Fullname = x.FullName,
+                                               Email = x.Email,
+                                               Phone = x.Phone,
+                                               Address = x.Address,
+
+                                           }).FirstOrDefault();
+
+            return customers;
+        }
+
         /// <summary>
         /// danh sách khách hàng
         /// </summary>

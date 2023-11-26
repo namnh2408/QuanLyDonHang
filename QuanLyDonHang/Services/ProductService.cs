@@ -20,15 +20,31 @@ namespace QuanLyDonHang.Services
         /// <returns></returns>
         public List<SelectItem> ProductSelect()
         {
-            var payment = entities.Products.Where(x => x.IsDeleted == 0)
+            var product = entities.Products.Where(x => x.IsDeleted == 0)
                               .Select(x => new SelectItem
                               {
                                   Id = x.ID,
-                                  Name = x.Name,
+                                  Name = x.Code
                               }).ToList();
 
-            return payment;
+            return product;
         }
+
+        public ProductModel GetProduct(int ID)
+        {
+            var products = entities.Products.Where(x => x.IsDeleted == 0 && x.ID == ID).AsEnumerable()
+                                           .Select(x => new ProductModel
+                                           {
+                                               ID = x.ID,
+                                               Code = x.Code,
+                                               Name = x.Name,
+                                               Note = x.Note,
+                                              
+                                           }).FirstOrDefault();
+
+            return products;
+        }
+
 
         /// <summary>
         /// danh sách sản phẩm
@@ -109,7 +125,7 @@ namespace QuanLyDonHang.Services
                 {
                     var length = defaultCode.Length - product.ID.ToString().Length;
 
-                    productCreate.Code = defaultCode.Substring(0, length) + product.ID.ToString();
+                    product.Code = defaultCode.Substring(0, length) + product.ID.ToString();
                 }
                 else
                 {
