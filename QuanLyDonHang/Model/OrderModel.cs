@@ -19,10 +19,15 @@ namespace QuanLyDonHang.Model
         public int PaymentTypeID { get; set; }
         public int DeliveryTypeID { get; set; }
         public DateTime OrderDate { get; set; }
-        public int Hour { get; set; }
-        public int Minute { get; set; }
 
         public string Note { get; set; }
+
+        public decimal TotalMoney { get; set; }
+        public decimal VAT { get; set; }
+        public decimal PrePayment { get; set; }
+        public decimal FinalMoney { get; set; }
+
+        public List<OrderDetailCreateModel> Details { get; set; }
     }
 
     public class OrderDetailCreateModel
@@ -36,5 +41,17 @@ namespace QuanLyDonHang.Model
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal TotalPrice { get; set; }
+    }
+
+    public class OrderUpdateModel : OrderCreateModel
+    {
+        public int ID { get; set; }
+        public new List<OrderDetailUpdateModel> Details { get; set; }
+        
+    }
+
+    public class OrderDetailUpdateModel : OrderDetailCreateModel
+    {
+        public int ID { get; set; }
     }
 }

@@ -28,8 +28,6 @@ namespace QuanLyDonHang
         public string Address { get; set; }
         public int PaymentTypeID { get; set; }
         public int DeliveryTypeID { get; set; }
-        public int Hours { get; set; }
-        public int Minutes { get; set; }
         public string Note { get; set; }
         public decimal TotalMoney { get; set; }
         public decimal VAT { get; set; }

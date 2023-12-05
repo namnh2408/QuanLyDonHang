@@ -101,9 +101,7 @@
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PaymentTypeID" Type="int" Nullable="false" />
           <Property Name="DeliveryTypeID" Type="int" Nullable="false" />
-          <Property Name="OrderDate" Type="date" Nullable="false" />
-          <Property Name="Hours" Type="int" Nullable="false" />
-          <Property Name="Minutes" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
           <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="VAT" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -479,8 +477,6 @@
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PaymentTypeID" Type="Int32" Nullable="false" />
           <Property Name="DeliveryTypeID" Type="Int32" Nullable="false" />
-          <Property Name="Hours" Type="Int32" Nullable="false" />
-          <Property Name="Minutes" Type="Int32" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TotalMoney" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="VAT" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
@@ -497,7 +493,7 @@
           <NavigationProperty Name="Incomes" Relationship="QLDonHangModel.FK__Incomes__OrderID__6FB49575" FromRole="Order" ToRole="Income" />
           <NavigationProperty Name="OrderDetails" Relationship="QLDonHangModel.FK__OrderDeta__Order__6BE40491" FromRole="Order" ToRole="OrderDetail" />
           <NavigationProperty Name="PaymentType" Relationship="QLDonHangModel.FK__Orders__PaymentT__69FBBC1F" FromRole="Order" ToRole="PaymentType" />
-          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="PaymentType">
           <Key>
@@ -875,8 +871,6 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
                 <ScalarProperty Name="DeliveryTypeID" ColumnName="DeliveryTypeID" />
-                <ScalarProperty Name="Hours" ColumnName="Hours" />
-                <ScalarProperty Name="Minutes" ColumnName="Minutes" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
                 <ScalarProperty Name="VAT" ColumnName="VAT" />

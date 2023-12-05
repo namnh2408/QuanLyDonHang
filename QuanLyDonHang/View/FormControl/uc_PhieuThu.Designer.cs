@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.epvKhachHang = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblUsers = new System.Windows.Forms.Label();
             this.grbDanhSach = new System.Windows.Forms.GroupBox();
@@ -67,7 +67,7 @@
             this.cboGiaoHang = new System.Windows.Forms.ComboBox();
             this.cboThanhToan = new System.Windows.Forms.ComboBox();
             this.cboKhachHang = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtNote = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -122,13 +122,13 @@
             this.dgvKhachHang.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvKhachHang.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dgvKhachHang.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -148,14 +148,14 @@
             this.dgvKhachHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvKhachHang.Name = "dgvKhachHang";
             this.dgvKhachHang.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvKhachHang.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvKhachHang.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvKhachHang.RowHeadersWidth = 51;
             this.dgvKhachHang.Size = new System.Drawing.Size(1609, 332);
             this.dgvKhachHang.TabIndex = 0;
@@ -372,7 +372,7 @@
             this.grbTTCT.Controls.Add(this.cboGiaoHang);
             this.grbTTCT.Controls.Add(this.cboThanhToan);
             this.grbTTCT.Controls.Add(this.cboKhachHang);
-            this.grbTTCT.Controls.Add(this.textBox2);
+            this.grbTTCT.Controls.Add(this.txtNote);
             this.grbTTCT.Controls.Add(this.txtAddress);
             this.grbTTCT.Controls.Add(this.label5);
             this.grbTTCT.Controls.Add(this.label6);
@@ -465,7 +465,7 @@
             // 
             // dtpNgay
             // 
-            this.dtpNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpNgay.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dtpNgay.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNgay.Location = new System.Drawing.Point(818, 135);
@@ -499,40 +499,43 @@
             // 
             // cboGiaoHang
             // 
+            this.cboGiaoHang.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboGiaoHang.FormattingEnabled = true;
             this.cboGiaoHang.Location = new System.Drawing.Point(818, 88);
             this.cboGiaoHang.Name = "cboGiaoHang";
-            this.cboGiaoHang.Size = new System.Drawing.Size(261, 36);
+            this.cboGiaoHang.Size = new System.Drawing.Size(261, 35);
             this.cboGiaoHang.TabIndex = 76;
             // 
             // cboThanhToan
             // 
+            this.cboThanhToan.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboThanhToan.FormattingEnabled = true;
             this.cboThanhToan.Location = new System.Drawing.Point(818, 37);
             this.cboThanhToan.Name = "cboThanhToan";
-            this.cboThanhToan.Size = new System.Drawing.Size(261, 36);
+            this.cboThanhToan.Size = new System.Drawing.Size(261, 35);
             this.cboThanhToan.TabIndex = 76;
             // 
             // cboKhachHang
             // 
+            this.cboKhachHang.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboKhachHang.FormattingEnabled = true;
             this.cboKhachHang.Location = new System.Drawing.Point(201, 86);
             this.cboKhachHang.Name = "cboKhachHang";
-            this.cboKhachHang.Size = new System.Drawing.Size(249, 36);
+            this.cboKhachHang.Size = new System.Drawing.Size(249, 35);
             this.cboKhachHang.TabIndex = 76;
             this.cboKhachHang.TextChanged += new System.EventHandler(this.cboKhachHang_TextChanged);
             // 
-            // textBox2
+            // txtNote
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.Black;
-            this.textBox2.Location = new System.Drawing.Point(818, 179);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(261, 99);
-            this.textBox2.TabIndex = 52;
+            this.txtNote.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNote.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNote.ForeColor = System.Drawing.Color.Black;
+            this.txtNote.Location = new System.Drawing.Point(818, 179);
+            this.txtNote.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(261, 99);
+            this.txtNote.TabIndex = 52;
             // 
             // txtAddress
             // 
@@ -679,7 +682,7 @@
         private System.Windows.Forms.ComboBox cboGiaoHang;
         private System.Windows.Forms.ComboBox cboThanhToan;
         private System.Windows.Forms.ComboBox cboKhachHang;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

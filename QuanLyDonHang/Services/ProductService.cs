@@ -45,6 +45,13 @@ namespace QuanLyDonHang.Services
             return products;
         }
 
+        public int GetProductIDByCode(string Code)
+        {
+            var productID = entities.Products.FirstOrDefault(x => x.Code == Code).ID;
+
+            return productID;
+        }
+
 
         /// <summary>
         /// danh sách sản phẩm

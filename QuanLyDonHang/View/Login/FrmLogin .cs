@@ -75,7 +75,7 @@ namespace QuanLyDonHang.View.Login
             {
                 if (!string.IsNullOrEmpty(err))
                 {
-                    MessageBox.Show(err, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(err, "Đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {

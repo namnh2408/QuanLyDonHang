@@ -18,6 +18,13 @@ namespace QuanLyDonHang.Lib
             return DateTime.Now;
         }
 
+        public static string CalculatorVAT(float VAT, double totalPrice)
+        {
+            var price = totalPrice + totalPrice * VAT / 100;
+
+            return string.Format("0:#,###", price);
+        }
+
         public static string NumberToText(int number)
         {
             var unitNumbers = new string[] { "không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín" };

@@ -230,7 +230,7 @@ namespace QuanLyDonHang.View.FormControl
             }
             catch
             {
-                MessageBox.Show(err, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(err, "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -295,7 +295,7 @@ namespace QuanLyDonHang.View.FormControl
             }
             catch
             {
-                MessageBox.Show(err, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(err, "Quản lý thi công", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
