@@ -33,13 +33,13 @@ namespace QuanLyDonHang
         public decimal VAT { get; set; }
         public decimal PrePayment { get; set; }
         public decimal FinalMoney { get; set; }
-        public System.DateTime ExportDate { get; set; }
+        public string ExportDate { get; set; }
         public int IsDeleted { get; set; }
         public int CreateUser { get; set; }
         public System.DateTime CreateDate { get; set; }
         public int UpdateUser { get; set; }
         public System.DateTime UpdateDate { get; set; }
-        public System.DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual DeliveryType DeliveryType { get; set; }

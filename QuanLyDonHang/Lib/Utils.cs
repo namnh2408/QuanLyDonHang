@@ -18,11 +18,11 @@ namespace QuanLyDonHang.Lib
             return DateTime.Now;
         }
 
-        public static string CalculatorVAT(float VAT, double totalPrice)
+        public static string CalculatorVAT(double VAT, double totalPrice)
         {
             var price = totalPrice + totalPrice * VAT / 100;
 
-            return string.Format("0:#,###", price);
+            return price.ToString("#,###");
         }
 
         public static string NumberToText(int number)
@@ -150,6 +150,17 @@ namespace QuanLyDonHang.Lib
         public static string RemoveSpecialCharacters(string str)
         {
             return Regex.Replace(str, "[^a-zA-Z 0-9-/-]", "");
+        }
+
+        public static bool CheckSpecialCharacter(string str)
+        {
+            string pattern = "[00-9]";
+
+            if(Regex.IsMatch(str, pattern))
+            {
+                return true;
+            }
+            return false;
         }
 
         public static DataTable ToDataTable<T>(this List<T> items)

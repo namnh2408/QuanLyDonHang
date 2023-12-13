@@ -216,17 +216,19 @@ namespace QuanLyDonHang.View.Main
             }
 
             uc_PhieuThu = new uc_PhieuThu();
+            uc_PhieuThu.userInfo = userInfo;
+            
             pnlDisplay.Controls.Add(uc_PhieuThu);
             //uc_PhieuThu.Visible = false;
 
             uc_ChiTietPhieuThu = new uc_ChiTietPhieuThu();
+            uc_ChiTietPhieuThu.action = "THEM";
             pnlDisplay.Controls.Add(uc_ChiTietPhieuThu);
+            
             uc_ChiTietPhieuThu.Visible = false;
 
             this.ptbTroVe.Visible = true;
             uc_PhieuThu.Visible = true;
-
-            uc_PhieuThu.userInfo = userInfo;
             uc_PhieuThu.uc_ChiTietPhieuThu = uc_ChiTietPhieuThu;
             uc_PhieuThu.BringToFront();
         }

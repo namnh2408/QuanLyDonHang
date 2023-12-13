@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grbTTCT = new System.Windows.Forms.GroupBox();
             this.dtpNgay = new System.Windows.Forms.DateTimePicker();
             this.mskPhone = new System.Windows.Forms.MaskedTextBox();
@@ -70,11 +70,11 @@
             this.dgvTxtPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTxtTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtVAT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.txtFinalMoney = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtPrePayment = new System.Windows.Forms.TextBox();
-            this.txtVAT = new System.Windows.Forms.TextBox();
             this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -83,6 +83,7 @@
             this.grbDanhSach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTiet)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVAT)).BeginInit();
             this.SuspendLayout();
             // 
             // grbTTCT
@@ -256,6 +257,7 @@
             // 
             // txtGhiChu
             // 
+            this.txtGhiChu.BackColor = System.Drawing.SystemColors.Window;
             this.txtGhiChu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGhiChu.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGhiChu.ForeColor = System.Drawing.Color.Black;
@@ -402,13 +404,13 @@
             this.dgvChiTiet.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvChiTiet.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dgvChiTiet.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChiTiet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiTiet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvChiTiet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTiet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvOrderDetailID,
@@ -428,14 +430,14 @@
             this.dgvChiTiet.Location = new System.Drawing.Point(3, 30);
             this.dgvChiTiet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvChiTiet.Name = "dgvChiTiet";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChiTiet.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiTiet.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvChiTiet.RowHeadersWidth = 51;
             this.dgvChiTiet.Size = new System.Drawing.Size(1609, 251);
             this.dgvChiTiet.TabIndex = 0;
@@ -508,28 +510,26 @@
             // 
             // dgvTxtLength
             // 
-            this.dgvTxtLength.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.dgvTxtLength.DataPropertyName = "dgvTxtLength";
             this.dgvTxtLength.FillWeight = 20F;
             this.dgvTxtLength.HeaderText = "Dài";
-            this.dgvTxtLength.MinimumWidth = 6;
+            this.dgvTxtLength.MinimumWidth = 3;
             this.dgvTxtLength.Name = "dgvTxtLength";
-            this.dgvTxtLength.Width = 25;
             // 
             // dgvTxtWidth
             // 
             this.dgvTxtWidth.DataPropertyName = "dgvTxtWidth";
-            this.dgvTxtWidth.FillWeight = 10.49478F;
+            this.dgvTxtWidth.FillWeight = 20F;
             this.dgvTxtWidth.HeaderText = "Rộng";
-            this.dgvTxtWidth.MinimumWidth = 6;
+            this.dgvTxtWidth.MinimumWidth = 3;
             this.dgvTxtWidth.Name = "dgvTxtWidth";
             // 
             // dgvTxtQuantity
             // 
             this.dgvTxtQuantity.DataPropertyName = "dgvTxtQuantity";
-            this.dgvTxtQuantity.FillWeight = 101.9193F;
+            this.dgvTxtQuantity.FillWeight = 20F;
             this.dgvTxtQuantity.HeaderText = "Số Lượng";
-            this.dgvTxtQuantity.MinimumWidth = 6;
+            this.dgvTxtQuantity.MinimumWidth = 3;
             this.dgvTxtQuantity.Name = "dgvTxtQuantity";
             // 
             // dgvTxtPrice
@@ -552,16 +552,16 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.txtVAT);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtFinalMoney);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.txtPrePayment);
-            this.groupBox1.Controls.Add(this.txtVAT);
             this.groupBox1.Controls.Add(this.txtTotalPrice);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(1190, 49);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -571,6 +571,15 @@
             this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tổng cộng";
+            // 
+            // txtVAT
+            // 
+            this.txtVAT.Location = new System.Drawing.Point(211, 115);
+            this.txtVAT.Name = "txtVAT";
+            this.txtVAT.Size = new System.Drawing.Size(249, 35);
+            this.txtVAT.TabIndex = 78;
+            this.txtVAT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtVAT.ValueChanged += new System.EventHandler(this.txtVAT_ValueChanged);
             // 
             // label7
             // 
@@ -593,6 +602,7 @@
             this.txtFinalMoney.Name = "txtFinalMoney";
             this.txtFinalMoney.Size = new System.Drawing.Size(249, 35);
             this.txtFinalMoney.TabIndex = 52;
+            this.txtFinalMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
@@ -615,17 +625,9 @@
             this.txtPrePayment.Name = "txtPrePayment";
             this.txtPrePayment.Size = new System.Drawing.Size(249, 35);
             this.txtPrePayment.TabIndex = 52;
-            // 
-            // txtVAT
-            // 
-            this.txtVAT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVAT.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVAT.ForeColor = System.Drawing.Color.Black;
-            this.txtVAT.Location = new System.Drawing.Point(211, 113);
-            this.txtVAT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtVAT.Name = "txtVAT";
-            this.txtVAT.Size = new System.Drawing.Size(249, 35);
-            this.txtVAT.TabIndex = 52;
+            this.txtPrePayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPrePayment.TextChanged += new System.EventHandler(this.txtPrePayment_TextChanged);
+            this.txtPrePayment.MouseLeave += new System.EventHandler(this.txtPrePayment_MouseLeave);
             // 
             // txtTotalPrice
             // 
@@ -637,6 +639,8 @@
             this.txtTotalPrice.Name = "txtTotalPrice";
             this.txtTotalPrice.Size = new System.Drawing.Size(249, 35);
             this.txtTotalPrice.TabIndex = 52;
+            this.txtTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalPrice.TextChanged += new System.EventHandler(this.txtTotalPrice_TextChanged);
             // 
             // label13
             // 
@@ -680,6 +684,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTiet)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVAT)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -713,11 +718,15 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtFinalMoney;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtVAT;
         private System.Windows.Forms.TextBox txtTotalPrice;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtPrePayment;
+        private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnTiepTuc;
+        private System.Windows.Forms.Button btnInPhieu;
+        private System.Windows.Forms.NumericUpDown txtVAT;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvOrderDetailID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvSTT;
         private System.Windows.Forms.DataGridViewComboBoxColumn dgvCboProductCode;
@@ -729,9 +738,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTxtQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTxtPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTxtTotalPrice;
-        private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button btnTiepTuc;
-        private System.Windows.Forms.Button btnInPhieu;
     }
 }

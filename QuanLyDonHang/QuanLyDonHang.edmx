@@ -101,13 +101,13 @@
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PaymentTypeID" Type="int" Nullable="false" />
           <Property Name="DeliveryTypeID" Type="int" Nullable="false" />
-          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderDate" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="VAT" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PrePayment" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FinalMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="ExportDate" Type="datetime" Nullable="false" />
+          <Property Name="ExportDate" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="IsDeleted" Type="int" Nullable="false" />
           <Property Name="CreateUser" Type="int" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -482,7 +482,7 @@
           <Property Name="VAT" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PrePayment" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FinalMoney" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="ExportDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExportDate" Type="String" Nullable="false" />
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
           <Property Name="CreateUser" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -493,7 +493,7 @@
           <NavigationProperty Name="Incomes" Relationship="QLDonHangModel.FK__Incomes__OrderID__6FB49575" FromRole="Order" ToRole="Income" />
           <NavigationProperty Name="OrderDetails" Relationship="QLDonHangModel.FK__OrderDeta__Order__6BE40491" FromRole="Order" ToRole="OrderDetail" />
           <NavigationProperty Name="PaymentType" Relationship="QLDonHangModel.FK__Orders__PaymentT__69FBBC1F" FromRole="Order" ToRole="PaymentType" />
-          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderDate" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentType">
           <Key>

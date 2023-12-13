@@ -35,16 +35,6 @@
             this.lblUsers = new System.Windows.Forms.Label();
             this.grbDanhSach = new System.Windows.Forms.GroupBox();
             this.dgvKhachHang = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrePayment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FinalMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtFinalMoney = new System.Windows.Forms.TextBox();
@@ -77,6 +67,17 @@
             this.txtOrderCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblHoTen = new System.Windows.Forms.Label();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrePayment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FinalMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epvKhachHang)).BeginInit();
             this.grbDanhSach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
@@ -132,6 +133,7 @@
             this.dgvKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
+            this.CustomerID,
             this.Code,
             this.CustomerName,
             this.Phone,
@@ -159,92 +161,6 @@
             this.dgvKhachHang.RowHeadersWidth = 51;
             this.dgvKhachHang.Size = new System.Drawing.Size(1609, 332);
             this.dgvKhachHang.TabIndex = 0;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.FillWeight = 23.69371F;
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 3;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Code
-            // 
-            this.Code.DataPropertyName = "Code";
-            this.Code.FillWeight = 29.72975F;
-            this.Code.HeaderText = "Mã đơn hàng";
-            this.Code.MinimumWidth = 6;
-            this.Code.Name = "Code";
-            this.Code.ReadOnly = true;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.DataPropertyName = "CustomerName";
-            this.CustomerName.FillWeight = 29.72975F;
-            this.CustomerName.HeaderText = "Tên khách hàng";
-            this.CustomerName.MinimumWidth = 6;
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            // 
-            // Phone
-            // 
-            this.Phone.DataPropertyName = "Phone";
-            this.Phone.FillWeight = 29.72975F;
-            this.Phone.HeaderText = "Số điện thoại";
-            this.Phone.MinimumWidth = 6;
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            // 
-            // Address
-            // 
-            this.Address.DataPropertyName = "Address";
-            this.Address.FillWeight = 29.72975F;
-            this.Address.HeaderText = "Địa chỉ";
-            this.Address.MinimumWidth = 6;
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
-            // OrderDate
-            // 
-            this.OrderDate.DataPropertyName = "OrderDate";
-            this.OrderDate.FillWeight = 29.72975F;
-            this.OrderDate.HeaderText = "Ngày giao hàng";
-            this.OrderDate.MinimumWidth = 6;
-            this.OrderDate.Name = "OrderDate";
-            this.OrderDate.ReadOnly = true;
-            // 
-            // TotalPrice
-            // 
-            this.TotalPrice.DataPropertyName = "TotalPrice";
-            this.TotalPrice.HeaderText = "Tổng tiền";
-            this.TotalPrice.MinimumWidth = 6;
-            this.TotalPrice.Name = "TotalPrice";
-            this.TotalPrice.ReadOnly = true;
-            // 
-            // VAT
-            // 
-            this.VAT.DataPropertyName = "VAT";
-            this.VAT.HeaderText = "VAT";
-            this.VAT.MinimumWidth = 6;
-            this.VAT.Name = "VAT";
-            this.VAT.ReadOnly = true;
-            // 
-            // PrePayment
-            // 
-            this.PrePayment.DataPropertyName = "PrePayment";
-            this.PrePayment.HeaderText = "Trả trước";
-            this.PrePayment.MinimumWidth = 6;
-            this.PrePayment.Name = "PrePayment";
-            this.PrePayment.ReadOnly = true;
-            // 
-            // FinalMoney
-            // 
-            this.FinalMoney.DataPropertyName = "FinalMoney";
-            this.FinalMoney.HeaderText = "Còn lại";
-            this.FinalMoney.MinimumWidth = 6;
-            this.FinalMoney.Name = "FinalMoney";
-            this.FinalMoney.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -636,6 +552,101 @@
             this.lblHoTen.TabIndex = 48;
             this.lblHoTen.Text = "Mã đơn hàng :";
             // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.FillWeight = 23.69371F;
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 3;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // CustomerID
+            // 
+            this.CustomerID.HeaderText = "ID Khách hàng";
+            this.CustomerID.MinimumWidth = 6;
+            this.CustomerID.Name = "CustomerID";
+            this.CustomerID.ReadOnly = true;
+            this.CustomerID.Visible = false;
+            // 
+            // Code
+            // 
+            this.Code.DataPropertyName = "Code";
+            this.Code.FillWeight = 29.72975F;
+            this.Code.HeaderText = "Mã đơn hàng";
+            this.Code.MinimumWidth = 6;
+            this.Code.Name = "Code";
+            this.Code.ReadOnly = true;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.DataPropertyName = "CustomerName";
+            this.CustomerName.FillWeight = 29.72975F;
+            this.CustomerName.HeaderText = "Tên khách hàng";
+            this.CustomerName.MinimumWidth = 6;
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            // 
+            // Phone
+            // 
+            this.Phone.DataPropertyName = "Phone";
+            this.Phone.FillWeight = 29.72975F;
+            this.Phone.HeaderText = "Số điện thoại";
+            this.Phone.MinimumWidth = 6;
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            // 
+            // Address
+            // 
+            this.Address.DataPropertyName = "Address";
+            this.Address.FillWeight = 29.72975F;
+            this.Address.HeaderText = "Địa chỉ";
+            this.Address.MinimumWidth = 6;
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            // 
+            // OrderDate
+            // 
+            this.OrderDate.DataPropertyName = "OrderDate";
+            this.OrderDate.FillWeight = 29.72975F;
+            this.OrderDate.HeaderText = "Ngày giao hàng";
+            this.OrderDate.MinimumWidth = 6;
+            this.OrderDate.Name = "OrderDate";
+            this.OrderDate.ReadOnly = true;
+            // 
+            // TotalPrice
+            // 
+            this.TotalPrice.DataPropertyName = "TotalPrice";
+            this.TotalPrice.HeaderText = "Tổng tiền";
+            this.TotalPrice.MinimumWidth = 6;
+            this.TotalPrice.Name = "TotalPrice";
+            this.TotalPrice.ReadOnly = true;
+            // 
+            // VAT
+            // 
+            this.VAT.DataPropertyName = "VAT";
+            this.VAT.HeaderText = "VAT";
+            this.VAT.MinimumWidth = 6;
+            this.VAT.Name = "VAT";
+            this.VAT.ReadOnly = true;
+            // 
+            // PrePayment
+            // 
+            this.PrePayment.DataPropertyName = "PrePayment";
+            this.PrePayment.HeaderText = "Trả trước";
+            this.PrePayment.MinimumWidth = 6;
+            this.PrePayment.Name = "PrePayment";
+            this.PrePayment.ReadOnly = true;
+            // 
+            // FinalMoney
+            // 
+            this.FinalMoney.DataPropertyName = "FinalMoney";
+            this.FinalMoney.HeaderText = "Còn lại";
+            this.FinalMoney.MinimumWidth = 6;
+            this.FinalMoney.Name = "FinalMoney";
+            this.FinalMoney.ReadOnly = true;
+            // 
             // uc_PhieuThu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -692,7 +703,14 @@
         private System.Windows.Forms.TextBox txtOrderCode;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblHoTen;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnLuu;
+        private System.Windows.Forms.Button btnHuy;
+        private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
@@ -702,11 +720,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn VAT;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrePayment;
         private System.Windows.Forms.DataGridViewTextBoxColumn FinalMoney;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button btnLuu;
-        private System.Windows.Forms.Button btnHuy;
-        private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnThem;
     }
 }

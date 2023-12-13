@@ -1,6 +1,7 @@
 ﻿using QuanLyDonHang.Lib;
 using QuanLyDonHang.Model;
 using System;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -10,6 +11,76 @@ namespace QuanLyDonHang.Services
     public class OrderService
     {
         private QLDonHangEntities entities = new QLDonHangEntities();
+
+
+        public DataTable GetListOrder(ref string err)
+        {
+
+            try
+            {
+                var users = entities.Users.Where(a => a.IsDeleted == 0).ToList();
+
+                var orders = entities.Orders.Where(x => x.IsDeleted == 0)
+                                             .Include(a => a.PaymentType)
+                                             .Include(x => x.DeliveryType)
+                                             .Include(p => p.Customer)
+                                            .AsEnumerable()
+                                           .Select(x => new OrderModel
+                                           {
+                                               ID = x.ID,
+                                               CustomerID = x.CustomerID,
+                                               CustomerName = x.Customer.FullName,
+                                               OrderDate = x.OrderDate,
+                                               Phone = x.Phone,
+                                               Address = x.Address,
+                                               PaymentTypeID = x.PaymentTypeID,
+                                               PaymentTypeName = x.PaymentType.Name,
+                                               DeliveryTypeID = x.DeliveryTypeID,
+                                               DeliveryTypeName  =x.DeliveryType.Name,
+
+                                               TotalMoney = x.TotalMoney,
+                                               PrePayment = x.PrePayment,
+                                               FinalMoney = x.FinalMoney,
+                                               VAT = x.VAT,
+                                               Note = x.Note,
+
+                                               CreateUser = x.CreateUser,
+                                               CreateUserName = users.FirstOrDefault(a => a.ID == x.CreateUser).Fullname,
+                                               CreateDate = String.Format(SystemConstants.FormatDate, x.CreateDate),
+
+                                               UpdateUser = x.UpdateUser,
+                                               UpdateUserName = users.FirstOrDefault(a => a.ID == x.UpdateUser).Fullname,
+                                               UpdateDate = String.Format(SystemConstants.FormatDate, x.UpdateDate)
+                                           }).OrderBy(x => x.ID).ToList();
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ID");
+                dt.Columns.Add("Code");
+                dt.Columns.Add("CustomerID");
+                dt.Columns.Add("CustomerName");
+                dt.Columns.Add("Phone");
+                dt.Columns.Add("Address");
+
+                dt.Columns.Add("OrderDate");
+                dt.Columns.Add("TotalMoney");
+                dt.Columns.Add("VAT");
+                dt.Columns.Add("PrePayment");
+                dt.Columns.Add("FinalMoney");
+
+                foreach (var item in orders)
+                {
+                    dt.Rows.Add(item.ID, item.Code, item.CustomerID, item.CustomerName, item.Phone, item.Address, 
+                                    item.OrderDate,item.TotalMoney, item.VAT, item.PrePayment, item.FinalMoney);
+                }
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                err = ex.Message;
+                throw;
+            }
+        }
 
         public string OrderGenerateCode()
         {
@@ -40,7 +111,6 @@ namespace QuanLyDonHang.Services
                     Note = orderCreate.Note,
                     PaymentTypeID = orderCreate.PaymentTypeID,
                     DeliveryTypeID = orderCreate.DeliveryTypeID,
-                    OrderDate = orderCreate.OrderDate,
                     IsDeleted = 0,
                     CreateDate = dateNow,
                     CreateUser = userInfo.UserID,
@@ -49,7 +119,9 @@ namespace QuanLyDonHang.Services
                     TotalMoney = orderCreate.TotalMoney,
                     VAT = orderCreate.VAT,
                     PrePayment = orderCreate.PrePayment,
-                    FinalMoney = orderCreate.FinalMoney
+                    FinalMoney = orderCreate.FinalMoney,
+                    OrderDate = orderCreate.OrderDate,
+                    ExportDate = dateNow.ToString("dd/MM/yyyy HH:mm:ss")
                 };
 
                 entities.Orders.Add(order);
@@ -111,7 +183,7 @@ namespace QuanLyDonHang.Services
             {
                 var dateNow = Utils.DateTimeNow();
 
-                var order = entities.Orders.Where(x => x.ID == orderUpdate.ID && x.IsDeleted == 0)
+                var order = entities.Orders.Where(x => (x.ID == orderUpdate.ID || x.Code == orderUpdate.Code) && x.IsDeleted == 0)
                                                 .Include(x => x.OrderDetails)
                                 .FirstOrDefault();
 

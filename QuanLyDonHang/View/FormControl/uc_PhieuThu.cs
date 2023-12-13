@@ -87,8 +87,7 @@ namespace QuanLyDonHang.View.FormControl
             switch (funcNo)
             {
                 case 0:
-                   
-       
+
                     btnLuu.Enabled = false;
                     btnHuy.Enabled = false;
 
@@ -111,6 +110,7 @@ namespace QuanLyDonHang.View.FormControl
                     btnXoa.ForeColor = Color.White;
 
                     break;
+
                 case 1:
                     btnLuu.Enabled = true;
                     btnHuy.Enabled = true;
@@ -133,6 +133,7 @@ namespace QuanLyDonHang.View.FormControl
                     btnSua.ForeColor = Color.WhiteSmoke;
                     btnXoa.ForeColor = Color.WhiteSmoke;
                     break;
+
                 case 2:
                     btnLuu.Enabled = true;
                     btnHuy.Enabled = true;
@@ -156,6 +157,7 @@ namespace QuanLyDonHang.View.FormControl
                     btnXoa.ForeColor = Color.WhiteSmoke;
 
                     break;
+
                 default:
                     break;
             }
@@ -163,11 +165,12 @@ namespace QuanLyDonHang.View.FormControl
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-
-            uc_ChiTietPhieuThu.Show();
             uc_ChiTietPhieuThu.action = "THEM";
             uc_ChiTietPhieuThu.uc_PhieuThu = this;
-            
+            uc_ChiTietPhieuThu.userInfo = userInfo;
+
+            uc_ChiTietPhieuThu.Show();
+
             this.Hide();
         }
 
@@ -196,6 +199,8 @@ namespace QuanLyDonHang.View.FormControl
             this.dgvKhachHang.SetFillSizeForAllColumns();
 
             this.dgvKhachHang.ResumeLayout();
+
+            LoadData();
         }
 
         private void LoadData()
@@ -203,7 +208,7 @@ namespace QuanLyDonHang.View.FormControl
             try
             {
                 // generate code order
-                txtOrderCode.Text = orderService.OrderGenerateCode();
+                //txtOrderCode.Text = orderService.OrderGenerateCode();
 
                 // Khách hàng
                 this.cboKhachHang.DataSource = customerService.CustomerSelect();
@@ -220,6 +225,8 @@ namespace QuanLyDonHang.View.FormControl
                 this.cboThanhToan.ValueMember = "ID";
                 this.cboThanhToan.DisplayMember = "Name";
 
+                var orders = orderService.GetListOrder(ref err);
+                dgvKhachHang.DataSource = orders;
             }
             catch (Exception ex)
             {

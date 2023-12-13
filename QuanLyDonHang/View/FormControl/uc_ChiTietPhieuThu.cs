@@ -3,8 +3,8 @@ using QuanLyDonHang.Model;
 using QuanLyDonHang.Services;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Metadata.Edm;
 using System.Drawing;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 
 namespace QuanLyDonHang.View.FormControl
@@ -13,6 +13,13 @@ namespace QuanLyDonHang.View.FormControl
     {
         public uc_PhieuThu uc_PhieuThu;
         public UserInfo userInfo;
+        /// <summary>
+        /// Tên chức năng
+        /// THEM, SUA, XOA, XEMCHITIET
+        /// </summary>
+        public string action = "";
+        public int orderID = 0;
+
 
         private ProductService productService = new ProductService();
         private CustomerService customerService = new CustomerService();
@@ -25,11 +32,7 @@ namespace QuanLyDonHang.View.FormControl
 
         private string err;
 
-        /// <summary>
-        /// Tên chức năng
-        /// THEM, SUA, XOA, XEMCHITIET
-        /// </summary>
-        public string action = "";
+        
 
         public uc_ChiTietPhieuThu()
         {
@@ -71,6 +74,10 @@ namespace QuanLyDonHang.View.FormControl
             }
             else
             {
+                cboKhachHang.ResetText();
+                cboThanhToan.ResetText();
+                cboGiaoHang.ResetText();
+
                 txtOrderCode.Enabled = true;
 
                 cboKhachHang.Enabled = true;
@@ -87,6 +94,10 @@ namespace QuanLyDonHang.View.FormControl
                 txtVAT.Enabled = true;
                 txtPrePayment.Enabled = true;
                 txtFinalMoney.Enabled = false;
+
+                txtFinalMoney.Text = "0";
+                txtTotalPrice.Text = "0";
+                txtPrePayment.Text = "0";
             }
 
             switch (funcNo)
@@ -219,49 +230,50 @@ namespace QuanLyDonHang.View.FormControl
         {
             try
             {
-                if (action == "THEM")
+                if (this.txtOrderCode.Text == "")
                 {
-                    if (this.txtOrderCode.Text == "")
-                    {
-                        epvKhachHang.SetError(this.txtOrderCode, "!");
-                        MessageBox.Show("Chưa có Mã phiếu thu", "Lập phiếu giao hàng",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        epvKhachHang.Clear();
-                        this.txtOrderCode.Focus();
+                    epvKhachHang.SetError(this.txtOrderCode, "!");
+                    MessageBox.Show("Chưa có Mã phiếu thu", "Lập phiếu giao hàng",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    epvKhachHang.Clear();
+                    this.txtOrderCode.Focus();
 
-                        return;
-                    }
+                    return;
+                }
 
-                    if (cboGiaoHang.Text == "")
-                    {
-                        epvKhachHang.SetError(this.cboGiaoHang, "!");
-                        MessageBox.Show("Vui lòng chọn hình thức giao hàng", "Lập phiếu giao hàng",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        epvKhachHang.Clear();
-                        this.cboGiaoHang.Focus();
+                if (cboGiaoHang.Text == "")
+                {
+                    epvKhachHang.SetError(this.cboGiaoHang, "!");
+                    MessageBox.Show("Vui lòng chọn hình thức giao hàng", "Lập phiếu giao hàng",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    epvKhachHang.Clear();
+                    this.cboGiaoHang.Focus();
 
-                        return;
-                    }
+                    return;
+                }
 
-                    if (cboThanhToan.Text == "")
-                    {
-                        epvKhachHang.SetError(this.cboThanhToan, "!");
-                        MessageBox.Show("Vui lòng chọn hình thức thanh toán", "Lập phiếu giao hàng",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        epvKhachHang.Clear();
-                        this.cboThanhToan.Focus();
+                if (cboThanhToan.Text == "")
+                {
+                    epvKhachHang.SetError(this.cboThanhToan, "!");
+                    MessageBox.Show("Vui lòng chọn hình thức thanh toán", "Lập phiếu giao hàng",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    epvKhachHang.Clear();
+                    this.cboThanhToan.Focus();
 
-                        return;
-                    }
-                    var orderDetail = ConvertDataGridViewToList();
+                    return;
+                }
 
+                var orderDetail = ConvertDataGridViewToList();
+
+                if (action == "THEM")
+                {                  
                     var orderCreate = new OrderCreateModel
                     {
                         Code = txtOrderCode.Text,
                         CustomerID = (int)cboKhachHang.SelectedValue,
                         Address = txtAddress.Text,
                         Phone = mskPhone.Text.Replace(" ", ""),
-                        OrderDate = Convert.ToDateTime(dtpNgay.Text),
+                        OrderDate = dtpNgay.Value.ToString("dd/MM/yyyy HH:mm:ss"),
                         PaymentTypeID = (int)cboThanhToan.SelectedValue,
                         DeliveryTypeID = (int)cboGiaoHang.SelectedValue,
                         Note = txtGhiChu.Text,
@@ -271,13 +283,51 @@ namespace QuanLyDonHang.View.FormControl
                         FinalMoney = Convert.ToDecimal(txtFinalMoney.Text),
                     };
 
-                    orderCreate.Details = AutoMapperHelper.Update(orderDetail, orderCreate.Details);
+                    orderCreate.Details = new List<OrderDetail>();
+                   
+                    orderCreate.Details.AddRange(orderDetail);
 
                     var isInsert = orderService.CreateOrder(orderCreate, userInfo, ref err);
 
                     if (isInsert)
                     {
                         MessageBox.Show("Thêm thành công", "Lập phiếu giao hàng");
+                    }
+                    else
+                    {
+                        MessageBox.Show(err, "Lập phiếu giao hàng");
+                    }
+
+                    LoadData();
+                }
+                else if( action == "SUA")
+                {
+                    var orderUpdate = new OrderUpdateModel
+                    {
+                        ID = orderID,
+                        Code = txtOrderCode.Text,
+                        CustomerID = (int)cboKhachHang.SelectedValue,
+                        Address = txtAddress.Text,
+                        Phone = mskPhone.Text.Replace(" ", ""),
+                        OrderDate = dtpNgay.Value.ToString("dd/MM/yyyy HH:mm:ss"),
+                        PaymentTypeID = (int)cboThanhToan.SelectedValue,
+                        DeliveryTypeID = (int)cboGiaoHang.SelectedValue,
+                        Note = txtGhiChu.Text,
+                        TotalMoney = Convert.ToDecimal(txtTotalPrice.Text),
+                        VAT = Convert.ToDecimal(txtVAT.Text),
+                        PrePayment = Convert.ToDecimal(txtPrePayment.Text),
+                        FinalMoney = Convert.ToDecimal(txtFinalMoney.Text),
+                    };
+
+                    orderUpdate.Details = new List<OrderDetail>();
+
+                    orderUpdate.Details.AddRange(orderDetail);
+
+                    var isUpdate = orderService.UpdateOrder(orderUpdate, userInfo, ref err);
+
+                    if (isUpdate)
+                    {
+                        MessageBox.Show("Cập nhật thành công", "Lập phiếu giao hàng");
                     }
                     else
                     {
@@ -303,6 +353,21 @@ namespace QuanLyDonHang.View.FormControl
             this.ResumeLayout();
 
             LoadData();
+
+            switch (action)
+            {
+                case "THEM":
+                    EnabledControl(true, 1);
+                    break;
+
+                case "SUA":
+                    EnabledControl(true, 2);
+                    break;
+
+                default:
+                    EnabledControl();
+                    break;
+            }
         }
 
         private List<OrderDetail> ConvertDataGridViewToList()
@@ -327,9 +392,9 @@ namespace QuanLyDonHang.View.FormControl
 
                         if (row.Cells["dgvCboProductCode"] is DataGridViewComboBoxCell cboProduct)
                         {
-                            var code = cboProduct.Value.ToString();
+                            var productID = cboProduct.Value.ToString();
 
-                            detail.ProductID = productService.GetProductIDByCode(code);
+                            detail.ProductID = Convert.ToInt32(productID);
                         }
 
                         if (row.Cells["dgvCboMaterialType"] is DataGridViewComboBoxCell cboMaterial)
@@ -345,11 +410,9 @@ namespace QuanLyDonHang.View.FormControl
                         orderDetails.Add(detail);
                     }
                 }
-
-                return orderDetails;
             }
 
-            return null;
+            return orderDetails;
         }
 
         private void LoadData()
@@ -468,7 +531,7 @@ namespace QuanLyDonHang.View.FormControl
 
             DataGridViewColumn sttColumn = dgvChiTiet.Columns["dgvSTT"];
 
-            if(sttColumn != null)
+            if (sttColumn != null)
             {
                 var STT = Convert.ToInt32(dgvChiTiet.Rows[e.RowIndex].Cells[1].Value == null ? 0
                                         : dgvChiTiet.Rows[e.RowIndex].Cells[1].Value);
@@ -483,12 +546,10 @@ namespace QuanLyDonHang.View.FormControl
                 }
             }
 
-
             DataGridViewColumn dongiaColumn = dgvChiTiet.Columns["dgvTxtPrice"];
             DataGridViewColumn soluongColumn = dgvChiTiet.Columns["dgvTxtQuantity"];
             DataGridViewColumn thanhtienColumn = dgvChiTiet.Columns["dgvTxtTotalPrice"];
             DataGridViewColumn maspColumn = dgvChiTiet.Columns["dgvCboProductCode"];
-
 
             if (dongiaColumn != null && e.ColumnIndex == dongiaColumn.Index)
             {
@@ -501,14 +562,16 @@ namespace QuanLyDonHang.View.FormControl
                 if (dongia.Value != null && soluong.Value != null)
                 {
                     // Get the text from the TextBox
-                    string newText = dongia.Value.ToString();
+                    string newValueDG = dongia.Value.ToString();
 
                     // Do something with the new text
-                    if (!string.IsNullOrEmpty(newText))
+                    if (!string.IsNullOrEmpty(newValueDG))
                     {
-                        var amount = Convert.ToInt32(dongia.Value) * Convert.ToInt32(soluong.Value);
-
+                        var amount = Convert.ToDecimal(dongia.Value) * Convert.ToDecimal(soluong.Value);
                         thanhtien.Value = amount.ToString("#,###");
+
+                        var dongiaFinal = Convert.ToDecimal(dongia.Value);
+                        dongia.Value = dongiaFinal.ToString("#,###");
                     }
                 }
             }
@@ -524,12 +587,12 @@ namespace QuanLyDonHang.View.FormControl
                 if (soluong.Value != null && dongia.Value != null)
                 {
                     // Get the text from the TextBox
-                    string newText = soluong.Value.ToString();
+                    string newValueSL = soluong.Value.ToString();
 
                     // Do something with the new text
-                    if (!string.IsNullOrEmpty(newText))
+                    if (!string.IsNullOrEmpty(newValueSL))
                     {
-                        var amount = Convert.ToInt32(dongia.Value) * Convert.ToInt32(soluong.Value);
+                        var amount = Convert.ToDecimal(dongia.Value) * Convert.ToDecimal(soluong.Value);
 
                         thanhtien.Value = amount.ToString("#,###");
                     }
@@ -538,22 +601,21 @@ namespace QuanLyDonHang.View.FormControl
 
             if (thanhtienColumn != null && e.ColumnIndex == thanhtienColumn.Index)
             {
-
                 DataGridViewTextBoxCell thanhtien = (DataGridViewTextBoxCell)dgvChiTiet.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
                 // Check if the cell value is not null
                 if (thanhtien.Value != null)
                 {
                     // Get the text from the TextBox
-                    string newText = thanhtien.Value.ToString();
+                    string newValueThanhTien = thanhtien.Value.ToString();
 
                     // Do something with the new text
-                    if (!string.IsNullOrEmpty(newText))
+                    if (!string.IsNullOrEmpty(newValueThanhTien))
                     {
                         decimal totalAmount = 0;
-                        foreach(DataGridViewRow row in dgvChiTiet.Rows)
+                        foreach (DataGridViewRow row in dgvChiTiet.Rows)
                         {
-                            if(!row.IsNewRow)
+                            if (!row.IsNewRow)
                             {
                                 totalAmount += Convert.ToDecimal(row.Cells["dgvTxtTotalPrice"].Value);
                             }
@@ -566,9 +628,8 @@ namespace QuanLyDonHang.View.FormControl
 
             if (maspColumn != null && e.ColumnIndex == maspColumn.Index)
             {
-
                 DataGridViewComboBoxCell masp = (DataGridViewComboBoxCell)dgvChiTiet.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                DataGridViewTextBoxCell tensanpham = (DataGridViewTextBoxCell)dgvChiTiet.Rows[e.RowIndex].Cells[e.ColumnIndex +1];
+                DataGridViewTextBoxCell tensanpham = (DataGridViewTextBoxCell)dgvChiTiet.Rows[e.RowIndex].Cells[e.ColumnIndex + 1];
 
                 // Check if the cell value is not null
                 if (masp.Value != null)
@@ -609,6 +670,61 @@ namespace QuanLyDonHang.View.FormControl
             }
 
             txtTotalPrice.Text = totalAmount.ToString("#,###");
+        }
+
+        private void txtVAT_ValueChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtTotalPrice.Text))
+            {
+                return;
+            }
+
+            var vat = Convert.ToDouble(txtVAT.Value);
+            var tongtien = Convert.ToDouble(txtTotalPrice.Text);
+
+            txtFinalMoney.Text = Utils.CalculatorVAT(vat, tongtien);
+        }
+
+        private void txtPrePayment_TextChanged(object sender, EventArgs e)
+        {
+        //    if (!Utils.CheckSpecialCharacter(txtPrePayment.Text))
+        //    {
+        //        epvKhachHang.SetError(this.txtPrePayment, "!");
+        //        MessageBox.Show("Chỉ chứa số 0-9", "Lập phiếu giao hàng",
+        //            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        epvKhachHang.Clear();
+        //        this.txtPrePayment.Focus();
+
+        //        return;
+        //    }
+
+        //    var value = Convert.ToDecimal(txtPrePayment.Text.Replace(",", ""));
+        //    txtPrePayment.Text = value.ToString("#,###");
+        }
+
+        private void txtTotalPrice_TextChanged(object sender, EventArgs e)
+        {
+            var vat = Convert.ToDouble(txtVAT.Value);
+            var tongtien = Convert.ToDouble(txtTotalPrice.Text);
+
+            txtFinalMoney.Text = Utils.CalculatorVAT(vat, tongtien);
+        }
+
+        private void txtPrePayment_MouseLeave(object sender, EventArgs e)
+        {
+            //if (!Utils.CheckSpecialCharacter(txtPrePayment.Text))
+            //{
+            //    epvKhachHang.SetError(this.txtPrePayment, "!");
+            //    MessageBox.Show("Chỉ chứa số 0-9", "Lập phiếu giao hàng",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    epvKhachHang.Clear();
+            //    this.txtPrePayment.Focus();
+
+            //    return;
+            //}
+
+            var value = Convert.ToDecimal(txtPrePayment.Text.Replace(",", ""));
+            txtPrePayment.Text = value.ToString("#,###");
         }
     }
 }
