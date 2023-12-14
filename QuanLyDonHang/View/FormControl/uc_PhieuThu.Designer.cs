@@ -40,7 +40,6 @@
             this.txtFinalMoney = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtPrePayment = new System.Windows.Forms.TextBox();
-            this.txtVAT = new System.Windows.Forms.TextBox();
             this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -67,6 +66,7 @@
             this.txtOrderCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblHoTen = new System.Windows.Forms.Label();
+            this.txtVAT = new System.Windows.Forms.NumericUpDown();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,6 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grbTTCT.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVAT)).BeginInit();
             this.SuspendLayout();
             // 
             // epvKhachHang
@@ -161,15 +162,16 @@
             this.dgvKhachHang.RowHeadersWidth = 51;
             this.dgvKhachHang.Size = new System.Drawing.Size(1609, 332);
             this.dgvKhachHang.TabIndex = 0;
+            this.dgvKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKhachHang_CellClick);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.txtVAT);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtFinalMoney);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.txtPrePayment);
-            this.groupBox1.Controls.Add(this.txtVAT);
             this.groupBox1.Controls.Add(this.txtTotalPrice);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label14);
@@ -228,17 +230,6 @@
             this.txtPrePayment.Name = "txtPrePayment";
             this.txtPrePayment.Size = new System.Drawing.Size(249, 35);
             this.txtPrePayment.TabIndex = 52;
-            // 
-            // txtVAT
-            // 
-            this.txtVAT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVAT.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVAT.ForeColor = System.Drawing.Color.Black;
-            this.txtVAT.Location = new System.Drawing.Point(211, 113);
-            this.txtVAT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtVAT.Name = "txtVAT";
-            this.txtVAT.Size = new System.Drawing.Size(249, 35);
-            this.txtVAT.TabIndex = 52;
             // 
             // txtTotalPrice
             // 
@@ -552,10 +543,18 @@
             this.lblHoTen.TabIndex = 48;
             this.lblHoTen.Text = "Mã đơn hàng :";
             // 
+            // txtVAT
+            // 
+            this.txtVAT.Location = new System.Drawing.Point(211, 113);
+            this.txtVAT.Name = "txtVAT";
+            this.txtVAT.Size = new System.Drawing.Size(249, 35);
+            this.txtVAT.TabIndex = 79;
+            this.txtVAT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // ID
             // 
             this.ID.DataPropertyName = "ID";
-            this.ID.FillWeight = 23.69371F;
+            this.ID.FillWeight = 150F;
             this.ID.HeaderText = "ID";
             this.ID.MinimumWidth = 3;
             this.ID.Name = "ID";
@@ -564,6 +563,7 @@
             // 
             // CustomerID
             // 
+            this.CustomerID.DataPropertyName = "CustomerID";
             this.CustomerID.HeaderText = "ID Khách hàng";
             this.CustomerID.MinimumWidth = 6;
             this.CustomerID.Name = "CustomerID";
@@ -572,8 +572,8 @@
             // 
             // Code
             // 
-            this.Code.DataPropertyName = "Code";
-            this.Code.FillWeight = 29.72975F;
+            this.Code.DataPropertyName = "OrderCode";
+            this.Code.FillWeight = 0.7953361F;
             this.Code.HeaderText = "Mã đơn hàng";
             this.Code.MinimumWidth = 6;
             this.Code.Name = "Code";
@@ -582,7 +582,7 @@
             // CustomerName
             // 
             this.CustomerName.DataPropertyName = "CustomerName";
-            this.CustomerName.FillWeight = 29.72975F;
+            this.CustomerName.FillWeight = 0.7953361F;
             this.CustomerName.HeaderText = "Tên khách hàng";
             this.CustomerName.MinimumWidth = 6;
             this.CustomerName.Name = "CustomerName";
@@ -591,7 +591,7 @@
             // Phone
             // 
             this.Phone.DataPropertyName = "Phone";
-            this.Phone.FillWeight = 29.72975F;
+            this.Phone.FillWeight = 0.7953361F;
             this.Phone.HeaderText = "Số điện thoại";
             this.Phone.MinimumWidth = 6;
             this.Phone.Name = "Phone";
@@ -600,7 +600,7 @@
             // Address
             // 
             this.Address.DataPropertyName = "Address";
-            this.Address.FillWeight = 29.72975F;
+            this.Address.FillWeight = 0.7953361F;
             this.Address.HeaderText = "Địa chỉ";
             this.Address.MinimumWidth = 6;
             this.Address.Name = "Address";
@@ -609,7 +609,7 @@
             // OrderDate
             // 
             this.OrderDate.DataPropertyName = "OrderDate";
-            this.OrderDate.FillWeight = 29.72975F;
+            this.OrderDate.FillWeight = 0.7953361F;
             this.OrderDate.HeaderText = "Ngày giao hàng";
             this.OrderDate.MinimumWidth = 6;
             this.OrderDate.Name = "OrderDate";
@@ -617,7 +617,9 @@
             // 
             // TotalPrice
             // 
-            this.TotalPrice.DataPropertyName = "TotalPrice";
+            this.TotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TotalPrice.DataPropertyName = "TotalMoney";
+            this.TotalPrice.FillWeight = 0.6734536F;
             this.TotalPrice.HeaderText = "Tổng tiền";
             this.TotalPrice.MinimumWidth = 6;
             this.TotalPrice.Name = "TotalPrice";
@@ -625,25 +627,31 @@
             // 
             // VAT
             // 
+            this.VAT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.VAT.DataPropertyName = "VAT";
+            this.VAT.FillWeight = 0.6020935F;
             this.VAT.HeaderText = "VAT";
-            this.VAT.MinimumWidth = 6;
+            this.VAT.MinimumWidth = 3;
             this.VAT.Name = "VAT";
             this.VAT.ReadOnly = true;
             // 
             // PrePayment
             // 
+            this.PrePayment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PrePayment.DataPropertyName = "PrePayment";
+            this.PrePayment.FillWeight = 0.5750793F;
             this.PrePayment.HeaderText = "Trả trước";
-            this.PrePayment.MinimumWidth = 6;
+            this.PrePayment.MinimumWidth = 3;
             this.PrePayment.Name = "PrePayment";
             this.PrePayment.ReadOnly = true;
             // 
             // FinalMoney
             // 
+            this.FinalMoney.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.FinalMoney.DataPropertyName = "FinalMoney";
+            this.FinalMoney.FillWeight = 0.8992758F;
             this.FinalMoney.HeaderText = "Còn lại";
-            this.FinalMoney.MinimumWidth = 6;
+            this.FinalMoney.MinimumWidth = 3;
             this.FinalMoney.Name = "FinalMoney";
             this.FinalMoney.ReadOnly = true;
             // 
@@ -667,6 +675,7 @@
             this.groupBox1.PerformLayout();
             this.grbTTCT.ResumeLayout(false);
             this.grbTTCT.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVAT)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -682,7 +691,6 @@
         private System.Windows.Forms.TextBox txtFinalMoney;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtPrePayment;
-        private System.Windows.Forms.TextBox txtVAT;
         private System.Windows.Forms.TextBox txtTotalPrice;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
@@ -709,6 +717,7 @@
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.NumericUpDown txtVAT;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;

@@ -32,8 +32,6 @@ namespace QuanLyDonHang.View.FormControl
 
         private string err;
 
-        
-
         public uc_ChiTietPhieuThu()
         {
             InitializeComponent();
@@ -68,6 +66,7 @@ namespace QuanLyDonHang.View.FormControl
                 btnLuu.Enabled = false;
                 btnHuy.Enabled = false;
 
+                btnThem.Enabled = true;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;
                 btnTiepTuc.Enabled = true;
@@ -138,6 +137,9 @@ namespace QuanLyDonHang.View.FormControl
                     btnSua.ForeColor = Color.White;
                     btnXoa.ForeColor = Color.White;
 
+                    btnThem.BackColor = Color.IndianRed;
+                    btnThem.ForeColor = Color.White;
+
                     btnInPhieu.BackColor = Color.CornflowerBlue;
                     btnInPhieu.ForeColor = Color.White;
 
@@ -164,6 +166,9 @@ namespace QuanLyDonHang.View.FormControl
 
                     btnSua.ForeColor = Color.WhiteSmoke;
                     btnXoa.ForeColor = Color.WhiteSmoke;
+
+                    btnThem.BackColor = Color.Gray;
+                    btnThem.ForeColor = Color.WhiteSmoke;
 
                     btnInPhieu.Enabled = false;
                     btnInPhieu.BackColor = Color.Gray;
@@ -193,6 +198,9 @@ namespace QuanLyDonHang.View.FormControl
                     btnSua.ForeColor = Color.WhiteSmoke;
                     btnXoa.ForeColor = Color.WhiteSmoke;
 
+                    btnThem.BackColor = Color.Gray;
+                    btnThem.ForeColor = Color.WhiteSmoke;
+
                     btnInPhieu.Enabled = false;
                     btnInPhieu.BackColor = Color.Gray;
                     btnInPhieu.ForeColor = Color.WhiteSmoke;
@@ -218,6 +226,7 @@ namespace QuanLyDonHang.View.FormControl
                     break;
 
                 case "SUA":
+                case "THEM_1":
                     EnabledControl(false);
                     break;
 
@@ -357,6 +366,7 @@ namespace QuanLyDonHang.View.FormControl
             switch (action)
             {
                 case "THEM":
+                case "THEM_1":
                     EnabledControl(true, 1);
                     break;
 
@@ -725,6 +735,12 @@ namespace QuanLyDonHang.View.FormControl
 
             var value = Convert.ToDecimal(txtPrePayment.Text.Replace(",", ""));
             txtPrePayment.Text = value.ToString("#,###");
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            action = "THEM_1";
+            EnabledControl(true, 1);
         }
     }
 }

@@ -68,7 +68,7 @@ namespace QuanLyDonHang.View.FormControl
             }
             else
             {
-                txtOrderCode.Enabled = true;
+                txtOrderCode.Enabled = false;
                 cboKhachHang.Enabled = true;
                 mskPhone.Enabled = true;
                 txtAddress.Enabled = true;
@@ -78,10 +78,10 @@ namespace QuanLyDonHang.View.FormControl
                 dtpNgay.Enabled = true;
                 txtNote.Enabled = true;
 
-                txtTotalPrice.Enabled = true;
+                txtTotalPrice.Enabled = false;
                 txtPrePayment.Enabled = true;
                 txtVAT.Enabled = true;
-                txtFinalMoney.Enabled = true;
+                txtFinalMoney.Enabled = false;
             }
 
             switch (funcNo)
@@ -176,6 +176,7 @@ namespace QuanLyDonHang.View.FormControl
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -196,11 +197,11 @@ namespace QuanLyDonHang.View.FormControl
 
         private void uc_PhieuThu_Load(object sender, EventArgs e)
         {
-            this.dgvKhachHang.SetFillSizeForAllColumns();
-
             this.dgvKhachHang.ResumeLayout();
 
             LoadData();
+
+            EnabledControl();
         }
 
         private void LoadData()
@@ -244,6 +245,44 @@ namespace QuanLyDonHang.View.FormControl
             {
                 mskPhone.Text = customer.Phone;
                 txtAddress.Text = customer.Address;
+            }
+        }
+
+        private void dgvKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int r = dgvKhachHang.CurrentCell.RowIndex;
+
+                var id = dgvKhachHang.Rows[r].Cells[0].Value.ToString();
+
+                var order = orderService.GetOrder(Convert.ToInt32(id), ref err);
+
+                if (order != null)
+                {
+                    txtOrderCode.Text = order.Code;
+                    cboKhachHang.SelectedValue = order.CustomerID;
+                    txtAddress.Text = order.Address;
+                    mskPhone.Text = order.Phone;
+
+                    cboThanhToan.SelectedValue = order.PaymentTypeID;
+                    cboGiaoHang.SelectedValue = order.DeliveryTypeID;
+                    dtpNgay.Text = order.OrderDate.ToString();
+                    txtNote.Text = order.Note;
+
+                    txtTotalPrice.Text = order.TotalMoney.ToString("#,###");
+                    txtVAT.Text = order.VAT.ToString();
+                    txtPrePayment.Text = order.PrePayment.ToString("#,###");
+                    txtFinalMoney.Text = order.FinalMoney.ToString("#,###");
+                }
+                else
+                {
+                    MessageBox.Show(err, "Phiếu giao hàng", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\nInnerException: " + ex.InnerException, "Phiếu giao hàng", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

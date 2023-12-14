@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grbTTCT = new System.Windows.Forms.GroupBox();
             this.dtpNgay = new System.Windows.Forms.DateTimePicker();
             this.mskPhone = new System.Windows.Forms.MaskedTextBox();
@@ -58,6 +58,15 @@
             this.lblUsers = new System.Windows.Forms.Label();
             this.grbDanhSach = new System.Windows.Forms.GroupBox();
             this.dgvChiTiet = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtVAT = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtFinalMoney = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtPrePayment = new System.Windows.Forms.TextBox();
+            this.txtTotalPrice = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.dgvOrderDetailID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCboProductCode = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -69,15 +78,7 @@
             this.dgvTxtQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTxtPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTxtTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtVAT = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtFinalMoney = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtPrePayment = new System.Windows.Forms.TextBox();
-            this.txtTotalPrice = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.btnThem = new System.Windows.Forms.Button();
             this.grbTTCT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epvKhachHang)).BeginInit();
             this.grbDanhSach.SuspendLayout();
@@ -97,6 +98,7 @@
             this.grbTTCT.Controls.Add(this.cboKhachHang);
             this.grbTTCT.Controls.Add(this.btnXoa);
             this.grbTTCT.Controls.Add(this.btnLuu);
+            this.grbTTCT.Controls.Add(this.btnThem);
             this.grbTTCT.Controls.Add(this.btnSua);
             this.grbTTCT.Controls.Add(this.btnHuy);
             this.grbTTCT.Controls.Add(this.btnInPhieu);
@@ -188,7 +190,7 @@
             // btnXoa
             // 
             this.btnXoa.AutoSize = true;
-            this.btnXoa.Location = new System.Drawing.Point(276, 259);
+            this.btnXoa.Location = new System.Drawing.Point(355, 267);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(79, 38);
             this.btnXoa.TabIndex = 75;
@@ -199,7 +201,7 @@
             // btnLuu
             // 
             this.btnLuu.AutoSize = true;
-            this.btnLuu.Location = new System.Drawing.Point(189, 259);
+            this.btnLuu.Location = new System.Drawing.Point(269, 267);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(82, 38);
             this.btnLuu.TabIndex = 75;
@@ -210,7 +212,7 @@
             // btnSua
             // 
             this.btnSua.AutoSize = true;
-            this.btnSua.Location = new System.Drawing.Point(11, 259);
+            this.btnSua.Location = new System.Drawing.Point(95, 267);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(87, 38);
             this.btnSua.TabIndex = 75;
@@ -221,7 +223,7 @@
             // btnHuy
             // 
             this.btnHuy.AutoSize = true;
-            this.btnHuy.Location = new System.Drawing.Point(102, 259);
+            this.btnHuy.Location = new System.Drawing.Point(183, 267);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(81, 38);
             this.btnHuy.TabIndex = 75;
@@ -234,7 +236,7 @@
             this.btnInPhieu.AutoSize = true;
             this.btnInPhieu.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInPhieu.ForeColor = System.Drawing.Color.Black;
-            this.btnInPhieu.Location = new System.Drawing.Point(441, 259);
+            this.btnInPhieu.Location = new System.Drawing.Point(520, 267);
             this.btnInPhieu.Name = "btnInPhieu";
             this.btnInPhieu.Size = new System.Drawing.Size(111, 38);
             this.btnInPhieu.TabIndex = 75;
@@ -247,7 +249,7 @@
             this.btnTiepTuc.AutoSize = true;
             this.btnTiepTuc.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTiepTuc.ForeColor = System.Drawing.Color.Black;
-            this.btnTiepTuc.Location = new System.Drawing.Point(360, 259);
+            this.btnTiepTuc.Location = new System.Drawing.Point(439, 267);
             this.btnTiepTuc.Name = "btnTiepTuc";
             this.btnTiepTuc.Size = new System.Drawing.Size(75, 38);
             this.btnTiepTuc.TabIndex = 75;
@@ -404,13 +406,13 @@
             this.dgvChiTiet.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvChiTiet.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dgvChiTiet.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChiTiet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiTiet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvChiTiet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTiet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvOrderDetailID,
@@ -430,14 +432,14 @@
             this.dgvChiTiet.Location = new System.Drawing.Point(3, 30);
             this.dgvChiTiet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvChiTiet.Name = "dgvChiTiet";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChiTiet.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiTiet.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvChiTiet.RowHeadersWidth = 51;
             this.dgvChiTiet.Size = new System.Drawing.Size(1609, 251);
             this.dgvChiTiet.TabIndex = 0;
@@ -445,109 +447,6 @@
             this.dgvChiTiet.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChiTiet_CellValueChanged);
             this.dgvChiTiet.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvChiTiet_UserDeletedRow);
             this.dgvChiTiet.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvChiTiet_UserDeletingRow);
-            // 
-            // dgvOrderDetailID
-            // 
-            this.dgvOrderDetailID.HeaderText = "ID";
-            this.dgvOrderDetailID.MinimumWidth = 6;
-            this.dgvOrderDetailID.Name = "dgvOrderDetailID";
-            this.dgvOrderDetailID.Visible = false;
-            // 
-            // dgvSTT
-            // 
-            this.dgvSTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvSTT.DataPropertyName = "dgvSTT";
-            this.dgvSTT.FillWeight = 31.64595F;
-            this.dgvSTT.HeaderText = "STT";
-            this.dgvSTT.MinimumWidth = 3;
-            this.dgvSTT.Name = "dgvSTT";
-            // 
-            // dgvCboProductCode
-            // 
-            this.dgvCboProductCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvCboProductCode.DataPropertyName = "dgvCboProductCode";
-            this.dgvCboProductCode.FillWeight = 20F;
-            this.dgvCboProductCode.HeaderText = "Mã Sản Phẩm";
-            this.dgvCboProductCode.MinimumWidth = 6;
-            this.dgvCboProductCode.Name = "dgvCboProductCode";
-            this.dgvCboProductCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCboProductCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgvCboProductCode.Width = 25;
-            // 
-            // dgvTxtProductName
-            // 
-            this.dgvTxtProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvTxtProductName.DataPropertyName = "dgvTxtProductName";
-            this.dgvTxtProductName.FillWeight = 20F;
-            this.dgvTxtProductName.HeaderText = "Tên Sản Phẩm";
-            this.dgvTxtProductName.MinimumWidth = 6;
-            this.dgvTxtProductName.Name = "dgvTxtProductName";
-            this.dgvTxtProductName.Width = 25;
-            // 
-            // dgvCboMaterialType
-            // 
-            this.dgvCboMaterialType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvCboMaterialType.DataPropertyName = "dgvCboMaterialType";
-            this.dgvCboMaterialType.FillWeight = 2.420054F;
-            this.dgvCboMaterialType.HeaderText = "Chất Liệu";
-            this.dgvCboMaterialType.MinimumWidth = 6;
-            this.dgvCboMaterialType.Name = "dgvCboMaterialType";
-            this.dgvCboMaterialType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCboMaterialType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgvCboMaterialType.Width = 24;
-            // 
-            // dgvCboConstructionType
-            // 
-            this.dgvCboConstructionType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvCboConstructionType.DataPropertyName = "dgvCboConstructionType";
-            this.dgvCboConstructionType.FillWeight = 2.420054F;
-            this.dgvCboConstructionType.HeaderText = "Thi Công";
-            this.dgvCboConstructionType.MinimumWidth = 6;
-            this.dgvCboConstructionType.Name = "dgvCboConstructionType";
-            this.dgvCboConstructionType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCboConstructionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgvCboConstructionType.Width = 25;
-            // 
-            // dgvTxtLength
-            // 
-            this.dgvTxtLength.DataPropertyName = "dgvTxtLength";
-            this.dgvTxtLength.FillWeight = 20F;
-            this.dgvTxtLength.HeaderText = "Dài";
-            this.dgvTxtLength.MinimumWidth = 3;
-            this.dgvTxtLength.Name = "dgvTxtLength";
-            // 
-            // dgvTxtWidth
-            // 
-            this.dgvTxtWidth.DataPropertyName = "dgvTxtWidth";
-            this.dgvTxtWidth.FillWeight = 20F;
-            this.dgvTxtWidth.HeaderText = "Rộng";
-            this.dgvTxtWidth.MinimumWidth = 3;
-            this.dgvTxtWidth.Name = "dgvTxtWidth";
-            // 
-            // dgvTxtQuantity
-            // 
-            this.dgvTxtQuantity.DataPropertyName = "dgvTxtQuantity";
-            this.dgvTxtQuantity.FillWeight = 20F;
-            this.dgvTxtQuantity.HeaderText = "Số Lượng";
-            this.dgvTxtQuantity.MinimumWidth = 3;
-            this.dgvTxtQuantity.Name = "dgvTxtQuantity";
-            // 
-            // dgvTxtPrice
-            // 
-            this.dgvTxtPrice.DataPropertyName = "dgvTxtPrice";
-            this.dgvTxtPrice.FillWeight = 27.65471F;
-            this.dgvTxtPrice.HeaderText = "Đơn giá";
-            this.dgvTxtPrice.MinimumWidth = 6;
-            this.dgvTxtPrice.Name = "dgvTxtPrice";
-            // 
-            // dgvTxtTotalPrice
-            // 
-            this.dgvTxtTotalPrice.DataPropertyName = "dgvTxtTotalPrice";
-            this.dgvTxtTotalPrice.FillWeight = 27.65471F;
-            this.dgvTxtTotalPrice.HeaderText = "Thành tiền";
-            this.dgvTxtTotalPrice.MinimumWidth = 6;
-            this.dgvTxtTotalPrice.Name = "dgvTxtTotalPrice";
-            this.dgvTxtTotalPrice.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -664,6 +563,121 @@
             this.label14.TabIndex = 48;
             this.label14.Text = "Tổng cộng :";
             // 
+            // dgvOrderDetailID
+            // 
+            this.dgvOrderDetailID.DataPropertyName = "ID";
+            this.dgvOrderDetailID.HeaderText = "ID";
+            this.dgvOrderDetailID.MinimumWidth = 6;
+            this.dgvOrderDetailID.Name = "dgvOrderDetailID";
+            this.dgvOrderDetailID.Visible = false;
+            // 
+            // dgvSTT
+            // 
+            this.dgvSTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvSTT.DataPropertyName = "dgvSTT";
+            this.dgvSTT.FillWeight = 31.64595F;
+            this.dgvSTT.HeaderText = "STT";
+            this.dgvSTT.MinimumWidth = 3;
+            this.dgvSTT.Name = "dgvSTT";
+            // 
+            // dgvCboProductCode
+            // 
+            this.dgvCboProductCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvCboProductCode.DataPropertyName = "dgvCboProductCode";
+            this.dgvCboProductCode.FillWeight = 20F;
+            this.dgvCboProductCode.HeaderText = "Mã Sản Phẩm";
+            this.dgvCboProductCode.MinimumWidth = 6;
+            this.dgvCboProductCode.Name = "dgvCboProductCode";
+            this.dgvCboProductCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCboProductCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvCboProductCode.Width = 25;
+            // 
+            // dgvTxtProductName
+            // 
+            this.dgvTxtProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvTxtProductName.DataPropertyName = "dgvTxtProductName";
+            this.dgvTxtProductName.FillWeight = 20F;
+            this.dgvTxtProductName.HeaderText = "Tên Sản Phẩm";
+            this.dgvTxtProductName.MinimumWidth = 6;
+            this.dgvTxtProductName.Name = "dgvTxtProductName";
+            this.dgvTxtProductName.Width = 25;
+            // 
+            // dgvCboMaterialType
+            // 
+            this.dgvCboMaterialType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvCboMaterialType.DataPropertyName = "dgvCboMaterialType";
+            this.dgvCboMaterialType.FillWeight = 2.420054F;
+            this.dgvCboMaterialType.HeaderText = "Chất Liệu";
+            this.dgvCboMaterialType.MinimumWidth = 6;
+            this.dgvCboMaterialType.Name = "dgvCboMaterialType";
+            this.dgvCboMaterialType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCboMaterialType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvCboMaterialType.Width = 24;
+            // 
+            // dgvCboConstructionType
+            // 
+            this.dgvCboConstructionType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvCboConstructionType.DataPropertyName = "dgvCboConstructionType";
+            this.dgvCboConstructionType.FillWeight = 2.420054F;
+            this.dgvCboConstructionType.HeaderText = "Thi Công";
+            this.dgvCboConstructionType.MinimumWidth = 6;
+            this.dgvCboConstructionType.Name = "dgvCboConstructionType";
+            this.dgvCboConstructionType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCboConstructionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvCboConstructionType.Width = 25;
+            // 
+            // dgvTxtLength
+            // 
+            this.dgvTxtLength.DataPropertyName = "dgvTxtLength";
+            this.dgvTxtLength.FillWeight = 20F;
+            this.dgvTxtLength.HeaderText = "Dài";
+            this.dgvTxtLength.MinimumWidth = 3;
+            this.dgvTxtLength.Name = "dgvTxtLength";
+            // 
+            // dgvTxtWidth
+            // 
+            this.dgvTxtWidth.DataPropertyName = "dgvTxtWidth";
+            this.dgvTxtWidth.FillWeight = 20F;
+            this.dgvTxtWidth.HeaderText = "Rộng";
+            this.dgvTxtWidth.MinimumWidth = 3;
+            this.dgvTxtWidth.Name = "dgvTxtWidth";
+            // 
+            // dgvTxtQuantity
+            // 
+            this.dgvTxtQuantity.DataPropertyName = "dgvTxtQuantity";
+            this.dgvTxtQuantity.FillWeight = 20F;
+            this.dgvTxtQuantity.HeaderText = "Số Lượng";
+            this.dgvTxtQuantity.MinimumWidth = 3;
+            this.dgvTxtQuantity.Name = "dgvTxtQuantity";
+            // 
+            // dgvTxtPrice
+            // 
+            this.dgvTxtPrice.DataPropertyName = "dgvTxtPrice";
+            this.dgvTxtPrice.FillWeight = 27.65471F;
+            this.dgvTxtPrice.HeaderText = "Đơn giá";
+            this.dgvTxtPrice.MinimumWidth = 6;
+            this.dgvTxtPrice.Name = "dgvTxtPrice";
+            // 
+            // dgvTxtTotalPrice
+            // 
+            this.dgvTxtTotalPrice.DataPropertyName = "dgvTxtTotalPrice";
+            this.dgvTxtTotalPrice.FillWeight = 27.65471F;
+            this.dgvTxtTotalPrice.HeaderText = "Thành tiền";
+            this.dgvTxtTotalPrice.MinimumWidth = 6;
+            this.dgvTxtTotalPrice.Name = "dgvTxtTotalPrice";
+            this.dgvTxtTotalPrice.ReadOnly = true;
+            // 
+            // btnThem
+            // 
+            this.btnThem.AutoSize = true;
+            this.btnThem.Location = new System.Drawing.Point(6, 267);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(87, 38);
+            this.btnThem.TabIndex = 75;
+            this.btnThem.Text = "&Thêm";
+            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
             // uc_ChiTietPhieuThu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -738,5 +752,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTxtQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTxtPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTxtTotalPrice;
+        private System.Windows.Forms.Button btnThem;
     }
 }
