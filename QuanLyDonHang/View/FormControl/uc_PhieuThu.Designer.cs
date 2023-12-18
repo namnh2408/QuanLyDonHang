@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.epvKhachHang = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblUsers = new System.Windows.Forms.Label();
             this.grbDanhSach = new System.Windows.Forms.GroupBox();
             this.dgvKhachHang = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtVAT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.txtFinalMoney = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -56,7 +57,7 @@
             this.cboGiaoHang = new System.Windows.Forms.ComboBox();
             this.cboThanhToan = new System.Windows.Forms.ComboBox();
             this.cboKhachHang = new System.Windows.Forms.ComboBox();
-            this.txtNote = new System.Windows.Forms.TextBox();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -66,7 +67,7 @@
             this.txtOrderCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblHoTen = new System.Windows.Forms.Label();
-            this.txtVAT = new System.Windows.Forms.NumericUpDown();
+            this.btnXemChiTiet = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,8 +83,8 @@
             this.grbDanhSach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.grbTTCT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtVAT)).BeginInit();
+            this.grbTTCT.SuspendLayout();
             this.SuspendLayout();
             // 
             // epvKhachHang
@@ -107,7 +108,7 @@
             this.grbDanhSach.Controls.Add(this.dgvKhachHang);
             this.grbDanhSach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.grbDanhSach.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbDanhSach.Location = new System.Drawing.Point(135, 372);
+            this.grbDanhSach.Location = new System.Drawing.Point(135, 397);
             this.grbDanhSach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grbDanhSach.Name = "grbDanhSach";
             this.grbDanhSach.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -124,13 +125,13 @@
             this.dgvKhachHang.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvKhachHang.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dgvKhachHang.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -151,14 +152,14 @@
             this.dgvKhachHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvKhachHang.Name = "dgvKhachHang";
             this.dgvKhachHang.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvKhachHang.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvKhachHang.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvKhachHang.RowHeadersWidth = 51;
             this.dgvKhachHang.Size = new System.Drawing.Size(1609, 332);
             this.dgvKhachHang.TabIndex = 0;
@@ -182,10 +183,18 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(494, 310);
+            this.groupBox1.Size = new System.Drawing.Size(494, 344);
             this.groupBox1.TabIndex = 70;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tổng cộng";
+            // 
+            // txtVAT
+            // 
+            this.txtVAT.Location = new System.Drawing.Point(211, 113);
+            this.txtVAT.Name = "txtVAT";
+            this.txtVAT.Size = new System.Drawing.Size(249, 35);
+            this.txtVAT.TabIndex = 79;
+            this.txtVAT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
@@ -267,6 +276,7 @@
             // grbTTCT
             // 
             this.grbTTCT.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.grbTTCT.Controls.Add(this.btnXemChiTiet);
             this.grbTTCT.Controls.Add(this.btnSearch);
             this.grbTTCT.Controls.Add(this.btnXoa);
             this.grbTTCT.Controls.Add(this.btnLuu);
@@ -279,7 +289,7 @@
             this.grbTTCT.Controls.Add(this.cboGiaoHang);
             this.grbTTCT.Controls.Add(this.cboThanhToan);
             this.grbTTCT.Controls.Add(this.cboKhachHang);
-            this.grbTTCT.Controls.Add(this.txtNote);
+            this.grbTTCT.Controls.Add(this.txtGhiChu);
             this.grbTTCT.Controls.Add(this.txtAddress);
             this.grbTTCT.Controls.Add(this.label5);
             this.grbTTCT.Controls.Add(this.label6);
@@ -296,7 +306,7 @@
             this.grbTTCT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grbTTCT.Name = "grbTTCT";
             this.grbTTCT.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grbTTCT.Size = new System.Drawing.Size(1115, 310);
+            this.grbTTCT.Size = new System.Drawing.Size(1115, 344);
             this.grbTTCT.TabIndex = 71;
             this.grbTTCT.TabStop = false;
             this.grbTTCT.Text = "Thông tin chi tiết";
@@ -305,9 +315,9 @@
             // 
             this.btnSearch.AutoSize = true;
             this.btnSearch.Enabled = false;
-            this.btnSearch.Location = new System.Drawing.Point(601, 258);
+            this.btnSearch.Location = new System.Drawing.Point(7, 302);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(120, 38);
+            this.btnSearch.Size = new System.Drawing.Size(231, 38);
             this.btnSearch.TabIndex = 81;
             this.btnSearch.Text = "&Tìm Kiếm";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -432,17 +442,17 @@
             this.cboKhachHang.TabIndex = 76;
             this.cboKhachHang.TextChanged += new System.EventHandler(this.cboKhachHang_TextChanged);
             // 
-            // txtNote
+            // txtGhiChu
             // 
-            this.txtNote.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNote.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNote.ForeColor = System.Drawing.Color.Black;
-            this.txtNote.Location = new System.Drawing.Point(818, 179);
-            this.txtNote.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtNote.Multiline = true;
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(261, 99);
-            this.txtNote.TabIndex = 52;
+            this.txtGhiChu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtGhiChu.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGhiChu.ForeColor = System.Drawing.Color.Black;
+            this.txtGhiChu.Location = new System.Drawing.Point(818, 179);
+            this.txtGhiChu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtGhiChu.Multiline = true;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(261, 99);
+            this.txtGhiChu.TabIndex = 52;
             // 
             // txtAddress
             // 
@@ -543,13 +553,17 @@
             this.lblHoTen.TabIndex = 48;
             this.lblHoTen.Text = "Mã đơn hàng :";
             // 
-            // txtVAT
+            // btnXemChiTiet
             // 
-            this.txtVAT.Location = new System.Drawing.Point(211, 113);
-            this.txtVAT.Name = "txtVAT";
-            this.txtVAT.Size = new System.Drawing.Size(249, 35);
-            this.txtVAT.TabIndex = 79;
-            this.txtVAT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnXemChiTiet.AutoSize = true;
+            this.btnXemChiTiet.Enabled = false;
+            this.btnXemChiTiet.Location = new System.Drawing.Point(245, 301);
+            this.btnXemChiTiet.Name = "btnXemChiTiet";
+            this.btnXemChiTiet.Size = new System.Drawing.Size(231, 38);
+            this.btnXemChiTiet.TabIndex = 81;
+            this.btnXemChiTiet.Text = "&Xem Chi Tiết";
+            this.btnXemChiTiet.UseVisualStyleBackColor = true;
+            this.btnXemChiTiet.Click += new System.EventHandler(this.btnXemChiTiet_Click);
             // 
             // ID
             // 
@@ -650,7 +664,7 @@
             this.FinalMoney.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.FinalMoney.DataPropertyName = "FinalMoney";
             this.FinalMoney.FillWeight = 0.8992758F;
-            this.FinalMoney.HeaderText = "Còn lại";
+            this.FinalMoney.HeaderText = "Thành Tiền";
             this.FinalMoney.MinimumWidth = 3;
             this.FinalMoney.Name = "FinalMoney";
             this.FinalMoney.ReadOnly = true;
@@ -673,9 +687,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVAT)).EndInit();
             this.grbTTCT.ResumeLayout(false);
             this.grbTTCT.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVAT)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -701,7 +715,7 @@
         private System.Windows.Forms.ComboBox cboGiaoHang;
         private System.Windows.Forms.ComboBox cboThanhToan;
         private System.Windows.Forms.ComboBox cboKhachHang;
-        private System.Windows.Forms.TextBox txtNote;
+        private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -718,6 +732,7 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.NumericUpDown txtVAT;
+        private System.Windows.Forms.Button btnXemChiTiet;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;

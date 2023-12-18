@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace QuanLyDonHang.Services
 {
@@ -12,10 +13,8 @@ namespace QuanLyDonHang.Services
     {
         private QLDonHangEntities entities = new QLDonHangEntities();
 
-
         public DataTable GetListOrder(ref string err)
         {
-
             try
             {
                 var users = entities.Users.Where(a => a.IsDeleted == 0).ToList();
@@ -37,7 +36,7 @@ namespace QuanLyDonHang.Services
                                                PaymentTypeID = x.PaymentTypeID,
                                                PaymentTypeName = x.PaymentType.Name,
                                                DeliveryTypeID = x.DeliveryTypeID,
-                                               DeliveryTypeName  =x.DeliveryType.Name,
+                                               DeliveryTypeName = x.DeliveryType.Name,
 
                                                TotalMoney = x.TotalMoney,
                                                PrePayment = x.PrePayment,
@@ -55,7 +54,7 @@ namespace QuanLyDonHang.Services
                                            }).OrderBy(x => x.ID).ToList();
 
                 DataTable dt = new DataTable();
-                dt.Columns.Add("ID");                
+                dt.Columns.Add("ID");
                 dt.Columns.Add("CustomerID");
                 dt.Columns.Add("OrderCode");
                 dt.Columns.Add("CustomerName");
@@ -70,14 +69,84 @@ namespace QuanLyDonHang.Services
 
                 foreach (var item in orders)
                 {
-                    dt.Rows.Add(item.ID, 
-                            item.CustomerID, 
+                    dt.Rows.Add(item.ID,
+                            item.CustomerID,
                             item.Code,
-                            item.CustomerName, item.Phone, item.Address, 
+                            item.CustomerName, item.Phone, item.Address,
                             item.OrderDate,
-                            item.TotalMoney.ToString("#,###"), 
+                            item.TotalMoney.ToString("#,###"),
                             item.VAT,
-                            item.PrePayment.ToString("#,###"), 
+                            item.PrePayment.ToString("#,###"),
+                            item.FinalMoney.ToString("#,###")
+                        );
+                }
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                err = ex.Message;
+                throw;
+            }
+        }
+
+        public DataTable FindOrder(OrderSearchModel orderSearch, ref string err)
+        {
+            try
+            {
+                var conditionWhere = @"";
+
+                if (!string.IsNullOrEmpty(orderSearch.Code))
+                {
+                    conditionWhere += " and ord.Code like '" + orderSearch.Code + "'";
+                }
+
+                if (orderSearch.CustomerID > 0)
+                {
+                    conditionWhere += " and ord.CustomerID = " + orderSearch.CustomerID;
+                }
+
+                if (!string.IsNullOrEmpty(orderSearch.OrderDate))
+                {
+                    conditionWhere += " and ord.OrderDate like '%" + orderSearch.OrderDate + "%'";
+                }
+
+
+                var query = @"select ord.ID,ord.Code, ord.CustomerID, cus.FullName CustomerName, cus.Phone, cus.Address,
+                            ord.PaymentTypeID, pay.Name PaymentTypeName, ord.OrderDate, ord.DeliveryTypeID, del.Name DeliveryTypeName
+                        from Orders ord
+                            join Customers cus on ord.CustomerID = cus.ID
+                            join PaymentTypes pay on ord.PaymentTypeID = pay.ID
+                            join DeliveryTypes del on ord.DeliveryTypeID = del.ID
+                            
+                        where 1 = 1 and ord.IsDeleted = 0 " + conditionWhere;
+
+                var orderFindList = entities.Database.SqlQuery<OrderModel>(query).ToList();
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ID");
+                dt.Columns.Add("CustomerID");
+                dt.Columns.Add("OrderCode");
+                dt.Columns.Add("CustomerName");
+                dt.Columns.Add("Phone");
+                dt.Columns.Add("Address");
+
+                dt.Columns.Add("OrderDate");
+                dt.Columns.Add("TotalMoney");
+                dt.Columns.Add("VAT");
+                dt.Columns.Add("PrePayment");
+                dt.Columns.Add("FinalMoney");
+
+                foreach (var item in orderFindList)
+                {
+                    dt.Rows.Add(item.ID,
+                            item.CustomerID,
+                            item.Code,
+                            item.CustomerName, item.Phone, item.Address,
+                            item.OrderDate,
+                            item.TotalMoney.ToString("#,###"),
+                            item.VAT,
+                            item.PrePayment.ToString("#,###"),
                             item.FinalMoney.ToString("#,###")
                         );
                 }
@@ -133,10 +202,10 @@ namespace QuanLyDonHang.Services
 
                 return order;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 err = ex.Message;
-                throw;  
+                throw;
             }
         }
 
@@ -152,7 +221,7 @@ namespace QuanLyDonHang.Services
                                                         .Include(a => a.ConstructionType)
                                                         .Include(a => a.MaterialType)
                                                         .AsEnumerable()
-                                                        .Select( x => new
+                                                        .Select(x => new
                                                         {
                                                             x.ID,
                                                             STT = STT++,
@@ -161,7 +230,8 @@ namespace QuanLyDonHang.Services
                                                             x.ConstructionTypeID,
                                                             x.ProductID,
                                                             ProductName = x.Product.Name,
-                                                            x.Length, x.Width,
+                                                            x.Length,
+                                                            x.Width,
                                                             x.Quantity,
                                                             x.Price,
                                                             x.TotalPrice
@@ -169,8 +239,9 @@ namespace QuanLyDonHang.Services
 
                 DataTable dt = new DataTable();
 
-                dt.Columns.Add("ID");
+                dt.Columns.Add("dgvOrderDetailID");
                 dt.Columns.Add("dgvSTT");
+
                 dt.Columns.Add("dgvCboProductCode");
                 dt.Columns.Add("dgvTxtProductName");
                 dt.Columns.Add("dgvCboMaterialType");
@@ -193,14 +264,14 @@ namespace QuanLyDonHang.Services
                                 item.Length,
                                 item.Width,
                                 item.Quantity,
-                                item.Price,
-                                item.TotalPrice);
+                                item.Price.ToString("#,###"),
+                                item.TotalPrice.ToString("#,###")
+                                );
                 }
 
                 return dt;
-
             }
-            catch( Exception ex ) { err = ex.Message; throw; }
+            catch (Exception ex) { err = ex.Message; throw; }
         }
 
         public string OrderGenerateCode()
@@ -404,7 +475,7 @@ namespace QuanLyDonHang.Services
 
                 var order = entities.Orders.Where(x => x.ID == OrderID && x.IsDeleted == 0)
                                            .Include(x => x.OrderDetails).FirstOrDefault();
-                
+
                 if (order == null)
                 {
                     err = "Phiếu giao hàng này không tồn tại";

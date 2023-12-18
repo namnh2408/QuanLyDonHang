@@ -626,7 +626,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuGiaoHang;
         private System.Windows.Forms.Panel TittlePanel;
         private System.Windows.Forms.Timer tmrMenu;
-        private System.Windows.Forms.Panel pnlDisplay;
+        public System.Windows.Forms.Panel pnlDisplay;
         public System.Windows.Forms.Button btnNhanVien;
         public System.Windows.Forms.Button btnThanhToan;
         public System.Windows.Forms.Button btnCustomer;

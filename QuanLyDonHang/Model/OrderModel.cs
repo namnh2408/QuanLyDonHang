@@ -61,4 +61,11 @@ namespace QuanLyDonHang.Model
         public int ID { get; set; }
         
     }
+
+    public class OrderSearchModel
+    {
+        public string Code { get; set; }
+        public int CustomerID { get; set; }
+        public string OrderDate { get; set; }
+    }
 }

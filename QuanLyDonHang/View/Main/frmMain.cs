@@ -23,7 +23,6 @@ namespace QuanLyDonHang.View.Main
         private uc_ThongTinCaNhan uc_ThongTinCaNhan;
 
         private uc_PhieuThu uc_PhieuThu;
-        private uc_ChiTietPhieuThu uc_ChiTietPhieuThu;
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -215,21 +214,21 @@ namespace QuanLyDonHang.View.Main
                 crtl.Visible = false;
             }
 
-            uc_PhieuThu = new uc_PhieuThu();
+            uc_PhieuThu = new uc_PhieuThu(this);
             uc_PhieuThu.userInfo = userInfo;
             
             pnlDisplay.Controls.Add(uc_PhieuThu);
             //uc_PhieuThu.Visible = false;
 
-            uc_ChiTietPhieuThu = new uc_ChiTietPhieuThu();
-            uc_ChiTietPhieuThu.action = "THEM";
-            pnlDisplay.Controls.Add(uc_ChiTietPhieuThu);
+            //uc_ChiTietPhieuThu = new uc_ChiTietPhieuThu();
+            //uc_ChiTietPhieuThu.action = "";
+            //pnlDisplay.Controls.Add(uc_ChiTietPhieuThu);
             
-            uc_ChiTietPhieuThu.Visible = false;
+            //uc_ChiTietPhieuThu.Visible = false;
 
             this.ptbTroVe.Visible = true;
             uc_PhieuThu.Visible = true;
-            uc_PhieuThu.uc_ChiTietPhieuThu = uc_ChiTietPhieuThu;
+            //uc_PhieuThu.uc_ChiTietPhieuThu = uc_ChiTietPhieuThu;
             uc_PhieuThu.BringToFront();
         }
 
