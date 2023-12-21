@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 
 namespace QuanLyDonHang.View.FormControl
@@ -274,6 +273,10 @@ namespace QuanLyDonHang.View.FormControl
 
                     return;
                 }
+                if (string.IsNullOrEmpty(txtPrePayment.Text))
+                {
+                    txtPrePayment.Text = "0";
+                }
 
                 var orderDetail = ConvertDataGridViewToList();
 
@@ -379,14 +382,13 @@ namespace QuanLyDonHang.View.FormControl
 
                 case "XEMCHITIET":
                     GetFullOrder(orderID);
+                    EnabledControl(false, -1);
                     break;
 
                 default:
                     EnabledControl();
                     break;
             }
-
-            
         }
 
         private List<OrderDetail> ConvertDataGridViewToList()
@@ -474,7 +476,7 @@ namespace QuanLyDonHang.View.FormControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Phiếu giao hàng", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, "Lập phiếu giao hàng", MessageBoxButtons.OK);
             }
         }
 
@@ -754,17 +756,14 @@ namespace QuanLyDonHang.View.FormControl
 
         private void GetFullOrder(int orderId)
         {
-
             if (orderID <= 0)
             {
-                MessageBox.Show("Không có mã phiếu giao hàng", "Phiếu giao hàng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Không có mã phiếu giao hàng", "Lập phiếu giao hàng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
-
-
                 var order = orderService.GetOrder(orderId, ref err);
 
                 if (order != null)
@@ -794,21 +793,67 @@ namespace QuanLyDonHang.View.FormControl
 
                 if (orderDetails.Rows.Count > 0)
                 {
-                    foreach(DataRow row in orderDetails.Rows)
+                    foreach (DataRow row in orderDetails.Rows)
                     {
                         int rowIndex = dgvChiTiet.Rows.Add();
+
                         dgvChiTiet.Rows[rowIndex].Cells["dgvOrderDetailID"].Value = row["dgvOrderDetailID"];
                         dgvChiTiet.Rows[rowIndex].Cells["dgvSTT"].Value = row["dgvSTT"];
-                        dgvChiTiet.Rows[rowIndex].Cells["dgvCboProductCode"].Value = row["dgvCboProductCode"];
+                        //dgvChiTiet.Rows[rowIndex].Cells["dgvCboProductCode"].Value = row["dgvCboProductCode"];
                         dgvChiTiet.Rows[rowIndex].Cells["dgvTxtProductName"].Value = row["dgvTxtProductName"];
-                        dgvChiTiet.Rows[rowIndex].Cells["dgvCboMaterialType"].Value = row["dgvCboMaterialType"];
-                        dgvChiTiet.Rows[rowIndex].Cells["dgvCboConstructionType"].Value = row["dgvCboConstructionType"];
+                        //dgvChiTiet.Rows[rowIndex].Cells["dgvCboMaterialType"].Value = row["dgvCboMaterialType"];
+                        //dgvChiTiet.Rows[rowIndex].Cells["dgvCboConstructionType"].Value = row["dgvCboConstructionType"];
 
                         dgvChiTiet.Rows[rowIndex].Cells["dgvTxtLength"].Value = row["dgvTxtLength"];
                         dgvChiTiet.Rows[rowIndex].Cells["dgvTxtWidth"].Value = row["dgvTxtWidth"];
                         dgvChiTiet.Rows[rowIndex].Cells["dgvTxtQuantity"].Value = row["dgvTxtQuantity"];
                         dgvChiTiet.Rows[rowIndex].Cells["dgvTxtPrice"].Value = row["dgvTxtPrice"];
                         dgvChiTiet.Rows[rowIndex].Cells["dgvTxtTotalPrice"].Value = row["dgvTxtTotalPrice"];
+
+                        var productID = row["dgvCboProductID"];
+                        if (productID != null)
+                        {
+                            var cellProduct = dgvChiTiet.Rows[rowIndex].Cells["dgvCboProductCode"] as DataGridViewComboBoxCell;
+
+                            if (cellProduct == null)
+                            {
+                                // If the cell doesn't exist, create a new one
+                                cellProduct = new DataGridViewComboBoxCell();
+                                dgvChiTiet.Rows[rowIndex].Cells["dgvCboProductCode"] = cellProduct;
+                            }
+
+                            cellProduct.Value = Convert.ToInt32(productID);
+                        }
+
+                        var materialType = row["dgvCboMaterialType"];
+                        if (materialType != null)
+                        {
+                            var cellMaterialType = dgvChiTiet.Rows[rowIndex].Cells["dgvCboMaterialType"] as DataGridViewComboBoxCell;
+
+                            if (cellMaterialType == null)
+                            {
+                                // If the cell doesn't exist, create a new one
+                                cellMaterialType = new DataGridViewComboBoxCell();
+                                dgvChiTiet.Rows[rowIndex].Cells["dgvCboMaterialType"] = cellMaterialType;
+                            }
+
+                            cellMaterialType.Value = Convert.ToInt32(materialType);
+                        }
+
+                        var constructionType = row["dgvCboConstructionType"];
+                        if (constructionType != null)
+                        {
+                            var cellConstructionType = dgvChiTiet.Rows[rowIndex].Cells["dgvCboConstructionType"] as DataGridViewComboBoxCell;
+
+                            if (cellConstructionType == null)
+                            {
+                                // If the cell doesn't exist, create a new one
+                                cellConstructionType = new DataGridViewComboBoxCell();
+                                dgvChiTiet.Rows[rowIndex].Cells["dgvCboConstructionType"] = cellConstructionType;
+                            }
+
+                            cellConstructionType.Value = Convert.ToInt32(constructionType);
+                        }
                     }
                 }
                 else
@@ -819,7 +864,7 @@ namespace QuanLyDonHang.View.FormControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\nInnerException: " + ex.InnerException, "Lập phiếu giao hàng", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message + "\nInnerException: " + ex.InnerException, "Lập phiếu giao hàng 3", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

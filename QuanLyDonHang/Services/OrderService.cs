@@ -229,6 +229,7 @@ namespace QuanLyDonHang.Services
                                                             x.MaterialTypeID,
                                                             x.ConstructionTypeID,
                                                             x.ProductID,
+                                                            ProductCode = x.Product.Code,
                                                             ProductName = x.Product.Name,
                                                             x.Length,
                                                             x.Width,
@@ -241,7 +242,7 @@ namespace QuanLyDonHang.Services
 
                 dt.Columns.Add("dgvOrderDetailID");
                 dt.Columns.Add("dgvSTT");
-
+                dt.Columns.Add("dgvCboProductID");
                 dt.Columns.Add("dgvCboProductCode");
                 dt.Columns.Add("dgvTxtProductName");
                 dt.Columns.Add("dgvCboMaterialType");
@@ -258,6 +259,7 @@ namespace QuanLyDonHang.Services
                     dt.Rows.Add(item.ID,
                                 item.STT,
                                 item.ProductID,
+                                item.ProductCode,
                                 item.ProductName,
                                 item.MaterialTypeID,
                                 item.ConstructionTypeID,

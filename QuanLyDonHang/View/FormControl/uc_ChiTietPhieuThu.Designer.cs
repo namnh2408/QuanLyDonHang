@@ -59,15 +59,6 @@
             this.lblUsers = new System.Windows.Forms.Label();
             this.grbDanhSach = new System.Windows.Forms.GroupBox();
             this.dgvChiTiet = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtVAT = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtFinalMoney = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtPrePayment = new System.Windows.Forms.TextBox();
-            this.txtTotalPrice = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.dgvOrderDetailID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCboProductCode = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -79,6 +70,15 @@
             this.dgvTxtQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTxtPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTxtTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtVAT = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtFinalMoney = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtPrePayment = new System.Windows.Forms.TextBox();
+            this.txtTotalPrice = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.grbTTCT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epvKhachHang)).BeginInit();
             this.grbDanhSach.SuspendLayout();
@@ -459,6 +459,110 @@
             this.dgvChiTiet.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvChiTiet_UserDeletedRow);
             this.dgvChiTiet.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvChiTiet_UserDeletingRow);
             // 
+            // dgvOrderDetailID
+            // 
+            this.dgvOrderDetailID.DataPropertyName = "dgvOrderDetailID";
+            this.dgvOrderDetailID.HeaderText = "ID";
+            this.dgvOrderDetailID.MinimumWidth = 6;
+            this.dgvOrderDetailID.Name = "dgvOrderDetailID";
+            this.dgvOrderDetailID.Visible = false;
+            // 
+            // dgvSTT
+            // 
+            this.dgvSTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvSTT.DataPropertyName = "dgvSTT";
+            this.dgvSTT.FillWeight = 31.64595F;
+            this.dgvSTT.HeaderText = "STT";
+            this.dgvSTT.MinimumWidth = 3;
+            this.dgvSTT.Name = "dgvSTT";
+            // 
+            // dgvCboProductCode
+            // 
+            this.dgvCboProductCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvCboProductCode.DataPropertyName = "dgvCboProductCode";
+            this.dgvCboProductCode.FillWeight = 20F;
+            this.dgvCboProductCode.HeaderText = "Mã Sản Phẩm";
+            this.dgvCboProductCode.MinimumWidth = 6;
+            this.dgvCboProductCode.Name = "dgvCboProductCode";
+            this.dgvCboProductCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCboProductCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvCboProductCode.Width = 25;
+            // 
+            // dgvTxtProductName
+            // 
+            this.dgvTxtProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvTxtProductName.DataPropertyName = "dgvTxtProductName";
+            this.dgvTxtProductName.FillWeight = 20F;
+            this.dgvTxtProductName.HeaderText = "Tên Sản Phẩm";
+            this.dgvTxtProductName.MinimumWidth = 6;
+            this.dgvTxtProductName.Name = "dgvTxtProductName";
+            this.dgvTxtProductName.Width = 25;
+            // 
+            // dgvCboMaterialType
+            // 
+            this.dgvCboMaterialType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvCboMaterialType.DataPropertyName = "dgvCboMaterialType";
+            this.dgvCboMaterialType.FillWeight = 2.420054F;
+            this.dgvCboMaterialType.HeaderText = "Chất Liệu";
+            this.dgvCboMaterialType.MinimumWidth = 6;
+            this.dgvCboMaterialType.Name = "dgvCboMaterialType";
+            this.dgvCboMaterialType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCboMaterialType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvCboMaterialType.Width = 24;
+            // 
+            // dgvCboConstructionType
+            // 
+            this.dgvCboConstructionType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvCboConstructionType.DataPropertyName = "dgvCboConstructionType";
+            this.dgvCboConstructionType.FillWeight = 2.420054F;
+            this.dgvCboConstructionType.HeaderText = "Thi Công";
+            this.dgvCboConstructionType.MinimumWidth = 6;
+            this.dgvCboConstructionType.Name = "dgvCboConstructionType";
+            this.dgvCboConstructionType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCboConstructionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvCboConstructionType.Width = 25;
+            // 
+            // dgvTxtLength
+            // 
+            this.dgvTxtLength.DataPropertyName = "dgvTxtLength";
+            this.dgvTxtLength.FillWeight = 20F;
+            this.dgvTxtLength.HeaderText = "Dài";
+            this.dgvTxtLength.MinimumWidth = 3;
+            this.dgvTxtLength.Name = "dgvTxtLength";
+            // 
+            // dgvTxtWidth
+            // 
+            this.dgvTxtWidth.DataPropertyName = "dgvTxtWidth";
+            this.dgvTxtWidth.FillWeight = 20F;
+            this.dgvTxtWidth.HeaderText = "Rộng";
+            this.dgvTxtWidth.MinimumWidth = 3;
+            this.dgvTxtWidth.Name = "dgvTxtWidth";
+            // 
+            // dgvTxtQuantity
+            // 
+            this.dgvTxtQuantity.DataPropertyName = "dgvTxtQuantity";
+            this.dgvTxtQuantity.FillWeight = 20F;
+            this.dgvTxtQuantity.HeaderText = "Số Lượng";
+            this.dgvTxtQuantity.MinimumWidth = 3;
+            this.dgvTxtQuantity.Name = "dgvTxtQuantity";
+            // 
+            // dgvTxtPrice
+            // 
+            this.dgvTxtPrice.DataPropertyName = "dgvTxtPrice";
+            this.dgvTxtPrice.FillWeight = 27.65471F;
+            this.dgvTxtPrice.HeaderText = "Đơn giá";
+            this.dgvTxtPrice.MinimumWidth = 6;
+            this.dgvTxtPrice.Name = "dgvTxtPrice";
+            // 
+            // dgvTxtTotalPrice
+            // 
+            this.dgvTxtTotalPrice.DataPropertyName = "dgvTxtTotalPrice";
+            this.dgvTxtTotalPrice.FillWeight = 27.65471F;
+            this.dgvTxtTotalPrice.HeaderText = "Thành tiền";
+            this.dgvTxtTotalPrice.MinimumWidth = 6;
+            this.dgvTxtTotalPrice.Name = "dgvTxtTotalPrice";
+            this.dgvTxtTotalPrice.ReadOnly = true;
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -573,110 +677,6 @@
             this.label14.Size = new System.Drawing.Size(125, 27);
             this.label14.TabIndex = 48;
             this.label14.Text = "Tổng cộng :";
-            // 
-            // dgvOrderDetailID
-            // 
-            this.dgvOrderDetailID.DataPropertyName = "dgvOrderDetailID";
-            this.dgvOrderDetailID.HeaderText = "ID";
-            this.dgvOrderDetailID.MinimumWidth = 6;
-            this.dgvOrderDetailID.Name = "dgvOrderDetailID";
-            this.dgvOrderDetailID.Visible = false;
-            // 
-            // dgvSTT
-            // 
-            this.dgvSTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvSTT.DataPropertyName = "dgvSTT";
-            this.dgvSTT.FillWeight = 31.64595F;
-            this.dgvSTT.HeaderText = "STT";
-            this.dgvSTT.MinimumWidth = 3;
-            this.dgvSTT.Name = "dgvSTT";
-            // 
-            // dgvCboProductCode
-            // 
-            this.dgvCboProductCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvCboProductCode.DataPropertyName = "dgvCboProductCode";
-            this.dgvCboProductCode.FillWeight = 20F;
-            this.dgvCboProductCode.HeaderText = "Mã Sản Phẩm";
-            this.dgvCboProductCode.MinimumWidth = 6;
-            this.dgvCboProductCode.Name = "dgvCboProductCode";
-            this.dgvCboProductCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCboProductCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgvCboProductCode.Width = 25;
-            // 
-            // dgvTxtProductName
-            // 
-            this.dgvTxtProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvTxtProductName.DataPropertyName = "dgvTxtProductName";
-            this.dgvTxtProductName.FillWeight = 20F;
-            this.dgvTxtProductName.HeaderText = "Tên Sản Phẩm";
-            this.dgvTxtProductName.MinimumWidth = 6;
-            this.dgvTxtProductName.Name = "dgvTxtProductName";
-            this.dgvTxtProductName.Width = 25;
-            // 
-            // dgvCboMaterialType
-            // 
-            this.dgvCboMaterialType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvCboMaterialType.DataPropertyName = "dgvCboMaterialType";
-            this.dgvCboMaterialType.FillWeight = 2.420054F;
-            this.dgvCboMaterialType.HeaderText = "Chất Liệu";
-            this.dgvCboMaterialType.MinimumWidth = 6;
-            this.dgvCboMaterialType.Name = "dgvCboMaterialType";
-            this.dgvCboMaterialType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCboMaterialType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgvCboMaterialType.Width = 24;
-            // 
-            // dgvCboConstructionType
-            // 
-            this.dgvCboConstructionType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvCboConstructionType.DataPropertyName = "dgvCboConstructionType";
-            this.dgvCboConstructionType.FillWeight = 2.420054F;
-            this.dgvCboConstructionType.HeaderText = "Thi Công";
-            this.dgvCboConstructionType.MinimumWidth = 6;
-            this.dgvCboConstructionType.Name = "dgvCboConstructionType";
-            this.dgvCboConstructionType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCboConstructionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgvCboConstructionType.Width = 25;
-            // 
-            // dgvTxtLength
-            // 
-            this.dgvTxtLength.DataPropertyName = "dgvTxtLength";
-            this.dgvTxtLength.FillWeight = 20F;
-            this.dgvTxtLength.HeaderText = "Dài";
-            this.dgvTxtLength.MinimumWidth = 3;
-            this.dgvTxtLength.Name = "dgvTxtLength";
-            // 
-            // dgvTxtWidth
-            // 
-            this.dgvTxtWidth.DataPropertyName = "dgvTxtWidth";
-            this.dgvTxtWidth.FillWeight = 20F;
-            this.dgvTxtWidth.HeaderText = "Rộng";
-            this.dgvTxtWidth.MinimumWidth = 3;
-            this.dgvTxtWidth.Name = "dgvTxtWidth";
-            // 
-            // dgvTxtQuantity
-            // 
-            this.dgvTxtQuantity.DataPropertyName = "dgvTxtQuantity";
-            this.dgvTxtQuantity.FillWeight = 20F;
-            this.dgvTxtQuantity.HeaderText = "Số Lượng";
-            this.dgvTxtQuantity.MinimumWidth = 3;
-            this.dgvTxtQuantity.Name = "dgvTxtQuantity";
-            // 
-            // dgvTxtPrice
-            // 
-            this.dgvTxtPrice.DataPropertyName = "dgvTxtPrice";
-            this.dgvTxtPrice.FillWeight = 27.65471F;
-            this.dgvTxtPrice.HeaderText = "Đơn giá";
-            this.dgvTxtPrice.MinimumWidth = 6;
-            this.dgvTxtPrice.Name = "dgvTxtPrice";
-            // 
-            // dgvTxtTotalPrice
-            // 
-            this.dgvTxtTotalPrice.DataPropertyName = "dgvTxtTotalPrice";
-            this.dgvTxtTotalPrice.FillWeight = 27.65471F;
-            this.dgvTxtTotalPrice.HeaderText = "Thành tiền";
-            this.dgvTxtTotalPrice.MinimumWidth = 6;
-            this.dgvTxtTotalPrice.Name = "dgvTxtTotalPrice";
-            this.dgvTxtTotalPrice.ReadOnly = true;
             // 
             // uc_ChiTietPhieuThu
             // 

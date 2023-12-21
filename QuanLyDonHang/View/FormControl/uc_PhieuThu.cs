@@ -318,6 +318,11 @@ namespace QuanLyDonHang.View.FormControl
                     return;
                 }
 
+                if (string.IsNullOrEmpty(txtPrePayment.Text))
+                {
+                    txtPrePayment.Text = "0";
+                }
+
                 if (update)
                 {
                     var orderUpdate = new OrderUpdateModel
