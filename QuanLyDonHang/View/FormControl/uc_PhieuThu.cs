@@ -3,13 +3,7 @@ using QuanLyDonHang.Model;
 using QuanLyDonHang.Services;
 using QuanLyDonHang.View.Main;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyDonHang.View.FormControl
@@ -279,6 +273,7 @@ namespace QuanLyDonHang.View.FormControl
         private void btnHuy_Click(object sender, EventArgs e)
         {
             EnabledControl();
+            LoadData();
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -352,8 +347,10 @@ namespace QuanLyDonHang.View.FormControl
                     }
                     else
                     {
-                        MessageBox.Show(err, "Phiếu giao hàng");
+                        MessageBox.Show("Cập nhật thất bại", "Phiếu giao hàng");
                     }
+
+                    LoadData();
                 }
             }
             catch (Exception ex)
@@ -496,13 +493,14 @@ namespace QuanLyDonHang.View.FormControl
 
                     cboThanhToan.SelectedValue = order.PaymentTypeID;
                     cboGiaoHang.SelectedValue = order.DeliveryTypeID;
-                    dtpNgay.Text = order.OrderDate.ToString();
+                    dtpNgay.Value = DateTime.ParseExact(order.OrderDate, "dd/MM/yyyy HH:mm:ss", null);
                     txtGhiChu.Text = order.Note;
 
-                    txtTotalPrice.Text = order.TotalMoney.ToString("#,###");
+
+                    txtTotalPrice.Text = order.TotalMoney > 0 ? order.TotalMoney.ToString("#,###") : "0";
                     txtVAT.Text = order.VAT.ToString();
-                    txtPrePayment.Text = order.PrePayment.ToString("#,###");
-                    txtFinalMoney.Text = order.FinalMoney.ToString("#,###");
+                    txtPrePayment.Text = order.PrePayment > 0 ? order.PrePayment.ToString("#,###") : "0";
+                    txtFinalMoney.Text = order.FinalMoney > 0 ? order.FinalMoney.ToString("#,###") : "0";
                 }
                 else
                 {

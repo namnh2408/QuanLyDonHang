@@ -51,7 +51,7 @@ namespace QuanLyDonHang.Services
                                                UpdateUser = x.UpdateUser,
                                                UpdateUserName = users.FirstOrDefault(a => a.ID == x.UpdateUser).Fullname,
                                                UpdateDate = String.Format(SystemConstants.FormatDate, x.UpdateDate)
-                                           }).OrderBy(x => x.ID).ToList();
+                                           }).OrderByDescending(x => x.ID).ToList();
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add("ID");
@@ -74,10 +74,10 @@ namespace QuanLyDonHang.Services
                             item.Code,
                             item.CustomerName, item.Phone, item.Address,
                             item.OrderDate,
-                            item.TotalMoney.ToString("#,###"),
+                            item.TotalMoney > 0 ? item.TotalMoney.ToString("#,###") : "0",
                             item.VAT,
-                            item.PrePayment.ToString("#,###"),
-                            item.FinalMoney.ToString("#,###")
+                            item.PrePayment > 0 ? item.PrePayment.ToString("#,###") : "0",
+                            item.FinalMoney > 0 ? item.FinalMoney.ToString("#,###") : "0"
                         );
                 }
 
@@ -119,7 +119,8 @@ namespace QuanLyDonHang.Services
                             join PaymentTypes pay on ord.PaymentTypeID = pay.ID
                             join DeliveryTypes del on ord.DeliveryTypeID = del.ID
                             
-                        where 1 = 1 and ord.IsDeleted = 0 " + conditionWhere;
+                        where 1 = 1 and ord.IsDeleted = 0 " + conditionWhere + @"
+                        order by ord.ID desc";
 
                 var orderFindList = entities.Database.SqlQuery<OrderModel>(query).ToList();
 
@@ -144,10 +145,10 @@ namespace QuanLyDonHang.Services
                             item.Code,
                             item.CustomerName, item.Phone, item.Address,
                             item.OrderDate,
-                            item.TotalMoney.ToString("#,###"),
+                            item.TotalMoney > 0 ? item.TotalMoney.ToString("#,###") : "0",
                             item.VAT,
-                            item.PrePayment.ToString("#,###"),
-                            item.FinalMoney.ToString("#,###")
+                            item.PrePayment > 0 ? item.PrePayment.ToString("#,###") : "0",
+                            item.FinalMoney > 0 ? item.FinalMoney.ToString("#,###") : "0"
                         );
                 }
 
@@ -256,7 +257,7 @@ namespace QuanLyDonHang.Services
 
                 foreach (var item in orderDetails)
                 {
-                    dt.Rows.Add(item.ID,
+                    dt.Rows.Add(item.ID, 
                                 item.STT,
                                 item.ProductID,
                                 item.ProductCode,
@@ -266,8 +267,8 @@ namespace QuanLyDonHang.Services
                                 item.Length,
                                 item.Width,
                                 item.Quantity,
-                                item.Price.ToString("#,###"),
-                                item.TotalPrice.ToString("#,###")
+                                item.Price > 0 ? item.Price.ToString("#,###") : "0",
+                                item.TotalPrice > 0 ? item.TotalPrice.ToString("#,###") : "0"
                                 );
                 }
 
@@ -279,7 +280,15 @@ namespace QuanLyDonHang.Services
         public string OrderGenerateCode()
         {
             var dateNow = Utils.DateTimeNow();
-            var orderCountToday = entities.Orders.Where(x => x.CreateDate.CompareTo(dateNow) == 0).Count() + 1;
+            var strDateNow = dateNow.ToString("yyyy-MM-dd");
+
+            var query = $@"
+                            select count(1)
+                            from Orders
+                            where cast(createdate as date) = '{strDateNow}'  
+                        ";
+
+            var orderCountToday = entities.Database.SqlQuery<int>(query).ToList()[0] + 1;
 
             var defaultCode = "000";
 
@@ -379,6 +388,9 @@ namespace QuanLyDonHang.Services
 
                 var order = entities.Orders.Where(x => (x.ID == orderUpdate.ID || x.Code == orderUpdate.Code) && x.IsDeleted == 0)
                                                 .Include(x => x.OrderDetails)
+                                                .Include(x => x.DeliveryType)
+                                                .Include(x => x.PaymentType)
+                                                .Include(x => x.Customer)
                                 .FirstOrDefault();
 
                 if (order == null)
@@ -394,26 +406,31 @@ namespace QuanLyDonHang.Services
 
                 entities.SaveChanges();
 
+                //check chi tiết sản phẩm
                 if (orderUpdate.Details != null && orderUpdate.Details.Any())
                 {
+                    // check tồn tại
                     var orderDetailExist = orderUpdate.Details.Where(x => x.ID > 0).ToList();
 
                     var IDExist = orderDetailExist.Select(x => x.ID).ToList();
 
-                    foreach (var item in IDExist)
+                    var orderDetailDelete = entities.OrderDetails.Where(a => !IDExist.Contains(a.ID) && a.OrderID == order.ID && a.IsDeleted == 0);
+
+                    if( orderDetailDelete != null && orderDetailDelete.Any())
                     {
-                        var detailDelete = entities.OrderDetails.FirstOrDefault(a => a.ID == item);
+                        foreach( var a in orderDetailDelete)
+                        {
+                            a.IsDeleted = 1;
+                            a.UpdateDate = dateNow;
+                            a.UpdateUser = userInfo.UserID;
 
-                        detailDelete.IsDeleted = 1;
-                        detailDelete.UpdateDate = dateNow;
-                        detailDelete.UpdateUser = userInfo.UserID;
-
-                        entities.SaveChanges();
+                            entities.SaveChanges();
+                        }
                     }
 
                     foreach (var detail in orderDetailExist)
                     {
-                        var orderDetail = entities.OrderDetails.FirstOrDefault(x => x.ID == detail.ID);
+                        var orderDetail = entities.OrderDetails.FirstOrDefault(x => x.ID == detail.ID && x.OrderID == order.ID);
 
                         if (orderDetail != null)
                         {

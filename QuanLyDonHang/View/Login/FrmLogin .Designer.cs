@@ -72,6 +72,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(420, 28);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.Text = "123456789";
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // panel2
@@ -169,9 +170,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(135, 330);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 35);
+            this.label1.Size = new System.Drawing.Size(180, 35);
             this.label1.TabIndex = 16;
-            this.label1.Text = "Đơn Hàng";
+            this.label1.Text = "ĐƠN HÀNG";
             // 
             // label2
             // 
@@ -180,13 +181,14 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(54, 272);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 35);
+            this.label2.Size = new System.Drawing.Size(153, 35);
             this.label2.TabIndex = 16;
-            this.label2.Text = "Quản Lý";
+            this.label2.Text = "QUẢN LÝ";
             // 
             // rdoAdmin
             // 
             this.rdoAdmin.AutoSize = true;
+            this.rdoAdmin.Checked = true;
             this.rdoAdmin.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.rdoAdmin.Location = new System.Drawing.Point(90, 407);
@@ -194,6 +196,7 @@
             this.rdoAdmin.Name = "rdoAdmin";
             this.rdoAdmin.Size = new System.Drawing.Size(159, 31);
             this.rdoAdmin.TabIndex = 2;
+            this.rdoAdmin.TabStop = true;
             this.rdoAdmin.Text = "Quản trị viên";
             this.rdoAdmin.UseVisualStyleBackColor = true;
             this.rdoAdmin.CheckedChanged += new System.EventHandler(this.rdoAdmin_CheckedChanged);
@@ -224,6 +227,7 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(420, 28);
             this.txtUserName.TabIndex = 0;
+            this.txtUserName.Text = "admin";
             // 
             // panel3
             // 

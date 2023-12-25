@@ -32,6 +32,7 @@ namespace QuanLyDonHang.View.FormControl
         private OrderService orderService = new OrderService();
 
         private string err;
+        private string historyAction;
 
         public uc_ChiTietPhieuThu(uc_PhieuThu uc_PhieuThu)
         {
@@ -75,11 +76,19 @@ namespace QuanLyDonHang.View.FormControl
             }
             else
             {
-                cboKhachHang.ResetText();
-                cboThanhToan.ResetText();
-                cboGiaoHang.ResetText();
+                if(historyAction != "XEMCHITIET")
+                {
+                    cboKhachHang.ResetText();
+                    cboThanhToan.ResetText();
+                    cboGiaoHang.ResetText();
 
-                txtOrderCode.Enabled = true;
+                    txtFinalMoney.Text = "0";
+                    txtTotalPrice.Text = "0";
+                    txtPrePayment.Text = "0";
+                }
+                
+
+                //txtOrderCode.Enabled = true;
 
                 cboKhachHang.Enabled = true;
                 mskPhone.Enabled = true;
@@ -96,9 +105,7 @@ namespace QuanLyDonHang.View.FormControl
                 txtPrePayment.Enabled = true;
                 txtFinalMoney.Enabled = false;
 
-                txtFinalMoney.Text = "0";
-                txtTotalPrice.Text = "0";
-                txtPrePayment.Text = "0";
+               
             }
 
             switch (funcNo)
@@ -150,7 +157,16 @@ namespace QuanLyDonHang.View.FormControl
 
                     break;
 
-                case 1:
+                case 1:                    
+                    cboKhachHang.ResetText();
+                    txtAddress.ResetText();
+                    mskPhone.ResetText();
+
+                    cboThanhToan.ResetText();
+                    cboGiaoHang.ResetText();
+                    dtpNgay.ResetText();
+                    txtGhiChu.ResetText();
+
                     btnLuu.Enabled = true;
                     btnHuy.Enabled = true;
 
@@ -179,6 +195,10 @@ namespace QuanLyDonHang.View.FormControl
                     btnTiepTuc.Enabled = false;
                     btnTiepTuc.BackColor = Color.Gray;
                     btnTiepTuc.ForeColor = Color.WhiteSmoke;
+
+                    dgvChiTiet.Rows.Clear();
+                    dgvChiTiet.Refresh();
+
                     break;
 
                 case 2:
@@ -214,6 +234,34 @@ namespace QuanLyDonHang.View.FormControl
                     break;
 
                 default:
+                    btnLuu.Enabled = false;
+                    btnHuy.Enabled = false;
+
+                    btnTiepTuc.Enabled = true;
+                    btnSua.Enabled = true;
+                    btnXoa.Enabled = true;
+                    btnInPhieu.Enabled = true;
+
+                    btnLuu.BackColor = Color.Gray;
+                    btnHuy.BackColor = Color.Gray;
+
+                    btnLuu.ForeColor = Color.WhiteSmoke;
+                    btnHuy.ForeColor = Color.WhiteSmoke;
+
+                    btnSua.BackColor = Color.Blue;
+                    btnXoa.BackColor = Color.Red;
+
+                    btnSua.ForeColor = Color.White;
+                    btnXoa.ForeColor = Color.White;
+
+                    btnThem.BackColor = Color.IndianRed;
+                    btnThem.ForeColor = Color.White;
+
+                    btnInPhieu.BackColor = Color.CornflowerBlue;
+                    btnInPhieu.ForeColor = Color.White;
+
+                    btnTiepTuc.BackColor = Color.OrangeRed;
+                    btnTiepTuc.ForeColor = Color.White;
                     break;
             }
         }
@@ -273,9 +321,26 @@ namespace QuanLyDonHang.View.FormControl
 
                     return;
                 }
+
+                if (dtpNgay.Value <= DateTime.Now)
+                {
+                    epvKhachHang.SetError(this.dtpNgay, "!");
+                    MessageBox.Show("Thời gian giao hàng phải lớn hơn thời gian hiện tại", "Lập phiếu giao hàng",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    epvKhachHang.Clear();
+
+                    this.dtpNgay.Focus();
+
+                    return;
+                }
+
                 if (string.IsNullOrEmpty(txtPrePayment.Text))
                 {
                     txtPrePayment.Text = "0";
+                }
+                if (string.IsNullOrEmpty(txtFinalMoney.Text))
+                {
+                    txtFinalMoney.Text = "0";
                 }
 
                 var orderDetail = ConvertDataGridViewToList();
@@ -368,6 +433,7 @@ namespace QuanLyDonHang.View.FormControl
             this.dgvChiTiet.ResumeLayout();
 
             LoadData();
+            historyAction = action;
 
             switch (action)
             {
@@ -726,7 +792,7 @@ namespace QuanLyDonHang.View.FormControl
         private void txtTotalPrice_TextChanged(object sender, EventArgs e)
         {
             var vat = Convert.ToDouble(txtVAT.Value);
-            var tongtien = Convert.ToDouble(txtTotalPrice.Text);
+            var tongtien = Convert.ToDouble( string.IsNullOrEmpty(txtTotalPrice.Text) ? "0" : txtTotalPrice.Text);
 
             txtFinalMoney.Text = Utils.CalculatorVAT(vat, tongtien);
         }
@@ -751,7 +817,15 @@ namespace QuanLyDonHang.View.FormControl
         private void btnThem_Click(object sender, EventArgs e)
         {
             action = "THEM_1";
+            historyAction = action;
+
             EnabledControl(true, 1);
+            
+
+            // generate code order
+            txtOrderCode.Text = orderService.OrderGenerateCode();
+
+
         }
 
         private void GetFullOrder(int orderId)
@@ -775,19 +849,19 @@ namespace QuanLyDonHang.View.FormControl
 
                     cboThanhToan.SelectedValue = order.PaymentTypeID;
                     cboGiaoHang.SelectedValue = order.DeliveryTypeID;
-                    dtpNgay.Text = order.OrderDate.ToString();
+                    dtpNgay.Value = DateTime.ParseExact(order.OrderDate, "dd/MM/yyyy HH:mm:ss", null);
                     txtGhiChu.Text = order.Note;
 
-                    txtTotalPrice.Text = order.TotalMoney.ToString("#,###");
+                    txtTotalPrice.Text = order.TotalMoney > 0 ? order.TotalMoney.ToString("#,###") : "0";
                     txtVAT.Text = order.VAT.ToString();
-                    txtPrePayment.Text = order.PrePayment.ToString("#,###");
-                    txtFinalMoney.Text = order.FinalMoney.ToString("#,###");
+                    txtPrePayment.Text = order.PrePayment > 0 ? order.PrePayment.ToString("#,###") : "0";
+                    txtFinalMoney.Text = order.FinalMoney > 0 ? order.FinalMoney.ToString("#,###") : "0";
                 }
-                else
-                {
-                    MessageBox.Show(err, "Lập phiếu giao hàng 1", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                //else
+                //{
+                //    MessageBox.Show(err, "Lập phiếu giao hàng 1", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return;
+                //}
 
                 var orderDetails = orderService.GetListOrderDetail(orderId, ref err);
 
@@ -799,10 +873,7 @@ namespace QuanLyDonHang.View.FormControl
 
                         dgvChiTiet.Rows[rowIndex].Cells["dgvOrderDetailID"].Value = row["dgvOrderDetailID"];
                         dgvChiTiet.Rows[rowIndex].Cells["dgvSTT"].Value = row["dgvSTT"];
-                        //dgvChiTiet.Rows[rowIndex].Cells["dgvCboProductCode"].Value = row["dgvCboProductCode"];
                         dgvChiTiet.Rows[rowIndex].Cells["dgvTxtProductName"].Value = row["dgvTxtProductName"];
-                        //dgvChiTiet.Rows[rowIndex].Cells["dgvCboMaterialType"].Value = row["dgvCboMaterialType"];
-                        //dgvChiTiet.Rows[rowIndex].Cells["dgvCboConstructionType"].Value = row["dgvCboConstructionType"];
 
                         dgvChiTiet.Rows[rowIndex].Cells["dgvTxtLength"].Value = row["dgvTxtLength"];
                         dgvChiTiet.Rows[rowIndex].Cells["dgvTxtWidth"].Value = row["dgvTxtWidth"];
@@ -856,11 +927,11 @@ namespace QuanLyDonHang.View.FormControl
                         }
                     }
                 }
-                else
-                {
-                    MessageBox.Show(err, "Lập phiếu giao hàng 2", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                //else
+                //{
+                //    MessageBox.Show(err, "Lập phiếu giao hàng 2", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return;
+                //}
             }
             catch (Exception ex)
             {
