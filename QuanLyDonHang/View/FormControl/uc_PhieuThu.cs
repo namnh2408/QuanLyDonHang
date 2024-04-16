@@ -453,6 +453,7 @@ namespace QuanLyDonHang.View.FormControl
                 {
                     MessageBox.Show(err, "Phiếu giao hàng", MessageBoxButtons.OK);
                 }
+                EnabledControl();
             }
             catch (Exception ex)
             {

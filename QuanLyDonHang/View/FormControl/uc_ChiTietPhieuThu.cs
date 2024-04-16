@@ -103,9 +103,7 @@ namespace QuanLyDonHang.View.FormControl
                 txtTotalPrice.Enabled = false;
                 txtVAT.Enabled = true;
                 txtPrePayment.Enabled = true;
-                txtFinalMoney.Enabled = false;
-
-               
+                txtFinalMoney.Enabled = false;            
             }
 
             switch (funcNo)
@@ -133,6 +131,7 @@ namespace QuanLyDonHang.View.FormControl
                     btnSua.Enabled = true;
                     btnXoa.Enabled = true;
                     btnInPhieu.Enabled = true;
+                    btnThem.Enabled = true;
 
                     btnLuu.BackColor = Color.Gray;
                     btnHuy.BackColor = Color.Gray;
@@ -172,6 +171,7 @@ namespace QuanLyDonHang.View.FormControl
 
                     btnSua.Enabled = false;
                     btnXoa.Enabled = false;
+                    btnThem.Enabled = false;
 
                     btnLuu.BackColor = Color.CornflowerBlue;
                     btnHuy.BackColor = Color.IndianRed;
@@ -207,6 +207,7 @@ namespace QuanLyDonHang.View.FormControl
 
                     btnSua.Enabled = false;
                     btnXoa.Enabled = false;
+                    btnThem.Enabled = false;
 
                     btnLuu.BackColor = Color.CornflowerBlue;
                     btnHuy.BackColor = Color.IndianRed;
@@ -241,6 +242,7 @@ namespace QuanLyDonHang.View.FormControl
                     btnSua.Enabled = true;
                     btnXoa.Enabled = true;
                     btnInPhieu.Enabled = true;
+                    btnThem.Enabled = true;
 
                     btnLuu.BackColor = Color.Gray;
                     btnHuy.BackColor = Color.Gray;
@@ -268,6 +270,16 @@ namespace QuanLyDonHang.View.FormControl
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+
+            if (historyAction == SystemConstants.XEMCHITIET)
+            {
+                GetFullOrder(orderID);
+                EnabledControl(false, -1);
+
+                dgvChiTiet.DataSource = null;
+
+                return;
+            }
             switch (action)
             {
                 case "THEM":
@@ -280,9 +292,15 @@ namespace QuanLyDonHang.View.FormControl
                     EnabledControl(false);
                     break;
 
+                case SystemConstants.XEMCHITIET:
+                    GetFullOrder(orderID);
+                    EnabledControl(false, -1);
+                    break;
+
                 default:
                     break;
             }
+            
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -322,7 +340,7 @@ namespace QuanLyDonHang.View.FormControl
                     return;
                 }
 
-                if (dtpNgay.Value <= DateTime.Now)
+                if (historyAction != SystemConstants.XEMCHITIET && dtpNgay.Value <= DateTime.Now)
                 {
                     epvKhachHang.SetError(this.dtpNgay, "!");
                     MessageBox.Show("Thời gian giao hàng phải lớn hơn thời gian hiện tại", "Lập phiếu giao hàng",
@@ -345,7 +363,7 @@ namespace QuanLyDonHang.View.FormControl
 
                 var orderDetail = ConvertDataGridViewToList();
 
-                if (action == "THEM" || action == "THEM_1")
+                if (action == SystemConstants.THEM || action == SystemConstants.THEM_1)
                 {
                     var orderCreate = new OrderCreateModel
                     {
@@ -380,7 +398,7 @@ namespace QuanLyDonHang.View.FormControl
 
                     LoadData();
                 }
-                else if (action == "SUA")
+                else if (action == SystemConstants.SUA)
                 {
                     var orderUpdate = new OrderUpdateModel
                     {
@@ -437,16 +455,16 @@ namespace QuanLyDonHang.View.FormControl
 
             switch (action)
             {
-                case "THEM":
-                case "THEM_1":
+                case SystemConstants.THEM:
+                case SystemConstants.THEM_1:
                     EnabledControl(true, 1);
                     break;
 
-                case "SUA":
+                case SystemConstants.SUA:
                     EnabledControl(true, 2);
                     break;
 
-                case "XEMCHITIET":
+                case SystemConstants.XEMCHITIET:
                     GetFullOrder(orderID);
                     EnabledControl(false, -1);
                     break;
